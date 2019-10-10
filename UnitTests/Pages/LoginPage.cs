@@ -6,8 +6,6 @@ namespace UnitTests.Pages
 {
     class LoginPage : BasePage
     {
-        public LoginPage(IWebDriver driver) : base(driver) { }
-
         [FindsBy(How = How.LinkText, Using = "Log in")]
         public IWebElement LnkLogin { get; set; }
 

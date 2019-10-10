@@ -1,4 +1,5 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Framework.Base;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Firefox;
 using UnitTests.Pages;
@@ -10,20 +11,18 @@ namespace UnitTests
     {
         readonly string url = "http://localhost/";
 
-        private IWebDriver _driver;
-
         [TestMethod]
         public void LoginTest()
         {
-            _driver = new FirefoxDriver();
-            _driver.Navigate().GoToUrl(url);
+            DriverContext.Driver = new FirefoxDriver();
+            DriverContext.Driver.Navigate().GoToUrl(url);
 
             Login();
         }
 
         public void Login()
         {
-            LoginPage page = new LoginPage(_driver);
+            LoginPage page = new LoginPage();
 
             page.LnkLogin.Click();
             page.TxtUserName.SendKeys("admin");
