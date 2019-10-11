@@ -7,19 +7,19 @@ namespace UnitTests.Pages
     class LoginPage : BasePage
     {
         [FindsBy(How = How.LinkText, Using = "Log in")]
-        public IWebElement LnkLogin { get; set; }
+        IWebElement LnkLogin { get; set; }
 
         [FindsBy(How = How.LinkText, Using = "Employee List")]
-        public IWebElement LnkEmployeeList { get; set; }
+        IWebElement LnkEmployeeList { get; set; }
 
         [FindsBy(How = How.Id, Using = "UserName")]
-        public IWebElement TxtUserName { get; set; }
+        IWebElement TxtUserName { get; set; }
 
         [FindsBy(How = How.Id, Using = "Password")]
-        public IWebElement TxtPassword { get; set; }
+        IWebElement TxtPassword { get; set; }
 
         [FindsBy(How = How.CssSelector, Using = "input.btn")]
-        public IWebElement BtnLogin { get; set; }
+        IWebElement BtnLogin { get; set; }
 
         public void Login(string userName, string password)
         {
@@ -36,7 +36,7 @@ namespace UnitTests.Pages
         public EmployeePage ClickEmployeeList()
         {
             LnkEmployeeList.Click();
-            return new EmployeePage();
+            return GetInstance<EmployeePage>();
         }
     }
 }

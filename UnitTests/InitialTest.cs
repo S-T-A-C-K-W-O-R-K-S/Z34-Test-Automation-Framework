@@ -7,23 +7,23 @@ using UnitTests.Pages;
 namespace UnitTests
 {
     [TestClass]
-    public class UnitTestPrime : Base
+    public class InitialTest : Base
     {
         readonly string url = "http://localhost/";
 
         [TestMethod]
-        public void PrimeTest()
+        public void ReachNewEmployeePage()
         {
             DriverContext.Driver = new FirefoxDriver();
             DriverContext.Driver.Navigate().GoToUrl(url);
 
-            LoginPage loginPage = new LoginPage();
+            CurrentPage = GetInstance<LoginPage>();
 
-            loginPage.ClickLoginLink();
-            loginPage.Login("admin", "password");
+            CurrentPage.As<LoginPage>().ClickLoginLink();
+            CurrentPage.As<LoginPage>().Login("admin", "password");
 
-            CurrentPage = loginPage.ClickEmployeeList();
-            ((EmployeePage)CurrentPage).ClickCreateNew();
+            CurrentPage = CurrentPage.As<LoginPage>().ClickEmployeeList();
+            CurrentPage.As<EmployeePage>().ClickCreateNew();
         }
     }
 }

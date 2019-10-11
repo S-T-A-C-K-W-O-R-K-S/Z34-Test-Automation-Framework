@@ -7,10 +7,10 @@ namespace UnitTests.Pages
     class EmployeePage : BasePage
     {
         [FindsBy(How = How.Name, Using = "searchTerm")]
-        public IWebElement TxtSearch { get; set; }
+        IWebElement TxtSearch { get; set; }
 
         [FindsBy(How = How.LinkText, Using = "Create New")]
-        public IWebElement LnkCreateNew { get; set; }
+        IWebElement LnkCreateNew { get; set; }
 
         public CreateEmployeePage ClickCreateNew()
         {
