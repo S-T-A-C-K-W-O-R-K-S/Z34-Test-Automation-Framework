@@ -11,5 +11,7 @@ namespace Framework.Base
             get { return _driver; }
             set { _driver = value; }
         }
+
+        public static Browser Browser { get; set; }
     }
 }

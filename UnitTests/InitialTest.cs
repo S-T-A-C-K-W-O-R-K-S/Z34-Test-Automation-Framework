@@ -1,6 +1,7 @@
 ﻿using Framework.Base;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
+using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Firefox;
 using UnitTests.Pages;
 
@@ -11,11 +12,26 @@ namespace UnitTests
     {
         readonly string url = "http://localhost/";
 
+        public static void OpenBrowser(BrowserType browserType = BrowserType.Firefox)
+        {
+            switch (browserType)
+            {
+                case BrowserType.Firefox:
+                    DriverContext.Driver = new FirefoxDriver();
+                    DriverContext.Browser = new Browser(DriverContext.Driver);
+                    break;
+                case BrowserType.Chrome:
+                    DriverContext.Driver = new ChromeDriver();
+                    DriverContext.Browser = new Browser(DriverContext.Driver);
+                    break;
+            }
+        }
+
         [TestMethod]
         public void ReachNewEmployeePage()
         {
-            DriverContext.Driver = new FirefoxDriver();
-            DriverContext.Driver.Navigate().GoToUrl(url);
+            OpenBrowser(BrowserType.Firefox);
+            DriverContext.Browser.GoToUrl(url);
 
             CurrentPage = GetInstance<LoginPage>();
 
