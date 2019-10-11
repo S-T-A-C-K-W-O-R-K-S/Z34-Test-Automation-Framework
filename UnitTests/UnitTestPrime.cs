@@ -7,7 +7,7 @@ using UnitTests.Pages;
 namespace UnitTests
 {
     [TestClass]
-    public class UnitTestPrime
+    public class UnitTestPrime : Base
     {
         readonly string url = "http://localhost/";
 
@@ -22,8 +22,8 @@ namespace UnitTests
             loginPage.ClickLoginLink();
             loginPage.Login("admin", "password");
 
-            EmployeePage employeePage = loginPage.ClickEmployeeList();
-            employeePage.ClickCreateNew();
+            CurrentPage = loginPage.ClickEmployeeList();
+            ((EmployeePage)CurrentPage).ClickCreateNew();
         }
     }
 }
