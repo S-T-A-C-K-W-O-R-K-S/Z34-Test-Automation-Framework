@@ -12,22 +12,18 @@ namespace UnitTests
         readonly string url = "http://localhost/";
 
         [TestMethod]
-        public void LoginTest()
+        public void PrimeTest()
         {
             DriverContext.Driver = new FirefoxDriver();
             DriverContext.Driver.Navigate().GoToUrl(url);
 
-            Login();
-        }
+            LoginPage loginPage = new LoginPage();
 
-        public void Login()
-        {
-            LoginPage page = new LoginPage();
+            loginPage.ClickLoginLink();
+            loginPage.Login("admin", "password");
 
-            page.LnkLogin.Click();
-            page.TxtUserName.SendKeys("admin");
-            page.TxtPassword.SendKeys("password");
-            page.BtnLogin.Submit();
+            EmployeePage employeePage = loginPage.ClickEmployeeList();
+            employeePage.ClickCreateNew();
         }
     }
 }
