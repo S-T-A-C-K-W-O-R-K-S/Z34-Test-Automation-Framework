@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Framework.Helpers
 {
-    class ExcelHelper
+    class WebServiceHelpers
     {
     }
 }

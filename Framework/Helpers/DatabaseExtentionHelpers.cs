@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Framework.Helpers
 {
-    class DatabaseExtentionsHelper
+    class DatabaseExtentionHelpers
     {
     }
 }

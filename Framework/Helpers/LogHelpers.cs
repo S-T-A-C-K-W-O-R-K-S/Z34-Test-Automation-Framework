@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Framework.Helpers
 {
-    class HtmlTableHelper
+    class LogHelpers
     {
     }
 }
