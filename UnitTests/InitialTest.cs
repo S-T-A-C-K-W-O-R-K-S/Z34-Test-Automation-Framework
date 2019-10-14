@@ -31,7 +31,7 @@ namespace UnitTests
         [TestMethod]
         public void ReachNewEmployeePage()
         {
-            string dataSet = Environment.CurrentDirectory.ToString() + "\\Data\\UnitTestsDataSet.XLSX";
+            string dataSet = Environment.CurrentDirectory.ToString() + "\\Data\\Credentials.XLSX";
             ExcelDataHelpers.PopulateInMemoryCollection(dataSet);
 
 
