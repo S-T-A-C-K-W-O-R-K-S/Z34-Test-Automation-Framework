@@ -10,19 +10,27 @@ namespace Framework.Helpers
     public class ExcelDataHelpers
     {
         private static readonly List<DataCollection> DataCollection = new List<DataCollection>();
-
+              
         private static DataTable ExcelToDataTable(string fileName)
         {
-            FileStream stream = File.Open(fileName, FileMode.Open, FileAccess.Read);
-            IExcelDataReader excelReader = ExcelReaderFactory.CreateOpenXmlReader(stream);
+            using (var stream = File.Open(fileName, FileMode.Open, FileAccess.Read))
+            {
+                using (var reader = ExcelReaderFactory.CreateReader(stream))
+                {
+                    var result = reader.AsDataSet(new ExcelDataSetConfiguration()
+                    {
+                        ConfigureDataTable = (data) => new ExcelDataTableConfiguration()
+                        {
+                            UseHeaderRow = true
+                        }
+                    });
 
-            excelReader.IsFirstRowAsColumnNames = true;
+                    DataTableCollection table = result.Tables;
+                    DataTable resultTable = table["Sheet1"];
 
-            DataSet result = excelReader.AsDataSet();
-            DataTableCollection table = result.Tables;
-            DataTable resultTable = table["Sheet1"];
-
-            return resultTable;
+                    return resultTable;
+                }
+            }
         }
 
         public static void PopulateInMemoryCollection(string fileName)

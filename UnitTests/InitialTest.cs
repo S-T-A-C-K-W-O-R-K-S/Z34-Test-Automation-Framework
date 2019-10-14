@@ -1,8 +1,9 @@
 ﻿using Framework.Base;
+using Framework.Helpers;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Firefox;
+using System;
 using UnitTests.Pages;
 
 namespace UnitTests
@@ -30,13 +31,17 @@ namespace UnitTests
         [TestMethod]
         public void ReachNewEmployeePage()
         {
+            string dataSet = Environment.CurrentDirectory.ToString() + "\\Data\\UnitTestsDataSet.XLSX";
+            ExcelDataHelpers.PopulateInMemoryCollection(dataSet);
+
+
             OpenBrowser(BrowserType.Firefox);
             DriverContext.Browser.GoToUrl(url);
 
             CurrentPage = GetInstance<LoginPage>();
 
             CurrentPage.As<LoginPage>().ClickLoginLink();
-            CurrentPage.As<LoginPage>().Login("admin", "password");
+            CurrentPage.As<LoginPage>().Login(ExcelDataHelpers.ReadData(1, "UserName"), ExcelDataHelpers.ReadData(1, "Password"));
 
             CurrentPage = CurrentPage.As<LoginPage>().ClickEmployeeList();
             CurrentPage.As<EmployeePage>().ClickCreateNew();
