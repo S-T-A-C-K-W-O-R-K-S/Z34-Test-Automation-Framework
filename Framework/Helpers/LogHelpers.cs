@@ -25,7 +25,7 @@ namespace Framework.Helpers
         public static void WriteToLog(string logMessage)
         {
             _streamw.Write("{0} @ {1}", DateTime.Now.ToLongDateString(), DateTime.Now.ToLongTimeString());
-            _streamw.Write(" >>> {0}", logMessage);
+            _streamw.WriteLine(" >>> {0}", logMessage);
             _streamw.Flush();
         }
     }

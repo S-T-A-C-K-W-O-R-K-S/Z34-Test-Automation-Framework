@@ -36,6 +36,7 @@ namespace UnitTests
 
             LogHelpers.CreateLogFile();
             LogHelpers.WriteToLog("Opened The Browser !");
+            LogHelpers.WriteToLog("Did Something Else");
 
             OpenBrowser(BrowserType.Firefox);
             DriverContext.Browser.GoToUrl(url);
