@@ -73,7 +73,7 @@ namespace UnitTests
             var table = CurrentPage.As<EmployeePage>().GetEmployeeList();
 
             HtmlTableHelpers.ReadTable(table);
-            HtmlTableHelpers.PerformActionOnCell("5", "Name", "Ramesh", "Edit");
+            HtmlTableHelpers.PerformActionOnCell("6", "Name", "Ramesh", "Edit");
         }
     }
 }
