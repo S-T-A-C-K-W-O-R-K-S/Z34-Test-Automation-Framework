@@ -7,35 +7,35 @@ namespace UnitTests.Pages
     class LoginPage : BasePage
     {
         [FindsBy(How = How.LinkText, Using = "Log in")]
-        IWebElement LnkLogin { get; set; }
+        IWebElement LinkLogin { get; set; }
 
         [FindsBy(How = How.LinkText, Using = "Employee List")]
-        IWebElement LnkEmployeeList { get; set; }
+        IWebElement LinkEmployeeList { get; set; }
 
         [FindsBy(How = How.Id, Using = "UserName")]
-        IWebElement TxtUserName { get; set; }
+        IWebElement TextUserName { get; set; }
 
         [FindsBy(How = How.Id, Using = "Password")]
-        IWebElement TxtPassword { get; set; }
+        IWebElement TextPassword { get; set; }
 
         [FindsBy(How = How.CssSelector, Using = "input.btn")]
-        IWebElement BtnLogin { get; set; }
+        IWebElement ButtonLogin { get; set; }
 
         public void Login(string userName, string password)
         {
-            TxtUserName.SendKeys(userName);
-            TxtPassword.SendKeys(password);
-            BtnLogin.Submit();
+            TextUserName.SendKeys(userName);
+            TextPassword.SendKeys(password);
+            ButtonLogin.Submit();
         }
 
         public void ClickLoginLink()
         {
-            LnkLogin.Click();
+            LinkLogin.Click();
         }
 
         public EmployeePage ClickEmployeeList()
         {
-            LnkEmployeeList.Click();
+            LinkEmployeeList.Click();
             return GetInstance<EmployeePage>();
         }
     }

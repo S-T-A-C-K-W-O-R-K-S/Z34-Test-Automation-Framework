@@ -49,5 +49,31 @@ namespace UnitTests
             CurrentPage = CurrentPage.As<LoginPage>().ClickEmployeeList();
             CurrentPage.As<EmployeePage>().ClickCreateNew();
         }
+
+        [TestMethod]
+        public void TableOperation()
+        {
+            string dataSet = Environment.CurrentDirectory.ToString() + "\\Data\\Credentials.XLSX";
+            ExcelDataHelpers.PopulateInMemoryCollection(dataSet);
+
+            LogHelpers.CreateLogFile();
+            LogHelpers.WriteToLog("Opened The Browser !");
+            LogHelpers.WriteToLog("Did Something Else");
+
+            OpenBrowser(BrowserType.Firefox);
+            DriverContext.Browser.GoToUrl(url);
+
+            CurrentPage = GetInstance<LoginPage>();
+
+            CurrentPage.As<LoginPage>().ClickLoginLink();
+            CurrentPage.As<LoginPage>().Login(ExcelDataHelpers.ReadData(1, "UserName"), ExcelDataHelpers.ReadData(1, "Password"));
+
+            CurrentPage = CurrentPage.As<LoginPage>().ClickEmployeeList();
+
+            var table = CurrentPage.As<EmployeePage>().GetEmployeeList();
+
+            HtmlTableHelpers.ReadTable(table);
+            HtmlTableHelpers.PerformActionOnCell("5", "Name", "Ramesh", "Edit");
+        }
     }
 }

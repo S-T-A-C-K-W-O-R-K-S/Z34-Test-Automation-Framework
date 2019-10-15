@@ -7,15 +7,23 @@ namespace UnitTests.Pages
     class EmployeePage : BasePage
     {
         [FindsBy(How = How.Name, Using = "searchTerm")]
-        IWebElement TxtSearch { get; set; }
+        IWebElement TextSearch { get; set; }
 
         [FindsBy(How = How.LinkText, Using = "Create New")]
-        IWebElement LnkCreateNew { get; set; }
+        IWebElement LinkCreateNew { get; set; }
+
+        [FindsBy(How = How.ClassName, Using = "table")]
+        IWebElement TableEmployeeList { get; set; }
 
         public CreateEmployeePage ClickCreateNew()
         {
-            LnkCreateNew.Click();
+            LinkCreateNew.Click();
             return new CreateEmployeePage();
+        }
+
+        public IWebElement GetEmployeeList()
+        {
+            return TableEmployeeList;
         }
     }
 }

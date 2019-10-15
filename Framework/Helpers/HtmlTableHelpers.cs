@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace Framework.Helpers
 {
-    class HtmlTableHelpers
+    public class HtmlTableHelpers
     {
         private static List<TableDataCollection> _tableDataCollections;
 
@@ -29,15 +29,15 @@ namespace Framework.Helpers
                         _tableDataCollections.Add(new TableDataCollection
                         {
                             RowNumber = rowIndex,
-                            ColumnName = columns[columnIndex].Text != "" ?
-                                         columns[columnIndex].Text : columnIndex.ToString(),
+                            ColumnName = columns[columnIndex].Text != "" ? columns[columnIndex].Text : columnIndex.ToString(),
                             ColumnValue = cell.Text,
                             ControlElement = GetControl(cell)
                         });
 
                         columnIndex++;
-                        rowIndex++;
                     }
+
+                rowIndex++;
             }
         }
 
