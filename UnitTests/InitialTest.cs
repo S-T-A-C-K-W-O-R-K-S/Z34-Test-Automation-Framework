@@ -34,6 +34,8 @@ namespace UnitTests
             string dataSet = Environment.CurrentDirectory.ToString() + "\\Data\\Credentials.XLSX";
             ExcelDataHelpers.PopulateInMemoryCollection(dataSet);
 
+            LogHelpers.CreateLogFile();
+            LogHelpers.WriteToLog("Opened The Browser !");
 
             OpenBrowser(BrowserType.Firefox);
             DriverContext.Browser.GoToUrl(url);
