@@ -1,4 +1,5 @@
 ﻿using Framework.Base;
+using Framework.Config;
 using Framework.Helpers;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium.Chrome;
@@ -11,7 +12,7 @@ namespace UnitTests
     [TestClass]
     public class InitialTest : Base
     {
-        readonly string url = "http://localhost/";
+        readonly string url = ConfigReader.InitializeTest();
 
         public static void OpenBrowser(BrowserType browserType = BrowserType.Firefox)
         {
