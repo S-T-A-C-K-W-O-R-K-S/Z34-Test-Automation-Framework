@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Framework.Config
 {
-    class Settings
+    public class Settings
     {
         public static string TestType { get; set; }
         public static string AUT { get; set; }

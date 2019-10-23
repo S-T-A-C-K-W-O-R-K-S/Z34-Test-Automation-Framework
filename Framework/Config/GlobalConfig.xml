@@ -1,4 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
+<!-- The "Copy To Output Directory" property for config files needs to be set to "Copy Always" so they get copied to the "bin" directory on runtime. -->
 
 <Framework>
   <RunSettings>
@@ -9,10 +10,10 @@
     <!-- AUT = Application Under Test -->
     <AUT>http://localhost/</AUT>
 
-    <BuildName>DebugBuild</BuildName>
+    <Build>DebugBuild</Build>
     
     <!-- Possible Flags: Firefox, Chrome, Edge -->
-    <Browser>Firefox</Browser>
+    <BrowserType>Firefox</BrowserType>
     
     <!-- Possible Flags: True, False -->
     <IsLog>True</IsLog>

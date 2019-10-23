@@ -12,8 +12,6 @@ namespace UnitTests
     [TestClass]
     public class InitialTest : Base
     {
-        readonly string url = ConfigReader.InitializeTest();
-
         public static void OpenBrowser(BrowserType browserType = BrowserType.Firefox)
         {
             switch (browserType)
@@ -32,6 +30,8 @@ namespace UnitTests
         [TestMethod]
         public void ReachNewEmployeePage()
         {
+            ConfigReader.SetFrameworkSettings();
+
             string dataSet = Environment.CurrentDirectory.ToString() + "\\Data\\Credentials.XLSX";
             ExcelDataHelpers.PopulateInMemoryCollection(dataSet);
 
@@ -39,8 +39,8 @@ namespace UnitTests
             LogHelpers.WriteToLog("Opened The Browser !");
             LogHelpers.WriteToLog("Did Something Else");
 
-            OpenBrowser(BrowserType.Firefox);
-            DriverContext.Browser.GoToUrl(url);
+            OpenBrowser(BrowserType.Chrome);
+            DriverContext.Browser.GoToUrl(Settings.AUT);
 
             CurrentPage = GetInstance<LoginPage>();
 
@@ -54,6 +54,8 @@ namespace UnitTests
         [TestMethod]
         public void TableOperation()
         {
+            ConfigReader.SetFrameworkSettings();
+
             string dataSet = Environment.CurrentDirectory.ToString() + "\\Data\\Credentials.XLSX";
             ExcelDataHelpers.PopulateInMemoryCollection(dataSet);
 
@@ -61,8 +63,8 @@ namespace UnitTests
             LogHelpers.WriteToLog("Opened The Browser !");
             LogHelpers.WriteToLog("Did Something Else");
 
-            OpenBrowser(BrowserType.Firefox);
-            DriverContext.Browser.GoToUrl(url);
+            OpenBrowser(BrowserType.Chrome);
+            DriverContext.Browser.GoToUrl(Settings.AUT);
 
             CurrentPage = GetInstance<LoginPage>();
 
