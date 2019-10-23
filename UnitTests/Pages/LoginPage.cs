@@ -1,4 +1,5 @@
 ﻿using Framework.Base;
+using Framework.Extensions;
 using OpenQA.Selenium;
 using SeleniumExtras.PageObjects;
 
@@ -36,7 +37,14 @@ namespace UnitTests.Pages
         public EmployeePage ClickEmployeeList()
         {
             LinkEmployeeList.Click();
+            DriverContext.Driver.WaitForPageLoaded();
             return GetInstance<EmployeePage>();
+        }
+
+        internal void AssertLoginFormExists()
+        {
+            TextUserName.AssertElementPresent();
+            TextPassword.AssertElementPresent();
         }
     }
 }

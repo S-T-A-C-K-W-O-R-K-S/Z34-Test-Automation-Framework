@@ -36,8 +36,7 @@ namespace UnitTests
             ExcelDataHelpers.PopulateInMemoryCollection(dataSet);
 
             LogHelpers.CreateLogFile();
-            LogHelpers.WriteToLog("Opened The Browser !");
-            LogHelpers.WriteToLog("Did Something Else");
+            LogHelpers.WriteToLog("Test One !");
 
             OpenBrowser(BrowserType.Chrome);
             DriverContext.Browser.GoToUrl(Settings.AUT);
@@ -45,8 +44,9 @@ namespace UnitTests
             CurrentPage = GetInstance<LoginPage>();
 
             CurrentPage.As<LoginPage>().ClickLoginLink();
-            CurrentPage.As<LoginPage>().Login(ExcelDataHelpers.ReadData(1, "UserName"), ExcelDataHelpers.ReadData(1, "Password"));
+            CurrentPage.As<LoginPage>().AssertLoginFormExists();
 
+            CurrentPage.As<LoginPage>().Login(ExcelDataHelpers.ReadData(1, "UserName"), ExcelDataHelpers.ReadData(1, "Password"));
             CurrentPage = CurrentPage.As<LoginPage>().ClickEmployeeList();
             CurrentPage.As<EmployeePage>().ClickCreateNew();
         }
@@ -60,8 +60,7 @@ namespace UnitTests
             ExcelDataHelpers.PopulateInMemoryCollection(dataSet);
 
             LogHelpers.CreateLogFile();
-            LogHelpers.WriteToLog("Opened The Browser !");
-            LogHelpers.WriteToLog("Did Something Else");
+            LogHelpers.WriteToLog("Test Two !");
 
             OpenBrowser(BrowserType.Chrome);
             DriverContext.Browser.GoToUrl(Settings.AUT);

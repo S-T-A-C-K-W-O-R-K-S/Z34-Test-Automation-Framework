@@ -64,8 +64,9 @@ namespace Framework.Helpers
                 return data.ToString();
             }
 
-            catch (Exception e)
+            catch (Exception exception)
             {
+                LogHelpers.WriteToLog("ERROR :: " + exception.Message);
                 return null;
             }
         }

@@ -10,11 +10,12 @@ namespace Framework.Helpers
 
         public static void CreateLogFile()
         {
-            string dir = @"C:\LOG\";
+            string dir = @"C:\LOGS\";
             if (Directory.Exists(dir))
             {
                 _streamw = File.AppendText(dir + logFileName + ".log");
             }
+
             else
             {
                 Directory.CreateDirectory(dir);

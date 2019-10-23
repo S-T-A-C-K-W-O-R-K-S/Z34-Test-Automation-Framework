@@ -1,4 +1,5 @@
 ﻿using Framework.Base;
+using Framework.Extensions;
 using OpenQA.Selenium;
 using SeleniumExtras.PageObjects;
 
@@ -18,6 +19,7 @@ namespace UnitTests.Pages
         public CreateEmployeePage ClickCreateNew()
         {
             LinkCreateNew.Click();
+            DriverContext.Driver.WaitForPageLoaded();
             return new CreateEmployeePage();
         }
 
