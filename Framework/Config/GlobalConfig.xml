@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+<Framework>
+  <RunSettings>
+    
+    <!-- Possible Flags: Sanity, Smoke, Regression, Unit -->
+    <TestType>Smoke</TestType>
+    
+    <!-- AUT = Application Under Test -->
+    <AUT>http://localhost/</AUT>
+
+    <BuildName>DebugBuild</BuildName>
+    
+    <!-- Possible Flags: Firefox, Chrome, Edge -->
+    <Browser>Firefox</Browser>
+    
+    <!-- Possible Flags: True, False -->
+    <IsLog>True</IsLog>
+    
+    <LogPath>C:\\LOGS\\</LogPath>
+
+    <!-- Possible Flags: True, False -->
+    <IsReport>False</IsReport>
+    
+  </RunSettings>
+</Framework>

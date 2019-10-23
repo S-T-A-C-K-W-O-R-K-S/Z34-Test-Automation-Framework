@@ -1,15 +1,46 @@
-﻿using System;
+﻿using System.Xml;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Text;
+using System.Xml.XPath;
+using System;
+using System.IO;
 
 namespace Framework.Config
 {
     public class ConfigReader
     {
-        public static string InitializeTest()
+        public static void SetFrameworkSettings()
         {
-            return ConfigurationManager.AppSettings["AUT"].ToString();
+            XPathItem TestType;
+            XPathItem AUT;
+            XPathItem Build;
+            XPathItem BrowserType;
+            XPathItem IsLog;
+            XPathItem LogPath;
+            XPathItem IsReport;
+
+            string configFile = Environment.CurrentDirectory.ToString() + "\\Config\\GlobalConfig.xml";
+
+            FileStream stream = new FileStream(configFile, FileMode.Open);
+            XPathDocument document = new XPathDocument(stream);
+            XPathNavigator navigator = document.CreateNavigator();
+
+            TestType = navigator.SelectSingleNode("Framework/RunSettings/TestType");
+            AUT = navigator.SelectSingleNode("Framework/RunSettings/AUT");
+            Build = navigator.SelectSingleNode("Framework/RunSettings/Build");
+            BrowserType = navigator.SelectSingleNode("Framework/RunSettings/BrowserType");
+            IsLog = navigator.SelectSingleNode("Framework/RunSettings/IsLog");
+            LogPath = navigator.SelectSingleNode("Framework/RunSettings/LogPath");
+            IsReport = navigator.SelectSingleNode("Framework/RunSettings/IsReport");
+
+            Settings.TestType = TestType.ToString();
+            Settings.AUT = AUT.ToString();
+            Settings.Build = Build.ToString();
+            Settings.BrowserType = BrowserType.ToString();
+            Settings.IsLog = IsLog.ToString();
+            Settings.LogPath = LogPath.ToString();
+            Settings.IsReport = IsReport.ToString();
         }
     }
 }
