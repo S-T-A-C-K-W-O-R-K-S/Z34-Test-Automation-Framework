@@ -5,7 +5,7 @@ namespace Framework.Base
 {
     public class Base
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Code Quality", "IDE0052:Remove Unread Private Members", Justification = "Offers No Advantage In This Context")]
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Code Quality", "IDE0052: Remove Unread Private Members", Justification = "Offers No Advantage In This Context")]
         private IWebDriver Driver { get; set; }
 
         public BasePage CurrentPage { get; set; }

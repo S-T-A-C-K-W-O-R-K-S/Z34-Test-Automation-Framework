@@ -19,9 +19,10 @@ namespace Framework.Extensions
                 }, 5000);
         }
 
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1031: Do Not Catch General Exception Types", Justification = "It Is Not Knows What Exception Types This Method May Throw")]
         public static void WaitForCondition<T>(this T obj, Func<T, bool> condition, int timeout)
         {
-            Func<T, bool> execute = (arg) =>
+            bool execute(T arg)
             {
                 try
                 {
@@ -33,7 +34,7 @@ namespace Framework.Extensions
                     LogHelpers.WriteToLog("ERROR :: " + exception.Message);
                     return false;
                 }
-            };
+            }
 
             var stopwatch = Stopwatch.StartNew();
             while (stopwatch.ElapsedMilliseconds < timeout)
@@ -45,6 +46,7 @@ namespace Framework.Extensions
             }
         }
 
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "IDE0060: Remove Unused Parameter", Justification = "Extension Method Needs IWebDriver Parameter")]
         internal static object ExecuteJS(this IWebDriver driver, string script)
         {
             return ((IJavaScriptExecutor)DriverContext.Driver).ExecuteScript(script);
