@@ -1,10 +1,11 @@
-﻿using Framework.Base;
+﻿using System;
+using Framework.Base;
 using Framework.Config;
 using Framework.Helpers;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Firefox;
-using System;
 using UnitTests.Pages;
 
 namespace UnitTests
@@ -32,7 +33,7 @@ namespace UnitTests
         {
             ConfigReader.SetFrameworkSettings();
 
-            string dataSet = Environment.CurrentDirectory.ToString() + "\\Data\\Credentials.XLSX";
+            string dataSet = Environment.CurrentDirectory + "\\Data\\Credentials.XLSX";
             ExcelDataHelpers.PopulateInMemoryCollection(dataSet);
 
             LogHelpers.CreateLogFile();
@@ -56,7 +57,7 @@ namespace UnitTests
         {
             ConfigReader.SetFrameworkSettings();
 
-            string dataSet = Environment.CurrentDirectory.ToString() + "\\Data\\Credentials.XLSX";
+            string dataSet = Environment.CurrentDirectory + "\\Data\\Credentials.XLSX";
             ExcelDataHelpers.PopulateInMemoryCollection(dataSet);
 
             LogHelpers.CreateLogFile();
@@ -72,7 +73,7 @@ namespace UnitTests
 
             CurrentPage = CurrentPage.As<LoginPage>().ClickEmployeeList();
 
-            var table = CurrentPage.As<EmployeePage>().GetEmployeeList();
+            IWebElement table = CurrentPage.As<EmployeePage>().GetEmployeeList();
 
             HtmlTableHelpers.ReadTable(table);
             HtmlTableHelpers.PerformActionOnCell("6", "Name", "Ramesh", "Edit");
