@@ -1,5 +1,4 @@
-﻿using OpenQA.Selenium;
-using SeleniumExtras.PageObjects;
+﻿using SeleniumExtras.PageObjects;
 
 namespace Framework.Base
 {

@@ -1,7 +1,8 @@
-﻿using OpenQA.Selenium;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
+using OpenQA.Selenium;
 
 namespace Framework.Helpers
 {
@@ -13,18 +14,18 @@ namespace Framework.Helpers
         {
             _tableDataCollections = new List<TableDataCollection>();
 
-            var columns = table.FindElements(By.TagName("th"));
-            var rows = table.FindElements(By.TagName("tr"));
+            ReadOnlyCollection<IWebElement> columns = table.FindElements(By.TagName("th"));
+            ReadOnlyCollection<IWebElement> rows = table.FindElements(By.TagName("tr"));
 
             int rowIndex = 0;
 
-            foreach (var row in rows)
+            foreach (IWebElement row in rows)
             {
                 int columnIndex = 0;
-                var columnData = row.FindElements(By.TagName("td"));
+                ReadOnlyCollection<IWebElement> columnData = row.FindElements(By.TagName("td"));
 
                 if (columnData.Count != 0)
-                    foreach (var cell in columnData)
+                    foreach (IWebElement cell in columnData)
                     {
                         _tableDataCollections.Add(new TableDataCollection
                         {
@@ -46,22 +47,18 @@ namespace Framework.Helpers
             ControlElement controlElement = null;
 
             if (columnValue.FindElements(By.TagName("a")).Count > 0)
-            {
                 controlElement = new ControlElement
                 {
                     ElementCollection = columnValue.FindElements(By.TagName("a")),
                     ControlType = "hyperlink"
                 };
-            }
 
             if (columnValue.FindElements(By.TagName("input")).Count > 0)
-            {
                 controlElement = new ControlElement
                 {
                     ElementCollection = columnValue.FindElements(By.TagName("input")),
                     ControlType = "input"
                 };
-            }
 
             return controlElement;
         }
@@ -70,30 +67,29 @@ namespace Framework.Helpers
         {
             foreach (int rowNumber in GetRowNumber(referenceColumnName, referenceColumnValue))
             {
-                var cell = (from e in _tableDataCollections
-                            where e.ColumnName == columnIndex && e.RowNumber == rowNumber
-                            select e.ControlElement).SingleOrDefault();
+                ControlElement cell = (from e in _tableDataCollections
+                    where e.ColumnName == columnIndex && e.RowNumber == rowNumber
+                    select e.ControlElement).SingleOrDefault();
 
                 if (controlElement != null && cell != null)
                 {
                     if (cell.ControlType == "hyperlink")
                     {
-                        var returnedControl = (from c in cell.ElementCollection
-                                               where c.Text == controlElement
-                                               select c).SingleOrDefault();
+                        IWebElement returnedControl = (from c in cell.ElementCollection
+                            where c.Text == controlElement
+                            select c).SingleOrDefault();
 
                         returnedControl?.Click();
                     }
 
                     if (cell.ControlType == "input")
                     {
-                        var returnedControl = (from c in cell.ElementCollection
-                                               where c.GetAttribute("value") == controlElement
-                                               select c).SingleOrDefault();
+                        IWebElement returnedControl = (from c in cell.ElementCollection
+                            where c.GetAttribute("value") == controlElement
+                            select c).SingleOrDefault();
 
                         returnedControl?.Click();
                     }
-
                 }
 
                 else
@@ -105,11 +101,9 @@ namespace Framework.Helpers
 
         private static IEnumerable GetRowNumber(string columnName, string columnValue)
         {
-            foreach (var table in _tableDataCollections)
-            {
+            foreach (TableDataCollection table in _tableDataCollections)
                 if (table.ColumnName == columnName && table.ColumnValue == columnValue)
                     yield return table.RowNumber;
-            }
         }
 
         public class TableDataCollection
@@ -119,7 +113,7 @@ namespace Framework.Helpers
             public string ColumnValue { get; set; }
             public ControlElement ControlElement { get; set; }
         }
-        
+
         public class ControlElement
         {
             public IEnumerable<IWebElement> ElementCollection { get; set; }

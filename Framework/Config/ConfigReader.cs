@@ -1,10 +1,6 @@
-﻿using System.Xml;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Text;
-using System.Xml.XPath;
-using System;
+﻿using System;
 using System.IO;
+using System.Xml.XPath;
 
 namespace Framework.Config
 {
@@ -20,7 +16,7 @@ namespace Framework.Config
             XPathItem LogPath;
             XPathItem IsReport;
 
-            string configFile = Environment.CurrentDirectory.ToString() + "\\Config\\GlobalConfig.xml";
+            string configFile = Environment.CurrentDirectory + "\\Config\\GlobalConfig.xml";
 
             FileStream stream = new FileStream(configFile, FileMode.Open);
             XPathDocument document = new XPathDocument(stream);

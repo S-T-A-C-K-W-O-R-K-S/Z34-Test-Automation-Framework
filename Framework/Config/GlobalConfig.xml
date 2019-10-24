@@ -1,27 +1,28 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+﻿<?xml version="1.0" encoding="utf-8"?>
+
 <!-- The "Copy To Output Directory" property for config files needs to be set to "Copy Always" so they get copied to the "bin" directory on runtime. -->
 
 <Framework>
   <RunSettings>
-    
+
     <!-- Possible Flags: Sanity, Smoke, Regression, Unit -->
     <TestType>Smoke</TestType>
-    
+
     <!-- AUT = Application Under Test -->
     <AUT>http://localhost/</AUT>
 
     <Build>DebugBuild</Build>
-    
+
     <!-- Possible Flags: Firefox, Chrome, Edge -->
     <BrowserType>Firefox</BrowserType>
-    
+
     <!-- Possible Flags: True, False -->
     <IsLog>True</IsLog>
-    
+
     <LogPath>C:\\LOGS\\</LogPath>
 
     <!-- Possible Flags: True, False -->
     <IsReport>False</IsReport>
-    
+
   </RunSettings>
 </Framework>

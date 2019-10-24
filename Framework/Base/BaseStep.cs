@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Framework.Base
+﻿namespace Framework.Base
 {
-    class BaseStep
+    internal class BaseStep
     {
     }
 }

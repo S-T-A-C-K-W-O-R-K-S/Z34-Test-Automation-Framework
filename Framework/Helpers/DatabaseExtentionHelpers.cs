@@ -42,7 +42,7 @@ namespace Framework.Helpers
 
             try
             {
-                if (sqlConnection == null || (sqlConnection != null && (sqlConnection.State == ConnectionState.Closed || sqlConnection.State == ConnectionState.Broken)))
+                if (sqlConnection == null || sqlConnection != null && (sqlConnection.State == ConnectionState.Closed || sqlConnection.State == ConnectionState.Broken))
                     sqlConnection.Open();
 
                 SqlDataAdapter dataAdapter = new SqlDataAdapter();

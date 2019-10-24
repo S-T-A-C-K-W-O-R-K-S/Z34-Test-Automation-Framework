@@ -5,16 +5,16 @@ using SeleniumExtras.PageObjects;
 
 namespace UnitTests.Pages
 {
-    class EmployeePage : BasePage
+    internal class EmployeePage : BasePage
     {
         [FindsBy(How = How.Name, Using = "searchTerm")]
-        IWebElement TextSearch { get; set; }
+        private IWebElement TextSearch { get; set; }
 
         [FindsBy(How = How.LinkText, Using = "Create New")]
-        IWebElement LinkCreateNew { get; set; }
+        private IWebElement LinkCreateNew { get; set; }
 
         [FindsBy(How = How.ClassName, Using = "table")]
-        IWebElement TableEmployeeList { get; set; }
+        private IWebElement TableEmployeeList { get; set; }
 
         public CreateEmployeePage ClickCreateNew()
         {

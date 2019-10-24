@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Framework.Helpers
+﻿namespace Framework.Helpers
 {
-    class ReportingHelpers
+    internal class ReportingHelpers
     {
     }
 }

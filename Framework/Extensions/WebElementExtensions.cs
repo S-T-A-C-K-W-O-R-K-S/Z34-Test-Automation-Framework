@@ -1,10 +1,10 @@
-﻿using Framework.Base;
+﻿using System;
+using System.Collections.Generic;
+using Framework.Base;
 using Framework.Helpers;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Interactions;
 using OpenQA.Selenium.Support.UI;
-using System;
-using System.Collections.Generic;
 
 namespace Framework.Extensions
 {
@@ -21,15 +21,12 @@ namespace Framework.Extensions
             SelectElement dropdown = new SelectElement(element);
             List<string> options = new List<string>();
 
-            foreach (IWebElement option in dropdown.AllSelectedOptions)
-            {
-                options.Add(option.ToString());
-            }
+            foreach (IWebElement option in dropdown.AllSelectedOptions) options.Add(option.ToString());
 
             return options;
         }
 
-        public static void SelectByTextFromDropdownList (this IWebElement element, string value)
+        public static void SelectByTextFromDropdownList(this IWebElement element, string value)
         {
             SelectElement dropdown = new SelectElement(element);
             dropdown.SelectByText(value);
@@ -41,7 +38,7 @@ namespace Framework.Extensions
                 throw new Exception(string.Format("Element Not Present: " + element));
         }
 
-        private static bool IsElementPresent (IWebElement element)
+        private static bool IsElementPresent(IWebElement element)
         {
             try
             {
@@ -55,7 +52,7 @@ namespace Framework.Extensions
             }
         }
 
-        public static void HoverElement (this IWebElement element)
+        public static void HoverElement(this IWebElement element)
         {
             Actions actions = new Actions(DriverContext.Driver);
             actions.MoveToElement(element).Perform();

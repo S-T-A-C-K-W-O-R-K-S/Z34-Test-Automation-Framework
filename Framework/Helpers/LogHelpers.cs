@@ -5,8 +5,8 @@ namespace Framework.Helpers
 {
     public class LogHelpers
     {
-        private static string logFileName = string.Format("{0:yyyy-MM-dd_HH-mm-ss}", DateTime.Now);
-        private static StreamWriter _streamw = null;
+        private static readonly string logFileName = string.Format("{0:yyyy-MM-dd_HH-mm-ss}", DateTime.Now);
+        private static StreamWriter _streamw;
 
         public static void CreateLogFile()
         {

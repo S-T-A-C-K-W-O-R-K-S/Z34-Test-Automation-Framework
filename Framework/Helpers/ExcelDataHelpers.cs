@@ -1,25 +1,25 @@
-﻿using ExcelDataReader;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Data;
 using System.IO;
 using System.Linq;
+using ExcelDataReader;
 
 namespace Framework.Helpers
 {
     public class ExcelDataHelpers
     {
         private static readonly List<DataCollection> DataCollection = new List<DataCollection>();
-              
+
         private static DataTable ExcelToDataTable(string fileName)
         {
-            using (var stream = File.Open(fileName, FileMode.Open, FileAccess.Read))
+            using (FileStream stream = File.Open(fileName, FileMode.Open, FileAccess.Read))
             {
-                using (var reader = ExcelReaderFactory.CreateReader(stream))
+                using (IExcelDataReader reader = ExcelReaderFactory.CreateReader(stream))
                 {
-                    var result = reader.AsDataSet(new ExcelDataSetConfiguration()
+                    DataSet result = reader.AsDataSet(new ExcelDataSetConfiguration
                     {
-                        ConfigureDataTable = (data) => new ExcelDataTableConfiguration()
+                        ConfigureDataTable = data => new ExcelDataTableConfiguration
                         {
                             UseHeaderRow = true
                         }
@@ -38,18 +38,16 @@ namespace Framework.Helpers
             DataTable table = ExcelToDataTable(fileName);
 
             for (int row = 1; row <= table.Rows.Count; row++)
+            for (int col = 0; col < table.Columns.Count; col++)
             {
-                for (int col = 0; col < table.Columns.Count; col++)
+                DataCollection dataTable = new DataCollection
                 {
-                    DataCollection dataTable = new DataCollection()
-                    {
-                        RowNumber = row,
-                        ColumnName = table.Columns[col].ColumnName,
-                        ColumnValue = table.Rows[row - 1][col].ToString()
-                    };
+                    RowNumber = row,
+                    ColumnName = table.Columns[col].ColumnName,
+                    ColumnValue = table.Rows[row - 1][col].ToString()
+                };
 
-                    DataCollection.Add(dataTable);
-                }
+                DataCollection.Add(dataTable);
             }
         }
 
@@ -58,10 +56,10 @@ namespace Framework.Helpers
             try
             {
                 string data = (from colData in DataCollection
-                               where colData.ColumnName == columnName && colData.RowNumber == rowNumber
-                               select colData.ColumnValue).SingleOrDefault();
+                    where colData.ColumnName == columnName && colData.RowNumber == rowNumber
+                    select colData.ColumnValue).SingleOrDefault();
 
-                return data.ToString();
+                return data;
             }
 
             catch (Exception exception)
@@ -70,7 +68,6 @@ namespace Framework.Helpers
                 return null;
             }
         }
-
     }
 
     public class DataCollection
