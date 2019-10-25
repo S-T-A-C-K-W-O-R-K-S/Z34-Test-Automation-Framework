@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using Framework.Base;
 using Framework.Helpers;
@@ -36,7 +37,7 @@ namespace Framework.Extensions
                 throw new Exception(string.Format("Element Not Present: " + element));
         }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1031:Do Not Catch General Exception Types", Justification = "Exception Type Is Currently Unknown")]
+        [SuppressMessage("Design", "CA1031:Do Not Catch General Exception Types", Justification = "Exception Type Is Unknown")]
         private static bool IsElementPresent(IWebElement element)
         {
             try
