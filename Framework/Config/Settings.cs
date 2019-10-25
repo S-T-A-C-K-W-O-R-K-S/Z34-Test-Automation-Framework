@@ -1,6 +1,6 @@
 ﻿namespace Framework.Config
 {
-    public class Settings
+    public static class Settings
     {
         public static string TestType { get; set; }
         public static string AUT { get; set; }

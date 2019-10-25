@@ -21,7 +21,7 @@ namespace Framework.Extensions
         [SuppressMessage("Design", "CA1031: Do Not Catch General Exception Types", Justification = "It Is Not Knows What Exception Types This Method May Throw")]
         public static void WaitForCondition<T>(this T obj, Func<T, bool> condition, int timeout)
         {
-            bool execute(T arg)
+            bool Execute(T arg)
             {
                 try
                 {
@@ -37,7 +37,7 @@ namespace Framework.Extensions
 
             Stopwatch stopwatch = Stopwatch.StartNew();
             while (stopwatch.ElapsedMilliseconds < timeout)
-                if (execute(obj))
+                if (Execute(obj))
                     break;
         }
 

@@ -5,7 +5,7 @@ namespace Framework.Helpers
 {
     public class LogHelpers
     {
-        private static readonly string logFileName = string.Format("{0:yyyy-MM-dd_HH-mm-ss}", DateTime.Now);
+        private static readonly string LogFileName = string.Format("{0:yyyy-MM-dd_HH-mm-ss}", DateTime.Now);
         private static StreamWriter _streamw;
 
         public static void CreateLogFile()
@@ -13,13 +13,13 @@ namespace Framework.Helpers
             string dir = @"C:\LOGS\";
             if (Directory.Exists(dir))
             {
-                _streamw = File.AppendText(dir + logFileName + ".log");
+                _streamw = File.AppendText(dir + LogFileName + ".log");
             }
 
             else
             {
                 Directory.CreateDirectory(dir);
-                _streamw = File.AppendText(dir + logFileName + ".log");
+                _streamw = File.AppendText(dir + LogFileName + ".log");
             }
         }
 

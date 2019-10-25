@@ -4,7 +4,7 @@ using System.Data.SqlClient;
 
 namespace Framework.Helpers
 {
-    public static class DatabaseExtentionHelpers
+    public static class DatabaseExtensionHelpers
     {
         public static SqlConnection DBConnect(this SqlConnection sqlConnection, string connectionString)
         {

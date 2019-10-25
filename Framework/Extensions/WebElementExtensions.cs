@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Framework.Base;
 using Framework.Helpers;
 using OpenQA.Selenium;
@@ -19,11 +20,8 @@ namespace Framework.Extensions
         public static IList<string> GetSelectedDropdownOptions(this IWebElement element)
         {
             SelectElement dropdown = new SelectElement(element);
-            List<string> options = new List<string>();
 
-            foreach (IWebElement option in dropdown.AllSelectedOptions) options.Add(option.ToString());
-
-            return options;
+            return dropdown.AllSelectedOptions.Select(option => option.ToString()).ToList();
         }
 
         public static void SelectByTextFromDropdownList(this IWebElement element, string value)
@@ -38,6 +36,7 @@ namespace Framework.Extensions
                 throw new Exception(string.Format("Element Not Present: " + element));
         }
 
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1031:Do Not Catch General Exception Types", Justification = "Exception Type Is Currently Unknown")]
         private static bool IsElementPresent(IWebElement element)
         {
             try
