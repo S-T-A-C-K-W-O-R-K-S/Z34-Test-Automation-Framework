@@ -15,9 +15,11 @@
     <PackageReference Include="Selenium.Webdriver" Version="3.141.0" />
     <PackageReference Include="Selenium.WebDriver.ChromeDriver" Version="77.0.3865.4000" />
     <PackageReference Include="Selenium.WebDriver.GeckoDriver" Version="0.26.0" />
+    <PackageReference Include="SpecFlow" Version="3.0.225" />
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Steps\" />
     <Folder Include="Scripts\" />
     <Folder Include="WebAppForTesting\" />
   </ItemGroup>
@@ -27,8 +29,20 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="Features\Login.feature.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Login.feature</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
     <None Update="Data\Credentials.XLSX">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Features\Login.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>Login.feature.cs</LastGenOutput>
     </None>
   </ItemGroup>
 
