@@ -34,11 +34,11 @@ namespace UnitTests.Pages
             LinkLogin.Click();
         }
 
-        public EmployeePage ClickEmployeeList()
+        public EmployeeListPage ClickEmployeeList()
         {
             LinkEmployeeList.Click();
             DriverContext.Driver.WaitForPageLoaded();
-            return GetInstance<EmployeePage>();
+            return GetInstance<EmployeeListPage>();
         }
 
         internal void AssertLoginFormExists()

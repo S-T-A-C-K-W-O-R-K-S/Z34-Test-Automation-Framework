@@ -1,4 +1,5 @@
-﻿using Framework.Base;
+﻿using System.Diagnostics.CodeAnalysis;
+using Framework.Base;
 using Framework.Extensions;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
@@ -17,6 +18,7 @@ namespace UnitTests.Pages
         private IWebElement LinkLoggedInUser { get; set; }
 
         [FindsBy(How = How.LinkText, Using = "Log Off")]
+        [SuppressMessage("Code Quality", "IDE0051: Remove Unused Private Members", Justification = "Will Use Eventually")]
         private IWebElement LinkLogOff { get; set; }
 
         internal void CheckIfLoginExist()
@@ -35,10 +37,10 @@ namespace UnitTests.Pages
             return LinkLoggedInUser.GetLinkText();
         }
 
-        public EmployeePage ClickEmployeeList()
+        public EmployeeListPage ClickEmployeeList()
         {
             LinkEmployeeList.Click();
-            return GetInstance<EmployeePage>();
+            return GetInstance<EmployeeListPage>();
         }
     }
 }

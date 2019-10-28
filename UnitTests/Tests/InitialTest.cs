@@ -24,7 +24,7 @@ namespace UnitTests.Tests
 
             CurrentPage.As<LoginPage>().Login(ExcelDataHelpers.ReadData(1, "UserName"), ExcelDataHelpers.ReadData(1, "Password"));
             CurrentPage = CurrentPage.As<LoginPage>().ClickEmployeeList();
-            CurrentPage.As<EmployeePage>().ClickCreateNew();
+            CurrentPage.As<EmployeeListPage>().ClickCreateNew();
         }
 
         [TestMethod]
@@ -42,7 +42,7 @@ namespace UnitTests.Tests
 
             CurrentPage = CurrentPage.As<LoginPage>().ClickEmployeeList();
 
-            IWebElement table = CurrentPage.As<EmployeePage>().GetEmployeeList();
+            IWebElement table = CurrentPage.As<EmployeeListPage>().GetEmployeeList();
 
             HtmlTableHelpers.ReadTable(table);
             HtmlTableHelpers.PerformActionOnCell("6", "Name", "Ramesh", "Edit");
