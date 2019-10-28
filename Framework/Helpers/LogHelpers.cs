@@ -4,7 +4,7 @@ using Framework.Config;
 
 namespace Framework.Helpers
 {
-    public class LogHelpers
+    public static class LogHelpers
     {
         private static readonly string LogFileName = $"{DateTime.Now:yyyy-MM-dd_HH-mm-ss}";
         private static StreamWriter _streamWriter;
