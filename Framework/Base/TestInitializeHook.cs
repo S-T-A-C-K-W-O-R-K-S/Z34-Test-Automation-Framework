@@ -1,5 +1,5 @@
-﻿using Framework.Config;
-using Framework.Extensions;
+﻿using System;
+using Framework.Config;
 using Framework.Helpers;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Firefox;
@@ -22,13 +22,22 @@ namespace Framework.Base
             switch (browserType)
             {
                 case BrowserType.Firefox:
-                    DriverContext.Driver = new FirefoxDriver();
+                    FirefoxOptions optionsGecko = new FirefoxOptions();
+                    optionsGecko.AddArguments("--width=1280", "--height=720", "--private");
+                    DriverContext.Driver = new FirefoxDriver(optionsGecko);
                     DriverContext.Browser = new Browser(DriverContext.Driver);
                     break;
+
                 case BrowserType.Chrome:
-                    DriverContext.Driver = new ChromeDriver();
+                    ChromeOptions optionsChrome = new ChromeOptions();
+                    optionsChrome.AddArguments("--window-size=1280,720", "--incognito");
+                    DriverContext.Driver = new ChromeDriver(optionsChrome);
                     DriverContext.Browser = new Browser(DriverContext.Driver);
                     break;
+
+                default:
+                    LogHelpers.WriteToLog($"ERROR :: Invalid Browser Type: {browserType}");
+                    throw new ArgumentOutOfRangeException(nameof(browserType), browserType, $"Invalid Browser Type: {browserType}");
             }
         }
     }
