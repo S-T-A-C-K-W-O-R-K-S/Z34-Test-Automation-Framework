@@ -2,7 +2,7 @@
 
 namespace Framework.Base
 {
-    public class BasePage : Base
+    public abstract class BasePage : Base
     {
         public BasePage()
         {

@@ -40,7 +40,7 @@ namespace Framework.Base
 
         public virtual void NavigateToAUT()
         {
-            DriverContext.Browser.GoToUrl(Settings.AUT);
+            DriverContext.Browser.GoToURL(Settings.AUT);
             LogHelpers.WriteToLog($"Navigating To: {Settings.AUT}");
         }
     }

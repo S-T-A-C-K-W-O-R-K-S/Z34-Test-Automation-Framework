@@ -1,51 +1,53 @@
-﻿using System;
-using Framework.Helpers;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using OpenQA.Selenium;
-using UnitTests.Pages;
+﻿//using System;
+//using Framework.Helpers;
+//using Microsoft.VisualStudio.TestTools.UnitTesting;
+//using OpenQA.Selenium;
+//using UnitTests.Pages;
 
-namespace UnitTests.Tests
-{
-    [TestClass]
-    public class InitialTest : HookInitialize
-    {
-        [TestMethod]
-        public void ReachNewEmployeePage()
-        {
-            string dataSet = Environment.CurrentDirectory + "\\Data\\Credentials.XLSX";
-            ExcelDataHelpers.PopulateInMemoryCollection(dataSet);
+//namespace UnitTests.Tests
+//{
+//    [TestClass]
+//    public class InitialTest : HookInitialize
+//    {
+//        [TestMethod]
+//        public void ReachNewEmployeePage()
+//        {
+//            string dataSet = Environment.CurrentDirectory + "\\Data\\Credentials.XLSX";
+//            ExcelDataHelpers.PopulateInMemoryCollection(dataSet);
 
-            LogHelpers.WriteToLog("Test One !");
+//            LogHelpers.WriteToLog("Test One !");
 
-            CurrentPage = GetInstance<LoginPage>();
+//            CurrentPage = GetInstance<HomePage>();
+//            CurrentPage = CurrentPage.As<HomePage>().ClickLogin();
+//            CurrentPage.As<LoginPage>().AssertLoginFormExists();
 
-            CurrentPage.As<LoginPage>().ClickLoginButton();
-            CurrentPage.As<LoginPage>().AssertLoginFormExists();
+//            CurrentPage.As<LoginPage>().Login(ExcelDataHelpers.ReadData(1, "UserName"), ExcelDataHelpers.ReadData(1, "Password"));
+//            CurrentPage.As<LoginPage>().ClickLoginButton();
 
-            CurrentPage.As<LoginPage>().Login(ExcelDataHelpers.ReadData(1, "UserName"), ExcelDataHelpers.ReadData(1, "Password"));
-            CurrentPage = CurrentPage.As<HomePage>().ClickEmployeeList();
-            CurrentPage.As<EmployeeListPage>().ClickCreateNew();
-        }
+//            CurrentPage = CurrentPage.As<HomePage>().ClickEmployeeList();
+//            CurrentPage.As<EmployeeListPage>().ClickCreateNew();
+//        }
 
-        [TestMethod]
-        public void TableOperation()
-        {
-            string dataSet = Environment.CurrentDirectory + "\\Data\\Credentials.XLSX";
-            ExcelDataHelpers.PopulateInMemoryCollection(dataSet);
+//        [TestMethod]
+//        public void TableOperation()
+//        {
+//            string dataSet = Environment.CurrentDirectory + "\\Data\\Credentials.XLSX";
+//            ExcelDataHelpers.PopulateInMemoryCollection(dataSet);
 
-            LogHelpers.WriteToLog("Test Two !");
+//            LogHelpers.WriteToLog("Test Two !");
 
-            CurrentPage = GetInstance<LoginPage>();
+//            CurrentPage = GetInstance<HomePage>();
+//            CurrentPage = CurrentPage.As<HomePage>().ClickLogin();
 
-            CurrentPage.As<LoginPage>().ClickLoginButton();
-            CurrentPage.As<LoginPage>().Login(ExcelDataHelpers.ReadData(1, "UserName"), ExcelDataHelpers.ReadData(1, "Password"));
+//            CurrentPage.As<LoginPage>().Login(ExcelDataHelpers.ReadData(1, "UserName"), ExcelDataHelpers.ReadData(1, "Password"));
+//            CurrentPage.As<LoginPage>().ClickLoginButton();
 
-            CurrentPage = CurrentPage.As<HomePage>().ClickEmployeeList();
+//            CurrentPage = CurrentPage.As<HomePage>().ClickEmployeeList();
 
-            IWebElement table = CurrentPage.As<EmployeeListPage>().GetEmployeeList();
+//            IWebElement table = CurrentPage.As<EmployeeListPage>().GetEmployeeList();
 
-            HtmlTableHelpers.ReadTable(table);
-            HtmlTableHelpers.PerformActionOnCell("6", "Name", "Ramesh", "Edit");
-        }
-    }
-}
+//            HtmlTableHelpers.ReadTable(table);
+//            HtmlTableHelpers.PerformActionOnCell("6", "Name", "Ramesh", "Edit");
+//        }
+//    }
+//}

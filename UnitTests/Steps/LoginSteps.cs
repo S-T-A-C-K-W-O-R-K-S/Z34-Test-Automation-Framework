@@ -1,4 +1,5 @@
-﻿using Framework.Base;
+﻿using System.Threading;
+using Framework.Base;
 using TechTalk.SpecFlow;
 using UnitTests.Pages;
 using TechTalk.SpecFlow.Assist;
@@ -8,12 +9,12 @@ namespace UnitTests.Steps
     [Binding]
     public sealed class LoginSteps : BaseStep
     {
-        private readonly ScenarioContext _context;
+        //private readonly ScenarioContext _context;
 
-        public LoginSteps(ScenarioContext injectedContext)
-        {
-            _context = injectedContext;
-        }
+        //public LoginSteps(ScenarioContext injectedContext)
+        //{
+        //    _context = injectedContext;
+        //}
 
         [Given]
         public void Given_I_HAVE_NAVIGATED_TO_THE_APPLICATION()

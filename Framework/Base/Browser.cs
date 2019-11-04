@@ -16,7 +16,7 @@ namespace Framework.Base
         public BrowserType Type { get; set; }
 
         [SuppressMessage("Performance", "CA1822: Mark Members As Static", Justification = "False-Positive")]
-        public void GoToUrl(string url)
+        public void GoToURL(string url)
         {
             DriverContext.Driver.Url = url;
         }
