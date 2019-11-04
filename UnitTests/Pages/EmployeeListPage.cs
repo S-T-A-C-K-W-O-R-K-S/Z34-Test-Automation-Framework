@@ -18,5 +18,7 @@ namespace UnitTests.Pages
         }
 
         internal IWebElement GetEmployeeList() => TableEmployeeList;
+
+        internal void PopulateSearchBox(string name) => TextSearch.SendKeys(name);
     }
 }
