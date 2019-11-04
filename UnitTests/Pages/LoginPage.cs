@@ -16,7 +16,7 @@ namespace UnitTests.Pages
         [FindsBy(How = How.CssSelector, Using = "input.btn")]
         private IWebElement ButtonLogin { get; set; }
 
-        public void EnterCredentials(string userName, string password)
+        internal void EnterCredentials(string userName, string password)
         {
             TextUserName.SendKeys(userName);
             TextPassword.SendKeys(password);
@@ -25,10 +25,11 @@ namespace UnitTests.Pages
         public HomePage ClickLoginButton()
         {
             ButtonLogin.Click();
+            DriverContext.Driver.WaitForPageLoaded();
             return GetInstance<HomePage>();
         }
 
-        public void AssertLoginFormExists()
+        internal void AssertLoginFormExists()
         {
             TextUserName.AssertElementPresent();
             TextPassword.AssertElementPresent();

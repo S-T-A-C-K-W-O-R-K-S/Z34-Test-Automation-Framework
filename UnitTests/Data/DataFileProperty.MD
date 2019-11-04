@@ -1,1 +1,1 @@
-﻿The "Copy To Output Directory" property for data files needs to be set to "Copy Always" so they get copied to the "bin" directory on runtime.
+﻿The "Copy To Output Directory" property for data files needs to be set to "Copy Always", so they get copied to the "bin" directory at runtime.

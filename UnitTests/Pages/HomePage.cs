@@ -19,7 +19,7 @@ namespace UnitTests.Pages
         [FindsBy(How = How.LinkText, Using = "Log Off")]
         private IWebElement LinkLogOff { get; set; }
 
-        public void AssertLoginLinkPresence()
+        internal void AssertLoginLinkPresence()
         {
             LinkLogIn.AssertElementPresent();
         }
@@ -27,10 +27,11 @@ namespace UnitTests.Pages
         public LoginPage ClickLogIn()
         {
             LinkLogIn.Click();
+            DriverContext.Driver.WaitForPageLoaded();
             return GetInstance<LoginPage>();
         }
 
-        public string GetLoggedInUser()
+        internal string GetLoggedInUser()
         {
             return LinkLoggedInUser.GetLinkText();
         }
@@ -38,12 +39,14 @@ namespace UnitTests.Pages
         public EmployeeListPage ClickEmployeeList()
         {
             LinkEmployeeList.Click();
+            DriverContext.Driver.WaitForPageLoaded();
             return GetInstance<EmployeeListPage>();
         }
 
         public HomePage ClickLogOff()
         {
             LinkLogOff.Click();
+            DriverContext.Driver.WaitForPageLoaded();
             return GetInstance<HomePage>();
         }
     }

@@ -23,7 +23,7 @@ namespace UnitTests.Pages
             return new CreateEmployeePage();
         }
 
-        public IWebElement GetEmployeeList()
+        internal IWebElement GetEmployeeList()
         {
             return TableEmployeeList;
         }
