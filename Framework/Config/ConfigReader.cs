@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Framework.Base;
+using System;
 using System.IO;
 using System.Xml.XPath;
 
@@ -21,14 +22,16 @@ namespace Framework.Config
             XPathItem isLog = navigator.SelectSingleNode("Framework/RunSettings/IsLog");
             XPathItem logPath = navigator.SelectSingleNode("Framework/RunSettings/LogPath");
             XPathItem isReport = navigator.SelectSingleNode("Framework/RunSettings/IsReport");
+            XPathItem connectionString = navigator.SelectSingleNode("Framework/RunSettings/ConnectionString");
 
             if (testType != null) Settings.TestType = testType.ToString();
             if (aut != null) Settings.AUT = aut.ToString();
             if (build != null) Settings.Build = build.ToString();
-            if (browserType != null) Settings.BrowserType = browserType.ToString();
+            if (browserType != null) Settings.BrowserType = (BrowserType)Enum.Parse(typeof(BrowserType), browserType.Value);
             if (isLog != null) Settings.IsLog = isLog.ToString();
             if (logPath != null) Settings.LogPath = logPath.ToString();
             if (isReport != null) Settings.IsReport = isReport.ToString();
+            if (connectionString != null) Settings.ConnectionString = connectionString.Value;
         }
     }
 }

@@ -7,7 +7,7 @@ namespace UnitTests.Pages
 {
     internal class HomePage : BasePage
     {
-        [FindsBy(How = How.CssSelector, Using = "#loginLink")]
+        [FindsBy(How = How.LinkText, Using = "Login")]
         private IWebElement LinkLogIn { get; set; }
 
         [FindsBy(How = How.LinkText, Using = "Employee List")]

@@ -1,4 +1,6 @@
 ﻿using Framework.Base;
+using Framework.Config;
+using Framework.Helpers;
 using TechTalk.SpecFlow;
 
 namespace UnitTests.Tests
@@ -6,16 +8,18 @@ namespace UnitTests.Tests
     [Binding]
     public class HookInitialize : TestInitializeHook
     {
-        public HookInitialize() : base(BrowserType.Chrome)
-        {
-            InitializeConfig();
-            NavigateToAUT();
-        }
-
         [BeforeFeature]
         public static void BeforeFeature()
         {
-            HookInitialize init = new HookInitialize();
+            InitializeConfig();
+            Settings.DatabaseEndpoint = Settings.DatabaseEndpoint.DBConnect(Settings.ConnectionString);
+        }
+
+        [AfterScenario]
+        public void AfterScenario()
+        {
+            DriverContext.Driver.Close();
+            DriverContext.Driver.Quit();
         }
     }
 }

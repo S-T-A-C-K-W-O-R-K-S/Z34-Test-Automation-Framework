@@ -24,5 +24,7 @@
     <!-- Possible Flags: True, False -->
     <IsReport>False</IsReport>
 
+    <!-- ??? -->
+    <ConnectionString>???</ConnectionString>
   </RunSettings>
 </Framework>

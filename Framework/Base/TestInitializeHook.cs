@@ -7,23 +7,16 @@ namespace Framework.Base
 {
     public abstract class TestInitializeHook : Base
     {
-        public readonly BrowserType Browser;
-
-        protected TestInitializeHook(BrowserType browser)
-        {
-            Browser = browser;
-        }
-
-        public void InitializeConfig()
+        public static void InitializeConfig()
         {
             ConfigReader.SetFrameworkSettings();
             LogHelpers.CreateLogFile();
-            OpenBrowser(Browser);
+            OpenBrowser(Settings.BrowserType);
 
             LogHelpers.WriteToLog("Framework Initialized");
         }
 
-        private void OpenBrowser(BrowserType browserType = BrowserType.Firefox)
+        private static void OpenBrowser(BrowserType browserType = BrowserType.Firefox)
         {
             switch (browserType)
             {

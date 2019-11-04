@@ -16,14 +16,14 @@ namespace UnitTests.Pages
         [FindsBy(How = How.ClassName, Using = "table")]
         private IWebElement TableEmployeeList { get; set; }
 
-        internal CreateEmployeePage ClickCreateNew()
+        public CreateEmployeePage ClickCreateNew()
         {
             LinkCreateNew.Click();
             DriverContext.Driver.WaitForPageLoaded();
             return new CreateEmployeePage();
         }
 
-        internal IWebElement GetEmployeeList()
+        public IWebElement GetEmployeeList()
         {
             return TableEmployeeList;
         }
