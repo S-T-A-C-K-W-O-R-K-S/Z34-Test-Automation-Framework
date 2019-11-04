@@ -16,13 +16,13 @@ namespace UnitTests.Pages
         [FindsBy(How = How.CssSelector, Using = "input.btn")]
         private IWebElement ButtonLogin { get; set; }
 
-        public void Login(string userName, string password)
+        internal void EnterCredentials(string userName, string password)
         {
             TextUserName.SendKeys(userName);
             TextPassword.SendKeys(password);
         }
 
-        public HomePage ClickLoginButton()
+        internal HomePage ClickLoginButton()
         {
             ButtonLogin.Click();
             return GetInstance<HomePage>();

@@ -21,7 +21,7 @@
 //            CurrentPage = CurrentPage.As<HomePage>().ClickLogin();
 //            CurrentPage.As<LoginPage>().AssertLoginFormExists();
 
-//            CurrentPage.As<LoginPage>().Login(ExcelDataHelpers.ReadData(1, "UserName"), ExcelDataHelpers.ReadData(1, "Password"));
+//            CurrentPage.As<LoginPage>().EnterCredentials(ExcelDataHelpers.ReadData(1, "UserName"), ExcelDataHelpers.ReadData(1, "Password"));
 //            CurrentPage.As<LoginPage>().ClickLoginButton();
 
 //            CurrentPage = CurrentPage.As<HomePage>().ClickEmployeeList();
@@ -39,7 +39,7 @@
 //            CurrentPage = GetInstance<HomePage>();
 //            CurrentPage = CurrentPage.As<HomePage>().ClickLogin();
 
-//            CurrentPage.As<LoginPage>().Login(ExcelDataHelpers.ReadData(1, "UserName"), ExcelDataHelpers.ReadData(1, "Password"));
+//            CurrentPage.As<LoginPage>().EnterCredentials(ExcelDataHelpers.ReadData(1, "UserName"), ExcelDataHelpers.ReadData(1, "Password"));
 //            CurrentPage.As<LoginPage>().ClickLoginButton();
 
 //            CurrentPage = CurrentPage.As<HomePage>().ClickEmployeeList();

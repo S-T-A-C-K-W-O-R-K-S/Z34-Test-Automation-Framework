@@ -37,7 +37,7 @@ namespace UnitTests.Pages
             return LinkLoggedInUser.GetLinkText();
         }
 
-        public EmployeeListPage ClickEmployeeList()
+        internal EmployeeListPage ClickEmployeeList()
         {
             LinkEmployeeList.Click();
             return GetInstance<EmployeeListPage>();

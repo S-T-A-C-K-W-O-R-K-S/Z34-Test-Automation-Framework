@@ -39,7 +39,7 @@ namespace UnitTests.Steps
         public void When_I_ENTER_MY_USERNAME_AND_PASSWORD(Table credentialsTable)
         {
             dynamic data = credentialsTable.CreateDynamicInstance();
-            CurrentPage.As<LoginPage>().Login(data.USERNAME, data.PASSWORD);
+            CurrentPage.As<LoginPage>().EnterCredentials(data.USERNAME, data.PASSWORD);
         }
 
         [When]
