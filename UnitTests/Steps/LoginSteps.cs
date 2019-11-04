@@ -37,23 +37,20 @@ namespace UnitTests.Steps
         [When]
         public void When_I_ENTER_MY_USERNAME_AND_PASSWORD(Table credentialsTable)
         {
-            // var data = credentialsTable.c
-
-            // CurrentPage.As<LoginPage>().Login();
-
-            _context.Pending();
+            dynamic data = credentialsTable.CreateDynamicInstance();
+            CurrentPage.As<LoginPage>().Login(data.USERNAME, data.PASSWORD);
         }
 
         [When]
         public void When_I_CLICK_THE_LOGIN_BUTTON()
         {
-            _context.Pending();
+            CurrentPage = CurrentPage.As<LoginPage>().ClickLoginButton();
         }
 
         [Then]
         public void Then_I_SHOULD_BE_AUTHENTICATED_AND_SEE_A_GREETING_MESSAGE()
         {
-            _context.Pending();
+            System.Console.WriteLine(CurrentPage.As<HomePage>().GetLoggedInUser().Contains("admin") ? "Login Successful" : "Login Failed");
         }
     }
 }
