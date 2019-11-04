@@ -1,6 +1,7 @@
 ﻿using Framework.Base;
 using TechTalk.SpecFlow;
 using UnitTests.Pages;
+using TechTalk.SpecFlow.Assist;
 
 namespace UnitTests.Steps
 {
@@ -24,18 +25,22 @@ namespace UnitTests.Steps
         [Given]
         public void Given_I_CONFIRM_THE_APPLICATION_IS_RUNNING()
         {
-            _context.Pending();
+            CurrentPage.As<HomePage>().AssertLoginLinkPresence();
         }
 
         [Given]
         public void Given_I_CLICK_THE_LOGIN_LINK()
         {
-            _context.Pending();
+            CurrentPage = CurrentPage.As<HomePage>().ClickLogin();
         }
 
         [When]
-        public void When_I_ENTER_MY_USERNAME_AND_PASSWORD(Table table)
+        public void When_I_ENTER_MY_USERNAME_AND_PASSWORD(Table credentialsTable)
         {
+            // var data = credentialsTable.c
+
+            // CurrentPage.As<LoginPage>().Login();
+
             _context.Pending();
         }
 

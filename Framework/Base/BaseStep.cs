@@ -10,7 +10,5 @@ namespace Framework.Base
             DriverContext.Browser.GoToUrl(Settings.AUT);
             LogHelpers.WriteToLog($"Navigating To: {Settings.AUT}");
         }
-
-
     }
 }

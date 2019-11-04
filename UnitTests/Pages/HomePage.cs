@@ -21,7 +21,7 @@ namespace UnitTests.Pages
         [SuppressMessage("Code Quality", "IDE0051: Remove Unused Private Members", Justification = "Will Use Eventually")]
         private IWebElement LinkLogOff { get; set; }
 
-        internal void CheckIfLoginExist()
+        internal void AssertLoginLinkPresence()
         {
             LinkLogIn.AssertElementPresent();
         }
