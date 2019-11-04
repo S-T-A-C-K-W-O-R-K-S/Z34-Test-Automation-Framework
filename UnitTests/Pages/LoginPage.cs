@@ -28,7 +28,7 @@ namespace UnitTests.Pages
             return GetInstance<HomePage>();
         }
 
-        internal void AssertLoginFormExists()
+        public void AssertLoginFormExists()
         {
             TextUserName.AssertElementPresent();
             TextPassword.AssertElementPresent();

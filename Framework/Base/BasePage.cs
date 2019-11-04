@@ -4,7 +4,7 @@ namespace Framework.Base
 {
     public abstract class BasePage : Base
     {
-        public BasePage()
+        protected BasePage()
         {
             PageFactory.InitElements(DriverContext.Driver, this);
         }

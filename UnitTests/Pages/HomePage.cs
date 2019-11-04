@@ -19,29 +19,29 @@ namespace UnitTests.Pages
         [FindsBy(How = How.LinkText, Using = "Log Off")]
         private IWebElement LinkLogOff { get; set; }
 
-        internal void AssertLoginLinkPresence()
+        public void AssertLoginLinkPresence()
         {
             LinkLogIn.AssertElementPresent();
         }
 
-        internal LoginPage ClickLogIn()
+        public LoginPage ClickLogIn()
         {
             LinkLogIn.Click();
             return GetInstance<LoginPage>();
         }
 
-        internal string GetLoggedInUser()
+        public string GetLoggedInUser()
         {
             return LinkLoggedInUser.GetLinkText();
         }
 
-        internal EmployeeListPage ClickEmployeeList()
+        public EmployeeListPage ClickEmployeeList()
         {
             LinkEmployeeList.Click();
             return GetInstance<EmployeeListPage>();
         }
 
-        internal HomePage ClickLogOff()
+        public HomePage ClickLogOff()
         {
             LinkLogOff.Click();
             return GetInstance<HomePage>();

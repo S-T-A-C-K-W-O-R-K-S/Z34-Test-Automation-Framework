@@ -8,25 +8,15 @@ namespace Framework.Base
     public class Base
     {
         [SuppressMessage("Code Quality", "IDE0052: Remove Unread Private Members", Justification = "Offers No Advantage In This Context")]
-        private IWebDriver _driver { get; set; }
+        private IWebDriver Driver { get; set; }
 
-        public BasePage CurrentPage
-        {
-            get
-            {
-                return (BasePage)ScenarioContext.Current["currentPage"];
-            }
-            set
-            {
-                ScenarioContext.Current["currentPage"] = value;
-            }
-        }
+        public BasePage CurrentPage { get; set; }
 
-        protected TPage GetInstance<TPage>() where TPage : BasePage, new()
+        public TPage GetInstance<TPage>() where TPage : BasePage, new()
         {
             TPage pageInstance = new TPage()
             {
-                _driver = DriverContext.Driver
+                Driver = DriverContext.Driver
             };
 
             PageFactory.InitElements(DriverContext.Driver, pageInstance);
