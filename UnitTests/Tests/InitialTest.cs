@@ -1,53 +1,56 @@
-﻿//using System;
-//using Framework.Helpers;
-//using Microsoft.VisualStudio.TestTools.UnitTesting;
-//using OpenQA.Selenium;
-//using UnitTests.Pages;
+﻿using System;
+using System.Threading;
+using Framework.Helpers;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using UnitTests.Pages;
 
-//namespace UnitTests.Tests
-//{
-//    [TestClass]
-//    public class InitialTest : HookInitialize
-//    {
-//        [TestMethod]
-//        public void ReachNewEmployeePage()
-//        {
-//            string dataSet = Environment.CurrentDirectory + "\\Data\\Credentials.XLSX";
-//            ExcelDataHelpers.PopulateInMemoryCollection(dataSet);
+namespace UnitTests.Tests
+{
+    [TestClass]
+    public class InitialTest : HookInitialize
+    {
+        [TestMethod]
+        public void ReachNewEmployeePage()
+        {
+            string dataSet = Environment.CurrentDirectory + "\\Data\\Credentials.XLSX";
+            ExcelDataHelpers.PopulateInMemoryCollection(dataSet);
 
-//            LogHelpers.WriteToLog("Test One !");
+            LogHelpers.WriteToLog("Test One !");
 
-//            CurrentPage = GetInstance<HomePage>();
-//            CurrentPage = CurrentPage.As<HomePage>().ClickLogin();
-//            CurrentPage.As<LoginPage>().AssertLoginFormExists();
+            /* For Debugging Purposes */
+            Thread.Sleep(2000);
 
-//            CurrentPage.As<LoginPage>().EnterCredentials(ExcelDataHelpers.ReadData(1, "UserName"), ExcelDataHelpers.ReadData(1, "Password"));
-//            CurrentPage.As<LoginPage>().ClickLoginButton();
+            CurrentPage = GetInstance<HomePage>();
 
-//            CurrentPage = CurrentPage.As<HomePage>().ClickEmployeeList();
-//            CurrentPage.As<EmployeeListPage>().ClickCreateNew();
-//        }
+            CurrentPage = CurrentPage.As<HomePage>().ClickLogIn();
+            CurrentPage.As<LoginPage>().AssertLoginFormExists();
 
-//        [TestMethod]
-//        public void TableOperation()
-//        {
-//            string dataSet = Environment.CurrentDirectory + "\\Data\\Credentials.XLSX";
-//            ExcelDataHelpers.PopulateInMemoryCollection(dataSet);
+            CurrentPage.As<LoginPage>().EnterCredentials(ExcelDataHelpers.ReadData(1, "UserName"), ExcelDataHelpers.ReadData(1, "Password"));
+            CurrentPage = CurrentPage.As<LoginPage>().ClickLoginButton();
 
-//            LogHelpers.WriteToLog("Test Two !");
+            CurrentPage = CurrentPage.As<HomePage>().ClickEmployeeList();
+            CurrentPage.As<EmployeeListPage>().ClickCreateNew();
+        }
 
-//            CurrentPage = GetInstance<HomePage>();
-//            CurrentPage = CurrentPage.As<HomePage>().ClickLogin();
+        //[TestMethod]
+        //public void TableOperation()
+        //{
+        //    string dataSet = Environment.CurrentDirectory + "\\Data\\Credentials.XLSX";
+        //    ExcelDataHelpers.PopulateInMemoryCollection(dataSet);
 
-//            CurrentPage.As<LoginPage>().EnterCredentials(ExcelDataHelpers.ReadData(1, "UserName"), ExcelDataHelpers.ReadData(1, "Password"));
-//            CurrentPage.As<LoginPage>().ClickLoginButton();
+        //    LogHelpers.WriteToLog("Test Two !");
 
-//            CurrentPage = CurrentPage.As<HomePage>().ClickEmployeeList();
+        //    CurrentPage = GetInstance<LoginPage>();
 
-//            IWebElement table = CurrentPage.As<EmployeeListPage>().GetEmployeeList();
+        //    CurrentPage.As<LoginPage>().ClickLoginLink();
+        //    CurrentPage.As<LoginPage>().EnterCredentials(ExcelDataHelpers.ReadData(1, "UserName"), ExcelDataHelpers.ReadData(1, "Password"));
 
-//            HtmlTableHelpers.ReadTable(table);
-//            HtmlTableHelpers.PerformActionOnCell("6", "Name", "Ramesh", "Edit");
-//        }
-//    }
-//}
+        //    CurrentPage = CurrentPage.As<LoginPage>().ClickEmployeeList();
+
+        //    IWebElement table = CurrentPage.As<EmployeeListPage>().GetEmployeeList();
+
+        //    HtmlTableHelpers.ReadTable(table);
+        //    HtmlTableHelpers.PerformActionOnCell("6", "Name", "Ramesh", "Edit");
+        //}
+    }
+}

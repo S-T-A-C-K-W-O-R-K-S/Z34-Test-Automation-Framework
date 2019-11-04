@@ -32,7 +32,7 @@ namespace UnitTests.Steps
         [Given]
         public void Given_I_CLICK_THE_LOGIN_LINK()
         {
-            CurrentPage = CurrentPage.As<HomePage>().ClickLogin();
+            CurrentPage = CurrentPage.As<HomePage>().ClickLogIn();
         }
 
         [When]

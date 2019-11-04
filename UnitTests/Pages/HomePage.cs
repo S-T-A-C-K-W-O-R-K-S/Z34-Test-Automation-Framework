@@ -1,5 +1,4 @@
-﻿using System.Diagnostics.CodeAnalysis;
-using Framework.Base;
+﻿using Framework.Base;
 using Framework.Extensions;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
@@ -8,7 +7,7 @@ namespace UnitTests.Pages
 {
     internal class HomePage : BasePage
     {
-        [FindsBy(How = How.LinkText, Using = "Log In")]
+        [FindsBy(How = How.CssSelector, Using = "#loginLink")]
         private IWebElement LinkLogIn { get; set; }
 
         [FindsBy(How = How.LinkText, Using = "Employee List")]
@@ -18,7 +17,6 @@ namespace UnitTests.Pages
         private IWebElement LinkLoggedInUser { get; set; }
 
         [FindsBy(How = How.LinkText, Using = "Log Off")]
-        [SuppressMessage("Code Quality", "IDE0051: Remove Unused Private Members", Justification = "Will Use Eventually")]
         private IWebElement LinkLogOff { get; set; }
 
         internal void AssertLoginLinkPresence()
@@ -26,7 +24,7 @@ namespace UnitTests.Pages
             LinkLogIn.AssertElementPresent();
         }
 
-        internal LoginPage ClickLogin()
+        internal LoginPage ClickLogIn()
         {
             LinkLogIn.Click();
             return GetInstance<LoginPage>();
@@ -41,6 +39,12 @@ namespace UnitTests.Pages
         {
             LinkEmployeeList.Click();
             return GetInstance<EmployeeListPage>();
+        }
+
+        internal HomePage ClickLogOff()
+        {
+            LinkLogOff.Click();
+            return GetInstance<HomePage>();
         }
     }
 }
