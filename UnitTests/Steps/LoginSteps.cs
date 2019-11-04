@@ -1,10 +1,11 @@
 ﻿using Framework.Base;
 using TechTalk.SpecFlow;
+using UnitTests.Pages;
 
 namespace UnitTests.Steps
 {
     [Binding]
-    public sealed class LoginSteps : BasePage
+    public sealed class LoginSteps : BaseStep
     {
         private readonly ScenarioContext _context;
 
@@ -16,7 +17,8 @@ namespace UnitTests.Steps
         [Given]
         public void Given_I_HAVE_NAVIGATED_TO_THE_APPLICATION()
         {
-            _context.Pending();
+            NavigateToAUT();
+            CurrentPage = GetInstance<HomePage>();
         }
 
         [Given]
