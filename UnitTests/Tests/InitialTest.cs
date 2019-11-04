@@ -19,11 +19,11 @@ namespace UnitTests.Tests
 
             CurrentPage = GetInstance<LoginPage>();
 
-            CurrentPage.As<LoginPage>().ClickLoginLink();
+            CurrentPage.As<LoginPage>().ClickLoginButton();
             CurrentPage.As<LoginPage>().AssertLoginFormExists();
 
             CurrentPage.As<LoginPage>().Login(ExcelDataHelpers.ReadData(1, "UserName"), ExcelDataHelpers.ReadData(1, "Password"));
-            CurrentPage = CurrentPage.As<LoginPage>().ClickEmployeeList();
+            CurrentPage = CurrentPage.As<HomePage>().ClickEmployeeList();
             CurrentPage.As<EmployeeListPage>().ClickCreateNew();
         }
 
@@ -37,10 +37,10 @@ namespace UnitTests.Tests
 
             CurrentPage = GetInstance<LoginPage>();
 
-            CurrentPage.As<LoginPage>().ClickLoginLink();
+            CurrentPage.As<LoginPage>().ClickLoginButton();
             CurrentPage.As<LoginPage>().Login(ExcelDataHelpers.ReadData(1, "UserName"), ExcelDataHelpers.ReadData(1, "Password"));
 
-            CurrentPage = CurrentPage.As<LoginPage>().ClickEmployeeList();
+            CurrentPage = CurrentPage.As<HomePage>().ClickEmployeeList();
 
             IWebElement table = CurrentPage.As<EmployeeListPage>().GetEmployeeList();
 

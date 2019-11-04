@@ -7,12 +7,6 @@ namespace UnitTests.Pages
 {
     internal class LoginPage : BasePage
     {
-        [FindsBy(How = How.LinkText, Using = "Log in")]
-        private IWebElement LinkLogin { get; set; }
-
-        [FindsBy(How = How.LinkText, Using = "Employee List")]
-        private IWebElement LinkEmployeeList { get; set; }
-
         [FindsBy(How = How.Id, Using = "UserName")]
         private IWebElement TextUserName { get; set; }
 
@@ -26,19 +20,12 @@ namespace UnitTests.Pages
         {
             TextUserName.SendKeys(userName);
             TextPassword.SendKeys(password);
-            ButtonLogin.Submit();
         }
 
-        public void ClickLoginLink()
+        public HomePage ClickLoginButton()
         {
-            LinkLogin.Click();
-        }
-
-        public EmployeeListPage ClickEmployeeList()
-        {
-            LinkEmployeeList.Click();
-            DriverContext.Driver.WaitForPageLoaded();
-            return GetInstance<EmployeeListPage>();
+            ButtonLogin.Click();
+            return GetInstance<HomePage>();
         }
 
         internal void AssertLoginFormExists()
