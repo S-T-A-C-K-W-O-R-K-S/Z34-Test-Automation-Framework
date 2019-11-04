@@ -24,6 +24,7 @@ namespace Framework.Helpers
             }
         }
 
+        // TODO: Fix Inconsistent Timestamps
         public static void WriteToLog(string logMessage)
         {
             _streamWriter.Write("{0} @ {1}", DateTime.Now.ToLongDateString(), DateTime.Now.ToLongTimeString());

@@ -1,9 +1,11 @@
 ﻿using System;
+using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using Framework.Base;
 using Framework.Helpers;
 using OpenQA.Selenium;
+using OpenQA.Selenium.Support.UI;
 
 namespace Framework.Extensions
 {
@@ -45,6 +47,22 @@ namespace Framework.Extensions
         internal static object ExecuteJS(this IWebDriver driver, string script)
         {
             return ((IJavaScriptExecutor) DriverContext.Driver).ExecuteScript(script);
+        }
+
+        public static IWebElement FindElement(this IWebDriver driver, By by, int timeoutInMilliseconds)
+        {
+            if (timeoutInMilliseconds <= 0) return driver.FindElement(by);
+
+            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromMilliseconds(timeoutInMilliseconds));
+            return wait.Until(drv => drv.FindElement(by));
+        }
+
+        public static ReadOnlyCollection<IWebElement> FindElements(this IWebDriver driver, By by, int timeoutInMilliseconds)
+        {
+            if (timeoutInMilliseconds <= 0) return driver.FindElements(by);
+
+            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromMilliseconds(timeoutInMilliseconds));
+            return wait.Until(drv => (drv.FindElements(by).Count > 0) ? drv.FindElements(by) : null);
         }
     }
 }

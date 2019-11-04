@@ -6,10 +6,10 @@ namespace UnitTests.Pages
 {
     internal class HomePage : BasePage
     {
-        private static IWebElement LinkLogIn => DriverContext.Driver.FindElement(By.LinkText("Login"));
-        private static IWebElement LinkEmployeeList => DriverContext.Driver.FindElement(By.LinkText("Employee List"));
-        private static IWebElement LinkLoggedInUser => DriverContext.Driver.FindElement(By.XPath("//a[@title='Manage']"));
-        private static IWebElement LinkLogOff => DriverContext.Driver.FindElement(By.LinkText("Log Off"));
+        private static IWebElement LinkLogIn => DriverContext.Driver.FindElement(By.CssSelector("a#loginLink"), 2500);
+        private static IWebElement LinkEmployeeList => DriverContext.Driver.FindElement(By.LinkText("Employee List"), 2500);
+        private static IWebElement LinkLoggedInUser => DriverContext.Driver.FindElement(By.XPath("//a[@title='Manage']"), 2500);
+        private static IWebElement LinkLogOff => DriverContext.Driver.FindElement(By.LinkText("Log off"), 2500);
 
         internal void AssertLoginLinkPresence() => LinkLogIn.AssertElementPresent();
 

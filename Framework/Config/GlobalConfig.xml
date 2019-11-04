@@ -24,7 +24,6 @@
     <!-- Possible Flags: True, False -->
     <IsReport>False</IsReport>
 
-    <!-- ??? -->
-    <ConnectionString>???</ConnectionString>
+    <ConnectionString>Data Source=localhost; Initial Catalog=EmployeeDB; Integrated Security=True</ConnectionString>
   </RunSettings>
 </Framework>
