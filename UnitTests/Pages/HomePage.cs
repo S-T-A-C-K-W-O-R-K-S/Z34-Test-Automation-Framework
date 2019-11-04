@@ -1,28 +1,17 @@
 ﻿using Framework.Base;
 using Framework.Extensions;
 using OpenQA.Selenium;
-using OpenQA.Selenium.Support.PageObjects;
 
 namespace UnitTests.Pages
 {
     internal class HomePage : BasePage
     {
-        [FindsBy(How = How.LinkText, Using = "Login")]
-        private IWebElement LinkLogIn { get; set; }
+        private static IWebElement LinkLogIn => DriverContext.Driver.FindElement(By.LinkText("Login"));
+        private static IWebElement LinkEmployeeList => DriverContext.Driver.FindElement(By.LinkText("Employee List"));
+        private static IWebElement LinkLoggedInUser => DriverContext.Driver.FindElement(By.XPath("//a[@title='Manage']"));
+        private static IWebElement LinkLogOff => DriverContext.Driver.FindElement(By.LinkText("Log Off"));
 
-        [FindsBy(How = How.LinkText, Using = "Employee List")]
-        private IWebElement LinkEmployeeList { get; set; }
-
-        [FindsBy(How = How.XPath, Using = "//a[@title='Manage']")]
-        private IWebElement LinkLoggedInUser { get; set; }
-
-        [FindsBy(How = How.LinkText, Using = "Log Off")]
-        private IWebElement LinkLogOff { get; set; }
-
-        internal void AssertLoginLinkPresence()
-        {
-            LinkLogIn.AssertElementPresent();
-        }
+        internal void AssertLoginLinkPresence() => LinkLogIn.AssertElementPresent();
 
         public LoginPage ClickLogIn()
         {
@@ -31,10 +20,7 @@ namespace UnitTests.Pages
             return GetInstance<LoginPage>();
         }
 
-        internal string GetLoggedInUser()
-        {
-            return LinkLoggedInUser.GetLinkText();
-        }
+        internal string GetLoggedInUser() => LinkLoggedInUser.GetLinkText();
 
         public EmployeeListPage ClickEmployeeList()
         {

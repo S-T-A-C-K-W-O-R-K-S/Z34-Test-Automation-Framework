@@ -1,20 +1,14 @@
 ﻿using Framework.Base;
 using Framework.Extensions;
 using OpenQA.Selenium;
-using SeleniumExtras.PageObjects;
 
 namespace UnitTests.Pages
 {
     internal class LoginPage : BasePage
     {
-        [FindsBy(How = How.Id, Using = "UserName")]
-        private IWebElement TextUserName { get; set; }
-
-        [FindsBy(How = How.Id, Using = "Password")]
-        private IWebElement TextPassword { get; set; }
-
-        [FindsBy(How = How.CssSelector, Using = "input.btn")]
-        private IWebElement ButtonLogin { get; set; }
+        private static IWebElement TextUserName => DriverContext.Driver.FindElement(By.Id("UserName"));
+        private static IWebElement TextPassword => DriverContext.Driver.FindElement(By.Id("Password"));
+        private static IWebElement ButtonLogin => DriverContext.Driver.FindElement(By.CssSelector("input.btn"));
 
         internal void EnterCredentials(string userName, string password)
         {

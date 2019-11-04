@@ -9,8 +9,10 @@ namespace UnitTests.Steps
     [Binding]
     public sealed class LoginSteps : BaseStep
     {
+        // TODO: Implement Scenario Context Via Context Injection
+        //
         //private readonly ScenarioContext _context;
-
+        //
         //public LoginSteps(ScenarioContext injectedContext)
         //{
         //    _context = injectedContext;

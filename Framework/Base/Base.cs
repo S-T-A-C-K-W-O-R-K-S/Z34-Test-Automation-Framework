@@ -1,26 +1,20 @@
-﻿using System.Diagnostics.CodeAnalysis;
-using OpenQA.Selenium;
-using SeleniumExtras.PageObjects;
+﻿using System;
+using TechTalk.SpecFlow;
 
 namespace Framework.Base
 {
     public class Base
     {
-        [SuppressMessage("Code Quality", "IDE0052: Remove Unread Private Members", Justification = "Offers No Advantage In This Context")]
-        private IWebDriver Driver { get; set; }
-
-        public BasePage CurrentPage { get; set; }
-
-        public TPage GetInstance<TPage>() where TPage : BasePage, new()
+        // TODO: Implement Scenario Context Via Context Injection
+        public BasePage CurrentPage
         {
-            TPage pageInstance = new TPage
-            {
-                Driver = DriverContext.Driver
-            };
+            get => (BasePage) ScenarioContext.Current["currentPage"];
+            set => ScenarioContext.Current["currentPage"] = value;
+        }
 
-            PageFactory.InitElements(DriverContext.Driver, pageInstance);
-
-            return pageInstance;
+        protected static TPage GetInstance<TPage>() where TPage : BasePage, new()
+        {
+            return (TPage) Activator.CreateInstance(typeof(TPage));
         }
 
         public TPage As<TPage>() where TPage : BasePage
