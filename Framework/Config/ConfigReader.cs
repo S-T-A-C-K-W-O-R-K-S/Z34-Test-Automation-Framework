@@ -1,7 +1,7 @@
-﻿using Framework.Base;
-using System;
+﻿using System;
 using System.IO;
 using System.Xml.XPath;
+using Framework.Base;
 
 namespace Framework.Config
 {
@@ -27,7 +27,7 @@ namespace Framework.Config
             if (testType != null) Settings.TestType = testType.ToString();
             if (aut != null) Settings.AUT = aut.ToString();
             if (build != null) Settings.Build = build.ToString();
-            if (browserType != null) Settings.BrowserType = (BrowserType)Enum.Parse(typeof(BrowserType), browserType.Value);
+            if (browserType != null) Settings.BrowserType = (BrowserType) Enum.Parse(typeof(BrowserType), browserType.Value);
             if (isLog != null) Settings.IsLog = isLog.ToString();
             if (logPath != null) Settings.LogPath = logPath.ToString();
             if (isReport != null) Settings.IsReport = isReport.ToString();

@@ -7,6 +7,5 @@ namespace Framework.Base
         public static IWebDriver Driver { get; set; }
 
         public static Browser Browser { get; set; }
-
     }
 }

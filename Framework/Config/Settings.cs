@@ -1,5 +1,5 @@
-﻿using Framework.Base;
-using System.Data.SqlClient;
+﻿using System.Data.SqlClient;
+using Framework.Base;
 
 namespace Framework.Config
 {

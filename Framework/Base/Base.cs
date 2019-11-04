@@ -1,7 +1,6 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using OpenQA.Selenium;
 using SeleniumExtras.PageObjects;
-using TechTalk.SpecFlow;
 
 namespace Framework.Base
 {
@@ -14,7 +13,7 @@ namespace Framework.Base
 
         public TPage GetInstance<TPage>() where TPage : BasePage, new()
         {
-            TPage pageInstance = new TPage()
+            TPage pageInstance = new TPage
             {
                 Driver = DriverContext.Driver
             };
@@ -26,7 +25,7 @@ namespace Framework.Base
 
         public TPage As<TPage>() where TPage : BasePage
         {
-            return (TPage)this;
+            return (TPage) this;
         }
     }
 }
