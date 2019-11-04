@@ -8,15 +8,15 @@ namespace UnitTests.Tests
     [Binding]
     public class HookInitialize : TestInitializeHook
     {
-        [BeforeFeature]
-        public static void BeforeFeature()
+        [BeforeTestRun]
+        public static void BeforeTestRun()
         {
             InitializeConfig();
             Settings.DatabaseEndpoint = Settings.DatabaseEndpoint.DBConnect(Settings.ConnectionString);
         }
 
         [AfterScenario]
-        public void AfterScenario()
+        public static void AfterScenario()
         {
             DriverContext.Driver.Close();
             DriverContext.Driver.Quit();

@@ -1,4 +1,5 @@
 ﻿using Framework.Config;
+using Framework.Extensions;
 using Framework.Helpers;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Firefox;
@@ -29,12 +30,6 @@ namespace Framework.Base
                     DriverContext.Browser = new Browser(DriverContext.Driver);
                     break;
             }
-        }
-
-        public virtual void NavigateToAUT()
-        {
-            DriverContext.Browser.GoToURL(Settings.AUT);
-            LogHelpers.WriteToLog($"Navigating To: {Settings.AUT}");
         }
     }
 }
