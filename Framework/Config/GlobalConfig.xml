@@ -1,6 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 
 <!-- The "Copy To Output Directory" property for config files needs to be set to "Copy Always", so they get copied to the "bin" directory at runtime. -->
+<!-- Not doing so will cause the config reader to fail. -->
 
 <Framework>
   <RunSettings>
