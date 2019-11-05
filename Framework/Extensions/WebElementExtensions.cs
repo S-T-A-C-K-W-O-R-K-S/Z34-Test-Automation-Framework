@@ -47,7 +47,7 @@ namespace Framework.Extensions
 
             catch (Exception exception)
             {
-                LogHelpers.WriteToLog("ERROR :: " + exception.Message);
+                LogHelpers.WriteToLog("[ERROR] :: " + exception.Message);
                 return false;
             }
         }

@@ -11,7 +11,7 @@ namespace Framework.Base
             DriverContext.Browser.GoToURL(Settings.AUT);
             LogHelpers.WriteToLog($"Navigating To Page: {Settings.AUT}");
             DriverContext.Driver.WaitForPageLoaded();
-            LogHelpers.WriteToLog($"DOM Fully Loaded: {Settings.AUT}");
+            LogHelpers.WriteToLog($"DOM On Page Fully Loaded: {Settings.AUT}");
         }
     }
 }

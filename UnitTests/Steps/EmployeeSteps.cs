@@ -36,7 +36,7 @@ namespace UnitTests.Steps
                 case "CREATE":
                     break;
                 default:
-                    LogHelpers.WriteToLog($"ERROR :: Invalid Button Name: {button}");
+                    LogHelpers.WriteToLog($"[ERROR] :: Invalid Button Name: {button}");
                     throw new ArgumentOutOfRangeException(nameof(button), button, $"Invalid Button Name: {button}");
             }
         }

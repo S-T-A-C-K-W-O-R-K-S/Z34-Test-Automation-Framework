@@ -55,7 +55,7 @@ namespace UnitTests.Steps
         public void Then_I_SHOULD_BE_AUTHENTICATED_AND_SEE_A_GREETING_MESSAGE()
         {
             const string user = "admin";
-            LogHelpers.WriteToLog(CurrentPage.As<HomePage>().GetLoggedInUser().Contains(user) ? $"Successfully Logged In As: {user}" : $"Login Failed As: {user}");
+            LogHelpers.WriteToLog(CurrentPage.As<HomePage>().GetLoggedInUser().Contains(user) ? $"Successfully Logged In As: {user}" : $"[ERROR] :: Login Failed As: {user}");
         }
     }
 }

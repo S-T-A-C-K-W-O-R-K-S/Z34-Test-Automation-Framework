@@ -2,7 +2,6 @@
 using System.IO;
 using System.Xml.XPath;
 using Framework.Base;
-using Framework.Helpers;
 
 namespace Framework.Config
 {
@@ -30,25 +29,11 @@ namespace Framework.Config
             if (aut != null) Settings.AUT = aut.Value;
             if (build != null) Settings.Build = build.Value;
             if (browserType != null) Settings.BrowserType = (BrowserType) Enum.Parse(typeof(BrowserType), browserType.Value);
-            if (isLog != null) Settings.IsLog = isLog.Value;
+            if (isLog != null) Settings.IsLog = Convert.ToBoolean(isLog.Value);
             if (logPath != null) Settings.LogPath = logPath.Value;
-            if (isReport != null) Settings.IsReport = isReport.Value;
+            if (isReport != null) Settings.IsReport = Convert.ToBoolean(isReport.Value);
             if (connectionString != null) Settings.ConnectionString = connectionString.Value;
-
-            switch (debugMode.Value)
-            {
-                case "True":
-                    Settings.DebugMode = true;
-                    break;
-
-                case "False":
-                    Settings.DebugMode = false;
-                    break;
-
-                default:
-                    LogHelpers.WriteToLog($"ERROR :: Invalid Debug Mode Value: {debugMode.Value}");
-                    throw new ArgumentOutOfRangeException(nameof(debugMode.Value), debugMode.Value, $"Invalid Debug Mode Value: {debugMode.Value}");
-            }
+            if (debugMode != null) Settings.DebugMode = Convert.ToBoolean(debugMode.Value);
         }
     }
 }

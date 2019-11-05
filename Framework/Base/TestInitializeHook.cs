@@ -36,7 +36,7 @@ namespace Framework.Base
                     break;
 
                 default:
-                    LogHelpers.WriteToLog($"ERROR :: Invalid Browser Type: {browserType}");
+                    LogHelpers.WriteToLog($"[ERROR] :: Invalid Browser Type: {browserType}");
                     throw new ArgumentOutOfRangeException(nameof(browserType), browserType, $"Invalid Browser Type: {browserType}");
             }
         }
