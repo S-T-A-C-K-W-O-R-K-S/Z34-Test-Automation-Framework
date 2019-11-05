@@ -11,33 +11,33 @@ namespace Framework.Helpers
 
         public static void CreateLogFile()
         {
-            string dir = Settings.LogPath;
-            if (Directory.Exists(dir))
+            string logPath = Settings.LogPath;
+            if (Directory.Exists(logPath))
             {
-                _streamWriter = File.AppendText(dir + LogFileName + ".log");
+                _streamWriter = File.AppendText(logPath + LogFileName + ".log");
             }
 
             else
             {
-                Directory.CreateDirectory(dir);
-                _streamWriter = File.AppendText(dir + LogFileName + ".log");
+                Directory.CreateDirectory(logPath);
+                _streamWriter = File.AppendText(logPath + LogFileName + ".log");
+            }
+
+            if (Settings.DebugMode)
+            {
+                _streamWriter.WriteLine("[DEBUG] :: LOG CREATED" + Environment.NewLine +
+                                        "\t" + "DateTime.Now" + "\t" + "\t" + ":" + "\t" + DateTime.Now + Environment.NewLine +
+                                        "\t" + ".ToLongDateString" + "\t" + ":" + "\t" + DateTime.Now.ToLongDateString() + Environment.NewLine +
+                                        "\t" + ".ToLongTimeString" + "\t" + ":" + "\t" + DateTime.Now.ToLongTimeString() + Environment.NewLine +
+                                        "\t" + ".ToUniversalTime" + "\t" + ":" + "\t" + DateTime.Now.ToUniversalTime() + Environment.NewLine +
+                                        "\t" + ".ToLocalTime" + "\t" + "\t" + ":" + "\t" + DateTime.Now.ToLocalTime() + Environment.NewLine);
             }
         }
 
         // TODO: Fix Inconsistent Timestamps
         public static void WriteToLog(string logMessage)
         {
-            _streamWriter.Write("DEBUG :: " +
-                                "DateTime.Now: " + DateTime.Now +
-                                "| DateTime.Now.ToLongDateString: " + DateTime.Now.ToLongDateString() +
-                                "| DateTime.Now.ToLongTimeString: " + DateTime.Now.ToLongTimeString() +
-                                "| DateTime.Now.ToShortDateString: " + DateTime.Now.ToShortDateString() +
-                                "| DateTime.Now.ToShortTimeString: " + DateTime.Now.ToShortTimeString() +
-                                "| DateTime.Now.ToOADate: " + DateTime.Now.ToOADate() +
-                                "| DateTime.Now.ToUniversalTime: " + DateTime.Now.ToUniversalTime());
-
-            _streamWriter.Write("{0} @ {1}", DateTime.Now.ToLongDateString(), DateTime.Now.ToLongTimeString());
-            _streamWriter.WriteLine(" >>> {0}", logMessage);
+            _streamWriter.WriteLine("{0} @ {1} >>> {2}", DateTime.Now.ToLongDateString(), DateTime.Now.ToLongTimeString(), logMessage);
             _streamWriter.Flush();
         }
     }
