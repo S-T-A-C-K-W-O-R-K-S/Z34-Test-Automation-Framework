@@ -1,5 +1,6 @@
 ﻿using System;
 using Framework.Base;
+using Framework.Helpers;
 using TechTalk.SpecFlow;
 using TechTalk.SpecFlow.Assist;
 using UnitTests.Pages;
@@ -53,7 +54,8 @@ namespace UnitTests.Steps
         [Then]
         public void Then_I_SHOULD_BE_AUTHENTICATED_AND_SEE_A_GREETING_MESSAGE()
         {
-            Console.WriteLine(CurrentPage.As<HomePage>().GetLoggedInUser().Contains("admin") ? "Login Successful" : "Login Failed");
+            const string user = "admin";
+            LogHelpers.WriteToLog(CurrentPage.As<HomePage>().GetLoggedInUser().Contains(user) ? $"Successfully Logged In As: {user}" : $"Login Failed As: {user}");
         }
     }
 }
