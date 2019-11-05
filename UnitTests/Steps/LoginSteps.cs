@@ -1,5 +1,4 @@
-﻿using System;
-using Framework.Base;
+﻿using Framework.Base;
 using Framework.Helpers;
 using TechTalk.SpecFlow;
 using TechTalk.SpecFlow.Assist;
@@ -11,13 +10,14 @@ namespace UnitTests.Steps
     public sealed class LoginSteps : BaseStep
     {
         // TODO: Implement Scenario Context Via Context Injection
+        // For additional details on SpecFlow step definitions see https://go.specflow.org/doc-stepdef
         //
-        //private readonly ScenarioContext _context;
+        // private readonly ScenarioContext context;
         //
-        //public LoginSteps(ScenarioContext injectedContext)
-        //{
-        //    _context = injectedContext;
-        //}
+        // public Employee(ScenarioContext injectedContext)
+        // {
+        //     context = injectedContext;
+        // }
 
         [Given]
         public void Given_I_HAVE_NAVIGATED_TO_THE_APPLICATION()

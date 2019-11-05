@@ -18,14 +18,14 @@ namespace UnitTests.Features
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.0.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [Microsoft.VisualStudio.TestTools.UnitTesting.TestClassAttribute()]
-    public partial class LoginFeature
+    public partial class EmployeeFeature
     {
         
         private static TechTalk.SpecFlow.ITestRunner testRunner;
         
         private Microsoft.VisualStudio.TestTools.UnitTesting.TestContext _testContext;
         
-#line 1 "Login.feature"
+#line 1 "Employee.feature"
 #line hidden
         
         public virtual Microsoft.VisualStudio.TestTools.UnitTesting.TestContext TestContext
@@ -44,8 +44,8 @@ namespace UnitTests.Features
         public static void FeatureSetup(Microsoft.VisualStudio.TestTools.UnitTesting.TestContext testContext)
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Login", "\tIN ORDER TO ACCESS MY ACCOUNT\r\n\tAS A USER OF THE WEBSITE\r\n\tI SHOULD BE ABLE TO L" +
-                    "OG IN WITH MY USERNAME AND PASSWORD", ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Employee", "\tIN ORDER TO ENSURE THAT THE EMPLOYEE MODEL IS FUNCTIONAL\r\n\tAS A LOGGED-IN USER\r\n" +
+                    "\tI SHOULD BE ABLE TO PERFORM REST OPERATIONS ON EMPLOYEE ENTITIES", ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -60,9 +60,9 @@ namespace UnitTests.Features
         public virtual void TestInitialize()
         {
             if (((testRunner.FeatureContext != null) 
-                        && (testRunner.FeatureContext.FeatureInfo.Title != "Login")))
+                        && (testRunner.FeatureContext.FeatureInfo.Title != "Employee")))
             {
-                global::UnitTests.Features.LoginFeature.FeatureSetup(null);
+                global::UnitTests.Features.EmployeeFeature.FeatureSetup(null);
             }
         }
         
@@ -88,46 +88,59 @@ namespace UnitTests.Features
             testRunner.CollectScenarioErrors();
         }
         
-        public virtual void FeatureBackground()
-        {
-#line 6
-#line hidden
-        }
-        
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Assert Login With Valid Credentials")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Login")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Create Employee With Full Details")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Employee")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("smoke")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("authentication")]
-        public virtual void AssertLoginWithValidCredentials()
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("employee")]
+        public virtual void CreateEmployeeWithFullDetails()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Assert Login With Valid Credentials", null, new string[] {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Create Employee With Full Details", null, new string[] {
                         "smoke",
-                        "authentication"});
-#line 10
+                        "employee"});
+#line 7
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
-#line 6
-this.FeatureBackground();
-#line 11
+#line 8
  testRunner.Given("I HAVE NAVIGATED TO THE APPLICATION", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 12
+#line 9
  testRunner.And("I CONFIRM THE APPLICATION IS RUNNING", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 13
+#line 10
  testRunner.And("I CLICK THE LOGIN LINK", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-            TechTalk.SpecFlow.Table table3 = new TechTalk.SpecFlow.Table(new string[] {
+            TechTalk.SpecFlow.Table table1 = new TechTalk.SpecFlow.Table(new string[] {
                         "USERNAME",
                         "PASSWORD"});
-            table3.AddRow(new string[] {
+            table1.AddRow(new string[] {
                         "admin",
                         "password"});
+#line 11
+ testRunner.When("I ENTER MY USERNAME AND PASSWORD", ((string)(null)), table1, "When ");
 #line 14
- testRunner.When("I ENTER MY USERNAME AND PASSWORD", ((string)(null)), table3, "When ");
-#line 17
  testRunner.And("I CLICK THE LOGIN BUTTON", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 18
- testRunner.Then("I SHOULD BE AUTHENTICATED AND SEE A GREETING MESSAGE", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 15
+ testRunner.And("I FOLLOW THE EMPLOYEE LIST LINK", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 16
+ testRunner.And("I CLICK THE CREATE NEW [EMPLOYEE] BUTTON", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+            TechTalk.SpecFlow.Table table2 = new TechTalk.SpecFlow.Table(new string[] {
+                        "NAME",
+                        "SALARY",
+                        "WORK HOURS",
+                        "GRADE",
+                        "EMAIL"});
+            table2.AddRow(new string[] {
+                        "Automated User",
+                        "4000",
+                        "30",
+                        "1",
+                        "auto@user.spec"});
+#line 17
+ testRunner.And("I ENTER THE DETAILS OF THE EMPLOYEE", ((string)(null)), table2, "And ");
+#line 20
+ testRunner.And("I CLICK THE CREATE [EMPLOYEE] BUTTON", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 21
+ testRunner.Then("THE NEWLY CREATED EMPLOYEE SHOULD HAVE SUCCESSFULLY SAVED", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }
