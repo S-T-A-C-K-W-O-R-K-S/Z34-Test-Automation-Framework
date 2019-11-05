@@ -26,5 +26,8 @@
     <IsReport>False</IsReport>
 
     <ConnectionString>Data Source=localhost; Initial Catalog=EmployeeDB; Integrated Security=True</ConnectionString>
+
+    <!-- Possible Flags: True, False -->
+    <DebugMode>True</DebugMode>
   </RunSettings>
 </Framework>

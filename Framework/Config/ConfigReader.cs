@@ -2,6 +2,7 @@
 using System.IO;
 using System.Xml.XPath;
 using Framework.Base;
+using Framework.Helpers;
 
 namespace Framework.Config
 {
@@ -23,15 +24,31 @@ namespace Framework.Config
             XPathItem logPath = navigator.SelectSingleNode("Framework/RunSettings/LogPath");
             XPathItem isReport = navigator.SelectSingleNode("Framework/RunSettings/IsReport");
             XPathItem connectionString = navigator.SelectSingleNode("Framework/RunSettings/ConnectionString");
+            XPathItem debugMode = navigator.SelectSingleNode("Framework/RunSettings/DebugMode");
 
-            if (testType != null) Settings.TestType = testType.ToString();
-            if (aut != null) Settings.AUT = aut.ToString();
-            if (build != null) Settings.Build = build.ToString();
+            if (testType != null) Settings.TestType = testType.Value;
+            if (aut != null) Settings.AUT = aut.Value;
+            if (build != null) Settings.Build = build.Value;
             if (browserType != null) Settings.BrowserType = (BrowserType) Enum.Parse(typeof(BrowserType), browserType.Value);
-            if (isLog != null) Settings.IsLog = isLog.ToString();
-            if (logPath != null) Settings.LogPath = logPath.ToString();
-            if (isReport != null) Settings.IsReport = isReport.ToString();
+            if (isLog != null) Settings.IsLog = isLog.Value;
+            if (logPath != null) Settings.LogPath = logPath.Value;
+            if (isReport != null) Settings.IsReport = isReport.Value;
             if (connectionString != null) Settings.ConnectionString = connectionString.Value;
+
+            switch (debugMode.Value)
+            {
+                case "True":
+                    Settings.DebugMode = true;
+                    break;
+
+                case "False":
+                    Settings.DebugMode = false;
+                    break;
+
+                default:
+                    LogHelpers.WriteToLog($"ERROR :: Invalid Debug Mode Value: {debugMode.Value}");
+                    throw new ArgumentOutOfRangeException(nameof(debugMode.Value), debugMode.Value, $"Invalid Debug Mode Value: {debugMode.Value}");
+            }
         }
     }
 }

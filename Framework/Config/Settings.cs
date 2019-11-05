@@ -14,5 +14,6 @@ namespace Framework.Config
         public static string IsReport { get; set; }
         public static SqlConnection DatabaseEndpoint { get; set; }
         public static string ConnectionString { get; set; }
+        public static bool DebugMode { get; set; }
     }
 }
