@@ -1,7 +1,9 @@
 ﻿using System;
 using Framework.Base;
 using Framework.Helpers;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using TechTalk.SpecFlow;
+using TechTalk.SpecFlow.Assist;
 using UnitTests.Pages;
 
 namespace UnitTests.Steps
@@ -44,14 +46,16 @@ namespace UnitTests.Steps
         [When]
         public void When_I_ENTER_THE_DETAILS_OF_THE_EMPLOYEE(Table employeeDetailsTable)
         {
-            ScenarioContext.Current.Pending();
+            dynamic employeeDetails = employeeDetailsTable.CreateDynamicInstance();
+            CurrentPage.As<CreateEmployeePage>().EnterEmployeeDetails(employeeDetails.NAME, employeeDetails.SALARY, employeeDetails.HOURS, employeeDetails.GRADE, employeeDetails.EMAIL);
+            CurrentPage = CurrentPage.As<CreateEmployeePage>().ClickCreateEmployeeButton();
         }
 
         [Then]
-        public void Then_THE_NEWLY_CREATED_EMPLOYEE_SHOULD_HAVE_SUCCESSFULLY_SAVED()
+        public void Then_THE_NEWLY_CREATED_EMPLOYEE_SHOULD_HAVE_SUCCESSFULLY_SAVED(Table employeeDetailsTable)
         {
-            ScenarioContext.Current.Pending();
+            dynamic employeeDetails = employeeDetailsTable.CreateDynamicInstance();
+            Assert.IsTrue(CurrentPage.As<EmployeeListPage>().AssertEmployeePresence(employeeDetails.NAME));
         }
-
     }
 }

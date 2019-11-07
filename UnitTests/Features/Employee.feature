@@ -15,7 +15,7 @@ Scenario: Create Employee With Full Details
 	And I FOLLOW THE EMPLOYEE LIST LINK
 	And I CLICK THE CREATE NEW [EMPLOYEE] BUTTON
 	And I ENTER THE DETAILS OF THE EMPLOYEE
-	| NAME           | SALARY | WORK HOURS | GRADE | EMAIL          |
-	| Automated User | 4000   | 30         | 1     | auto@user.spec |
+	| NAME           | SALARY | HOURS | GRADE | EMAIL          |
+	| Automated User | 4000   | 30    | 1     | auto@user.spec |
 	And I CLICK THE CREATE [EMPLOYEE] BUTTON
 	Then THE NEWLY CREATED EMPLOYEE SHOULD HAVE SUCCESSFULLY SAVED

@@ -126,7 +126,7 @@ this.ScenarioInitialize(scenarioInfo);
             TechTalk.SpecFlow.Table table2 = new TechTalk.SpecFlow.Table(new string[] {
                         "NAME",
                         "SALARY",
-                        "WORK HOURS",
+                        "HOURS",
                         "GRADE",
                         "EMAIL"});
             table2.AddRow(new string[] {

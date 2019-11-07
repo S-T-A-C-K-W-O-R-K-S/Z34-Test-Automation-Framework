@@ -1,5 +1,6 @@
 ﻿using Framework.Base;
 using Framework.Extensions;
+using Framework.Helpers;
 using OpenQA.Selenium;
 
 namespace UnitTests.Pages
@@ -17,8 +18,19 @@ namespace UnitTests.Pages
             return new CreateEmployeePage();
         }
 
-        internal IWebElement GetEmployeeList() => TableEmployeeList;
+        internal IWebElement GetEmployeeList()
+        {
+            return TableEmployeeList;
+        }
 
-        internal void PopulateSearchBox(string name) => TextSearch.SendKeys(name);
+        internal void PopulateSearchBox(string name)
+        {
+            TextSearch.SendKeys(name);
+        }
+
+        internal void AssertEmployeePresence(string name)
+        {
+            HtmlTableHelpers.AssertValuePresence(HtmlTableHelpers.ReadTableToArray(TableEmployeeList), name);
+        }
     }
 }
