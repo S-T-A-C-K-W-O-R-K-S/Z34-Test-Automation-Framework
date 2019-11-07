@@ -28,9 +28,9 @@ namespace UnitTests.Pages
             TextSearch.SendKeys(name);
         }
 
-        internal void AssertEmployeePresence(string name)
+        internal bool AssertEmployeePresence(string name)
         {
-            HtmlTableHelpers.AssertValuePresence(HtmlTableHelpers.ReadTableToArray(TableEmployeeList), name);
+            return HtmlTableHelpers.AssertValuePresence(HtmlTableHelpers.ReadTableToArray(TableEmployeeList), name);
         }
     }
 }
