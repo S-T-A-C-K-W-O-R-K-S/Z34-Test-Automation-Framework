@@ -88,6 +88,14 @@ namespace UnitTests.Features
             testRunner.CollectScenarioErrors();
         }
         
+        public virtual void FeatureBackground()
+        {
+#line 6
+#line 7
+ testRunner.Given("I DELETE EMPLOYEE \"Automated User\" PRIOR TO RUNNING TEST", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
+        }
+        
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
         [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Create Employee With Full Details")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Employee")]
@@ -98,14 +106,16 @@ namespace UnitTests.Features
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Create Employee With Full Details", null, new string[] {
                         "smoke",
                         "employee"});
-#line 7
+#line 10
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
-#line 8
+#line 6
+this.FeatureBackground();
+#line 11
  testRunner.Given("I HAVE NAVIGATED TO THE APPLICATION", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 9
+#line 12
  testRunner.And("I CONFIRM THE APPLICATION IS RUNNING", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 10
+#line 13
  testRunner.And("I CLICK THE LOGIN LINK", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             TechTalk.SpecFlow.Table table1 = new TechTalk.SpecFlow.Table(new string[] {
@@ -114,13 +124,13 @@ this.ScenarioInitialize(scenarioInfo);
             table1.AddRow(new string[] {
                         "admin",
                         "password"});
-#line 11
- testRunner.When("I ENTER MY USERNAME AND PASSWORD", ((string)(null)), table1, "When ");
 #line 14
+ testRunner.When("I ENTER MY USERNAME AND PASSWORD", ((string)(null)), table1, "When ");
+#line 17
  testRunner.And("I CLICK THE LOGIN BUTTON", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 15
+#line 18
  testRunner.And("I FOLLOW THE EMPLOYEE LIST LINK", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 16
+#line 19
  testRunner.And("I CLICK THE CREATE NEW [EMPLOYEE] BUTTON", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             TechTalk.SpecFlow.Table table2 = new TechTalk.SpecFlow.Table(new string[] {
@@ -135,11 +145,11 @@ this.ScenarioInitialize(scenarioInfo);
                         "30",
                         "1",
                         "auto@user.spec"});
-#line 17
- testRunner.And("I ENTER THE DETAILS OF THE EMPLOYEE", ((string)(null)), table2, "And ");
 #line 20
+ testRunner.And("I ENTER THE DETAILS OF THE EMPLOYEE", ((string)(null)), table2, "And ");
+#line 23
  testRunner.And("I CLICK THE CREATE [EMPLOYEE] BUTTON", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 21
+#line 24
  testRunner.Then("THE NEWLY CREATED EMPLOYEE SHOULD HAVE SUCCESSFULLY SAVED", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();

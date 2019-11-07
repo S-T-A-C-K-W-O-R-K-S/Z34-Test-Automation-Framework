@@ -91,6 +91,8 @@ namespace UnitTests.Features
         public virtual void FeatureBackground()
         {
 #line 6
+#line 7
+ testRunner.Given("I DELETE EMPLOYEE \"Automated User\" PRIOR TO RUNNING TEST", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
         }
         

@@ -3,6 +3,9 @@
 	AS A LOGGED-IN USER
 	I SHOULD BE ABLE TO PERFORM REST OPERATIONS ON EMPLOYEE ENTITIES
 
+Background:
+	Given I DELETE EMPLOYEE "Automated User" PRIOR TO RUNNING TEST
+
 @smoke @employee
 Scenario: Create Employee With Full Details
 	Given I HAVE NAVIGATED TO THE APPLICATION
