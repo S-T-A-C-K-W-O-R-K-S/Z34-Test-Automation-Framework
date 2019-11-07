@@ -6,13 +6,14 @@ using OpenQA.Selenium;
 
 namespace Framework.Helpers
 {
-    public class HtmlTableHelpers
+    public static class HtmlTableHelpers
     {
-        private static List<TableDataCollection> _tableDataCollections;
+        private static List<TableDataCollection> _tableDataCollectionsList;
+        private static string[,] _tableDataCollectionsArray;
 
-        public static void ReadTable(IWebElement table)
+        public static void ReadTableToList(IWebElement table)
         {
-            _tableDataCollections = new List<TableDataCollection>();
+            _tableDataCollectionsList = new List<TableDataCollection>();
 
             ReadOnlyCollection<IWebElement> columns = table.FindElements(By.TagName("th"));
             ReadOnlyCollection<IWebElement> rows = table.FindElements(By.TagName("tr"));
@@ -27,11 +28,11 @@ namespace Framework.Helpers
                 if (columnData.Count != 0)
                     foreach (IWebElement cell in columnData)
                     {
-                        _tableDataCollections.Add(new TableDataCollection
+                        _tableDataCollectionsList.Add(new TableDataCollection
                         {
                             RowNumber = rowIndex,
                             ColumnName = columns[columnIndex].Text != "" ? columns[columnIndex].Text : columnIndex.ToString(),
-                            ColumnValue = cell.Text,
+                            CellValue = cell.Text,
                             ControlElement = GetControl(cell)
                         });
 
@@ -42,7 +43,35 @@ namespace Framework.Helpers
             }
         }
 
-        private static ControlElement GetControl(IWebElement columnValue)
+        public static string[,] ReadTableToArray(IWebElement table)
+        {
+            ReadOnlyCollection<IWebElement> columns = table.FindElements(By.TagName("th"));
+            ReadOnlyCollection<IWebElement> rows = table.FindElements(By.TagName("tr"));
+
+            _tableDataCollectionsArray = new string[rows.Count, columns.Count];
+
+            int rowIndex = 0;
+
+            foreach (IWebElement row in rows)
+            {
+                int columnIndex = 0;
+                ReadOnlyCollection<IWebElement> columnData = row.FindElements(By.TagName("td"));
+
+                if (columnData.Count != 0)
+                    foreach (IWebElement cell in columnData)
+                    {
+                        _tableDataCollectionsArray[rowIndex, columnIndex] = cell.Text;
+
+                        columnIndex++;
+                    }
+
+                rowIndex++;
+            }
+
+            return _tableDataCollectionsArray;
+        }
+
+        private static ControlElement GetControl(ISearchContext columnValue)
         {
             ControlElement controlElement = null;
 
@@ -63,29 +92,29 @@ namespace Framework.Helpers
             return controlElement;
         }
 
-        public static void PerformActionOnCell(string columnIndex, string referenceColumnName, string referenceColumnValue, string controlElement = null)
+        public static void PerformActionOnCell(string referenceColumnName, string referenceCellValue, string controlColumnIndex, string actionToPerform = null)
         {
-            foreach (int rowNumber in GetRowNumber(referenceColumnName, referenceColumnValue))
+            foreach (int rowNumber in GetRowNumber(referenceColumnName, referenceCellValue))
             {
-                ControlElement cell = (from e in _tableDataCollections
-                    where e.ColumnName == columnIndex && e.RowNumber == rowNumber
-                    select e.ControlElement).SingleOrDefault();
+                ControlElement controlElement = (from cell in _tableDataCollectionsList
+                    where cell.ColumnName == controlColumnIndex && cell.RowNumber == rowNumber
+                    select cell.ControlElement).SingleOrDefault();
 
-                if (controlElement != null && cell != null)
+                if (actionToPerform != null && controlElement != null)
                 {
-                    if (cell.ControlType == "hyperlink")
+                    if (controlElement.ControlType == "hyperlink")
                     {
-                        IWebElement returnedControl = (from c in cell.ElementCollection
-                            where c.Text == controlElement
+                        IWebElement returnedControl = (from c in controlElement.ElementCollection
+                            where c.Text == actionToPerform
                             select c).SingleOrDefault();
 
                         returnedControl?.Click();
                     }
 
-                    if (cell.ControlType == "input")
+                    if (controlElement.ControlType == "input")
                     {
-                        IWebElement returnedControl = (from c in cell.ElementCollection
-                            where c.GetAttribute("value") == controlElement
+                        IWebElement returnedControl = (from c in controlElement.ElementCollection
+                            where c.GetAttribute("value") == actionToPerform
                             select c).SingleOrDefault();
 
                         returnedControl?.Click();
@@ -94,27 +123,45 @@ namespace Framework.Helpers
 
                 else
                 {
-                    cell.ElementCollection?.First().Click();
+                    controlElement?.ElementCollection?.First().Click();
                 }
             }
         }
 
-        private static IEnumerable GetRowNumber(string columnName, string columnValue)
+        public static string GetCellValue(string[,] tableAsTwoDimensionalArray, int row, int column)
         {
-            foreach (TableDataCollection table in _tableDataCollections)
-                if (table.ColumnName == columnName && table.ColumnValue == columnValue)
+            return tableAsTwoDimensionalArray[row, column];
+        }
+
+        public static bool AssertValuePresence(string[,] tableAsTwoDimensionalArray, string value)
+        {
+            for (int i = 0; i < tableAsTwoDimensionalArray.GetLength(0); i++)
+            {
+                for (int j = 0; j < tableAsTwoDimensionalArray.GetLength(1); j++)
+                {
+                    if (tableAsTwoDimensionalArray[i, j] == value) return true;
+                }
+            }
+
+            return false;
+        }
+
+        private static IEnumerable GetRowNumber(string columnName, string cellValue)
+        {
+            foreach (TableDataCollection table in _tableDataCollectionsList)
+                if (table.ColumnName == columnName && table.CellValue == cellValue)
                     yield return table.RowNumber;
         }
 
-        public class TableDataCollection
+        private class TableDataCollection
         {
             public int RowNumber { get; set; }
             public string ColumnName { get; set; }
-            public string ColumnValue { get; set; }
+            public string CellValue { get; set; }
             public ControlElement ControlElement { get; set; }
         }
 
-        public class ControlElement
+        private class ControlElement
         {
             public IEnumerable<IWebElement> ElementCollection { get; set; }
             public string ControlType { get; set; }
