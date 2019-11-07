@@ -12,7 +12,7 @@ namespace Framework.Config
         public static bool IsLog { get; set; }
         public static string LogPath { get; set; }
         public static bool IsReport { get; set; }
-        public static SqlConnection DatabaseEndpoint { get; set; }
+        public static SqlConnection DatabaseConnection { get; set; }
         public static string ConnectionString { get; set; }
         public static bool DebugMode { get; set; }
     }

@@ -4,7 +4,7 @@
 	I SHOULD BE ABLE TO LOG IN WITH MY USERNAME AND PASSWORD
 
 Background:
-	#Given I DELETE EMPLOYEE "Automated Employee" PRIOR TO RUNNING TEST
+	Given I DELETE EMPLOYEE "Automated User" PRIOR TO RUNNING TEST
 
 @smoke @authentication
 Scenario: Assert Login With Valid Credentials

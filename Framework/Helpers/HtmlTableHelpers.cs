@@ -136,12 +136,9 @@ namespace Framework.Helpers
         public static bool AssertValuePresence(string[,] tableAsTwoDimensionalArray, string value)
         {
             for (int i = 0; i < tableAsTwoDimensionalArray.GetLength(0); i++)
-            {
-                for (int j = 0; j < tableAsTwoDimensionalArray.GetLength(1); j++)
-                {
-                    if (tableAsTwoDimensionalArray[i, j] == value) return true;
-                }
-            }
+            for (int j = 0; j < tableAsTwoDimensionalArray.GetLength(1); j++)
+                if (tableAsTwoDimensionalArray[i, j] == value)
+                    return true;
 
             return false;
         }

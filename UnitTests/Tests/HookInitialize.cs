@@ -12,7 +12,7 @@ namespace UnitTests.Tests
         public static void BeforeTestRun()
         {
             InitializeConfig();
-            Settings.DatabaseEndpoint = Settings.DatabaseEndpoint.DBConnect(Settings.ConnectionString);
+            Settings.DatabaseConnection = Settings.DatabaseConnection.DBConnect(Settings.ConnectionString);
         }
 
         [AfterScenario]

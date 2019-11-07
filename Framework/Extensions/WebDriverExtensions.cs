@@ -62,7 +62,7 @@ namespace Framework.Extensions
             if (timeoutInMilliseconds <= 0) return driver.FindElements(by);
 
             WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromMilliseconds(timeoutInMilliseconds));
-            return wait.Until(drv => (drv.FindElements(by).Count > 0) ? drv.FindElements(by) : null);
+            return wait.Until(drv => drv.FindElements(by).Count > 0 ? drv.FindElements(by) : null);
         }
     }
 }

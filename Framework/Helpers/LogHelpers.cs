@@ -24,14 +24,12 @@ namespace Framework.Helpers
             }
 
             if (Settings.DebugMode)
-            {
                 _streamWriter.WriteLine("[DEBUG] :: LOG CREATED" + Environment.NewLine +
                                         "\t" + "DateTime.Now" + "\t" + "\t" + ":" + "\t" + DateTime.Now + Environment.NewLine +
                                         "\t" + ".ToLongDateString" + "\t" + ":" + "\t" + DateTime.Now.ToLongDateString() + Environment.NewLine +
                                         "\t" + ".ToLongTimeString" + "\t" + ":" + "\t" + DateTime.Now.ToLongTimeString() + Environment.NewLine +
                                         "\t" + ".ToUniversalTime" + "\t" + ":" + "\t" + DateTime.Now.ToUniversalTime() + Environment.NewLine +
                                         "\t" + ".ToLocalTime" + "\t" + "\t" + ":" + "\t" + DateTime.Now.ToLocalTime() + Environment.NewLine);
-            }
         }
 
         // TODO: Fix Inconsistent Timestamps
