@@ -21,6 +21,8 @@ namespace UnitTests.Steps
         //     context = injectedContext;
         // }
 
+        private dynamic employeeDetails;
+
         [When]
         public void When_I_FOLLOW_THE_EMPLOYEE_LIST_LINK()
         {
@@ -46,15 +48,14 @@ namespace UnitTests.Steps
         [When]
         public void When_I_ENTER_THE_DETAILS_OF_THE_EMPLOYEE(Table employeeDetailsTable)
         {
-            dynamic employeeDetails = employeeDetailsTable.CreateDynamicInstance();
-            CurrentPage.As<CreateEmployeePage>().EnterEmployeeDetails(employeeDetails.NAME, employeeDetails.SALARY, employeeDetails.HOURS, employeeDetails.GRADE, employeeDetails.EMAIL);
+            employeeDetails = employeeDetailsTable.CreateDynamicInstance();
+            CurrentPage.As<CreateEmployeePage>().EnterEmployeeDetails(employeeDetails.NAME.ToString(), employeeDetails.SALARY.ToString(), employeeDetails.HOURS.ToString(), employeeDetails.GRADE.ToString(), employeeDetails.EMAIL.ToString());
             CurrentPage = CurrentPage.As<CreateEmployeePage>().ClickCreateEmployeeButton();
         }
 
         [Then]
-        public void Then_THE_NEWLY_CREATED_EMPLOYEE_SHOULD_HAVE_SUCCESSFULLY_SAVED(Table employeeDetailsTable)
+        public void Then_THE_NEWLY_CREATED_EMPLOYEE_SHOULD_HAVE_SUCCESSFULLY_SAVED()
         {
-            dynamic employeeDetails = employeeDetailsTable.CreateDynamicInstance();
             Assert.IsTrue(CurrentPage.As<EmployeeListPage>().AssertEmployeePresence(employeeDetails.NAME));
         }
     }
