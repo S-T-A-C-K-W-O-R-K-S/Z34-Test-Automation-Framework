@@ -7,7 +7,7 @@ using ExcelDataReader;
 
 namespace Framework.Helpers
 {
-    public class ExcelDataHelpers
+    public static class ExcelDataHelpers
     {
         private static readonly List<DataCollection> DataCollection = new List<DataCollection>();
 
@@ -26,7 +26,7 @@ namespace Framework.Helpers
                     });
 
                     DataTableCollection table = result.Tables;
-                    DataTable resultTable = table["Sheet1"];
+                    DataTable resultTable = table["CREDENTIALS"];
 
                     return resultTable;
                 }

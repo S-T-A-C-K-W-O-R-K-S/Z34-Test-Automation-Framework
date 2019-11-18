@@ -7,7 +7,7 @@ namespace Framework.Config
     {
         protected override ConfigurationElement CreateNewElement() => new ConfigElement();
 
-        protected override object GetElementKey(ConfigurationElement element) => (element as ConfigElement).Name;
+        protected override object GetElementKey(ConfigurationElement element) => ((ConfigElement) element).Name;
 
         public new ConfigElement this[string type] => (ConfigElement) base.BaseGet(type);
     }

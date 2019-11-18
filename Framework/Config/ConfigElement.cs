@@ -1,4 +1,5 @@
 ﻿using System.Configuration;
+using Framework.Base;
 
 namespace Framework.Config
 {
@@ -10,8 +11,8 @@ namespace Framework.Config
         [ConfigurationProperty("aut", IsRequired = true)]
         public string AUT => (string) base["aut"];
 
-        [ConfigurationProperty("browser", IsRequired = true)]
-        public string Browser => (string) base["browser"];
+        [ConfigurationProperty("browser-type", IsRequired = true)]
+        public BrowserType BrowserType => (BrowserType) base["browser-type"];
 
         [ConfigurationProperty("log-path", IsRequired = true)]
         public string LogPath => (string) base["log-path"];

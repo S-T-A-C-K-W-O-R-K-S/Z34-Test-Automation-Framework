@@ -2,13 +2,11 @@
 
 namespace Framework.Config
 {
-    class TestConfiguration : ConfigurationSection
+    internal class TestConfiguration : ConfigurationSection
     {
-        private static readonly TestConfiguration TestConfig = (TestConfiguration) ConfigurationManager.GetSection("TestConfiguration");
-
-        public static TestConfiguration Settings => TestConfig;
+        public static TestConfiguration Settings { get; } = (TestConfiguration)ConfigurationManager.GetSection("TestConfiguration");
 
         [ConfigurationProperty("TestSettings")]
-        public ConfigElementCollection TestSettings => (ConfigElementCollection) base["TestSettings"];
+        public ConfigElementCollection TestSettings => (ConfigElementCollection) base[nameof(TestSettings)];
     }
 }
