@@ -10,7 +10,7 @@ namespace Framework.Base
     {
         public static void InitializeConfig()
         {
-            ConfigReader.SetFrameworkSettings();
+            ConfigReader.SetFrameworkSettings("chrome");
             LogHelpers.CreateLogFile();
             OpenBrowser(Settings.BrowserType);
 
