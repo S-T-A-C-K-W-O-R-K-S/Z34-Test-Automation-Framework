@@ -33,7 +33,7 @@
     <None Update="Config\APP.CONFIG">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="Data\Credentials.XLSX">
+    <None Update="Data\CREDENTIALS">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="Features\Login.feature">
