@@ -9,6 +9,6 @@ namespace Framework.Config
         public static TestConfiguration Settings => TestConfig;
 
         [ConfigurationProperty("TestSettings")]
-        public ConfigElementCollection TestSettings => (ConfigElementCollection) base[nameof(TestSettings)];
+        public ConfigElementCollection TestSettings => (ConfigElementCollection) base["TestSettings"];
     }
 }

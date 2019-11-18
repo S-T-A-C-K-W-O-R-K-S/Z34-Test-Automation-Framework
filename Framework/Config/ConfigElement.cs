@@ -2,7 +2,7 @@
 
 namespace Framework.Config
 {
-    public class ConfigElements : ConfigurationElement
+    public class ConfigElement : ConfigurationElement
     {
         [ConfigurationProperty("name", IsRequired = true)]
         public string Name => (string) base["name"];

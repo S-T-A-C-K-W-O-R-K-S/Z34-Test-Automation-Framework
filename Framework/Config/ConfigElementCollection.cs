@@ -2,13 +2,13 @@
 
 namespace Framework.Config
 {
-    [ConfigurationCollection(typeof(ConfigElements), AddItemName = "TestSetting", CollectionType = ConfigurationElementCollectionType.BasicMap)]
-    class ConfigElementCollection : ConfigurationElementCollection
+    [ConfigurationCollection(typeof(ConfigElement), AddItemName = "TestSetting", CollectionType = ConfigurationElementCollectionType.BasicMap)]
+    public class ConfigElementCollection : ConfigurationElementCollection
     {
-        protected override ConfigurationElement CreateNewElement() => new ConfigElements();
+        protected override ConfigurationElement CreateNewElement() => new ConfigElement();
 
-        protected override object GetElementKey(ConfigurationElement element) => (element as ConfigElements).Name;
+        protected override object GetElementKey(ConfigurationElement element) => (element as ConfigElement).Name;
 
-        public ConfigElements this[string type] => (ConfigElements) base.BaseGet(type);
+        public ConfigElement this[string type] => (ConfigElement) base.BaseGet(type);
     }
 }
