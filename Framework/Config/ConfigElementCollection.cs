@@ -9,6 +9,6 @@ namespace Framework.Config
 
         protected override object GetElementKey(ConfigurationElement element) => (element as ConfigElement).Name;
 
-        public ConfigElement this[string type] => (ConfigElement) base.BaseGet(type);
+        public new ConfigElement this[string type] => (ConfigElement) base.BaseGet(type);
     }
 }

@@ -30,6 +30,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Update="Config\APP.CONFIG">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="Data\Credentials.XLSX">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
