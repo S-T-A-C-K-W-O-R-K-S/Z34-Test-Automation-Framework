@@ -1,6 +1,6 @@
 ﻿using OpenQA.Selenium;
 
-namespace Framework.Base
+namespace FrameworkCore.Base
 {
     public static class DriverContext
     {

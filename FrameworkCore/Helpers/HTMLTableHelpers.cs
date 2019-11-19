@@ -4,7 +4,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using OpenQA.Selenium;
 
-namespace Framework.Helpers
+namespace FrameworkCore.Helpers
 {
     public static class HTMLTableHelpers
     {

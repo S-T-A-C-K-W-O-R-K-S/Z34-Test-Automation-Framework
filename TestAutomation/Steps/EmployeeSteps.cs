@@ -1,12 +1,12 @@
 ﻿using System;
-using Framework.Base;
-using Framework.Helpers;
+using FrameworkCore.Base;
+using FrameworkCore.Helpers;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using TechTalk.SpecFlow;
 using TechTalk.SpecFlow.Assist;
-using UnitTests.Pages;
+using TestAutomation.Pages;
 
-namespace UnitTests.Steps
+namespace TestAutomation.Steps
 {
     [Binding]
     public sealed class EmployeeSteps : BaseStep

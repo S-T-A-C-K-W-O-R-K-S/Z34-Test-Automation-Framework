@@ -1,7 +1,7 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using OpenQA.Selenium;
 
-namespace Framework.Base
+namespace FrameworkCore.Base
 {
     public class Browser
     {

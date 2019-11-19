@@ -2,12 +2,12 @@
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
-using Framework.Base;
-using Framework.Helpers;
+using FrameworkCore.Base;
+using FrameworkCore.Helpers;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 
-namespace Framework.Extensions
+namespace FrameworkCore.Extensions
 {
     public static class WebDriverExtensions
     {

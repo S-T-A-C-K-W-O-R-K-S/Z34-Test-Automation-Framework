@@ -1,4 +1,4 @@
-﻿namespace Framework.Base
+﻿namespace FrameworkCore.Base
 {
     public abstract class BasePage : Base
     {

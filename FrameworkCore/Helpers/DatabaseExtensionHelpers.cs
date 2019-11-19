@@ -3,7 +3,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Diagnostics.CodeAnalysis;
 
-namespace Framework.Helpers
+namespace FrameworkCore.Helpers
 {
     public static class DatabaseExtensionHelpers
     {

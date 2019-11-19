@@ -1,4 +1,4 @@
-﻿namespace Framework.Config
+﻿namespace FrameworkCore.Config
 {
     public static class ConfigReader
     {

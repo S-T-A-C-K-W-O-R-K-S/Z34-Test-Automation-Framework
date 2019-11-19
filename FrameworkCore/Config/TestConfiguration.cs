@@ -1,6 +1,6 @@
 ﻿using System.Configuration;
 
-namespace Framework.Config
+namespace FrameworkCore.Config
 {
     internal class TestConfiguration : ConfigurationSection
     {

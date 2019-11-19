@@ -1,9 +1,9 @@
-﻿using Framework.Base;
-using Framework.Extensions;
-using Framework.Helpers;
+﻿using FrameworkCore.Base;
+using FrameworkCore.Extensions;
+using FrameworkCore.Helpers;
 using OpenQA.Selenium;
 
-namespace UnitTests.Pages
+namespace TestAutomation.Pages
 {
     internal class EmployeeListPage : BasePage
     {

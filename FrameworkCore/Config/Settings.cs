@@ -1,7 +1,7 @@
 ﻿using System.Data.SqlClient;
-using Framework.Base;
+using FrameworkCore.Base;
 
-namespace Framework.Config
+namespace FrameworkCore.Config
 {
     public static class Settings
     {

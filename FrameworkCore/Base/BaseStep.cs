@@ -1,8 +1,8 @@
-﻿using Framework.Config;
-using Framework.Extensions;
-using Framework.Helpers;
+﻿using FrameworkCore.Config;
+using FrameworkCore.Extensions;
+using FrameworkCore.Helpers;
 
-namespace Framework.Base
+namespace FrameworkCore.Base
 {
     public abstract class BaseStep : Base
     {

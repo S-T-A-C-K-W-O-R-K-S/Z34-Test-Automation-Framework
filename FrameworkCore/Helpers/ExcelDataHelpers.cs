@@ -6,7 +6,7 @@ using System.IO;
 using System.Linq;
 using ExcelDataReader;
 
-namespace Framework.Helpers
+namespace FrameworkCore.Helpers
 {
     public static class ExcelDataHelpers
     {

@@ -1,10 +1,10 @@
 ﻿using System;
-using Framework.Config;
-using Framework.Helpers;
+using FrameworkCore.Config;
+using FrameworkCore.Helpers;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Firefox;
 
-namespace Framework.Base
+namespace FrameworkCore.Base
 {
     public abstract class TestInitializeHook : Base
     {

@@ -1,9 +1,9 @@
-﻿using Framework.Base;
-using Framework.Config;
-using Framework.Helpers;
+﻿using FrameworkCore.Base;
+using FrameworkCore.Config;
+using FrameworkCore.Helpers;
 using TechTalk.SpecFlow;
 
-namespace UnitTests.Tests
+namespace TestAutomation.Tests
 {
     [Binding]
     public class HookInitialize : TestInitializeHook

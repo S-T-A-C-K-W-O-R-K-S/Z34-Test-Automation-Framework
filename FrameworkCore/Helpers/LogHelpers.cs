@@ -1,8 +1,8 @@
 ﻿using System;
 using System.IO;
-using Framework.Config;
+using FrameworkCore.Config;
 
-namespace Framework.Helpers
+namespace FrameworkCore.Helpers
 {
     public static class LogHelpers
     {

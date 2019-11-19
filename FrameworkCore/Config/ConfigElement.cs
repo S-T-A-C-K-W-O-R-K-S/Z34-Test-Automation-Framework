@@ -1,7 +1,7 @@
 ﻿using System.Configuration;
-using Framework.Base;
+using FrameworkCore.Base;
 
-namespace Framework.Config
+namespace FrameworkCore.Config
 {
     public class ConfigElement : ConfigurationElement
     {

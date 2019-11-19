@@ -1,6 +1,6 @@
 ﻿using System.Configuration;
 
-namespace Framework.Config
+namespace FrameworkCore.Config
 {
     [ConfigurationCollection(typeof(ConfigElement), AddItemName = "TestSetting", CollectionType = ConfigurationElementCollectionType.BasicMap)]
     public class ConfigElementCollection : ConfigurationElementCollection
