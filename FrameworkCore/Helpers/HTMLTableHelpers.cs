@@ -33,7 +33,7 @@ namespace FrameworkCore.Helpers
                         _tableDataCollectionsList.Add(new TableDataCollection
                         {
                             RowNumber = rowIndex,
-                            ColumnName = columns[columnIndex].Text != "" ? columns[columnIndex].Text : columnIndex.ToString(),
+                            ColumnName = !string.IsNullOrEmpty(columns[columnIndex].Text) ? columns[columnIndex].Text : columnIndex.ToString(),
                             CellValue = cell.Text,
                             ControlElement = GetControl(cell)
                         });
