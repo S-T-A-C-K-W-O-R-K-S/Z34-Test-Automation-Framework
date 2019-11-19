@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Linq;
 using ExcelDataReader;
-using System.Diagnostics.CodeAnalysis;
 
 namespace Framework.Helpers
 {
@@ -39,18 +39,16 @@ namespace Framework.Helpers
             DataTable table = ExcelToDataTable(fileName);
 
             for (int row = 1; row <= table.Rows.Count; row++)
+            for (int col = 0; col < table.Columns.Count; col++)
             {
-                for (int col = 0; col < table.Columns.Count; col++)
+                DataCollection dataTable = new DataCollection
                 {
-                    DataCollection dataTable = new DataCollection
-                    {
-                        RowNumber = row,
-                        ColumnName = table.Columns[col].ColumnName,
-                        ColumnValue = table.Rows[row - 1][col].ToString()
-                    };
+                    RowNumber = row,
+                    ColumnName = table.Columns[col].ColumnName,
+                    ColumnValue = table.Rows[row - 1][col].ToString()
+                };
 
-                    DataCollection.Add(dataTable);
-                }
+                DataCollection.Add(dataTable);
             }
         }
 
