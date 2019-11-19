@@ -3,6 +3,9 @@
 ##
 ## Get latest from https://github.com/github/gitignore/blob/master/VisualStudio.gitignore
 
+# Specflow code-behind files
+*.feature.cs
+
 # User-specific files
 *.rsuser
 *.suo
@@ -126,9 +129,6 @@ $tf/
 _ReSharper*/
 *.[Rr]e[Ss]harper
 *.DotSettings.user
-
-# JustCode is a .NET coding add-in
-.JustCode
 
 # TeamCity is a build add-in
 _TeamCity*
