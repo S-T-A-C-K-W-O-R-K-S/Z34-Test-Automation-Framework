@@ -6,6 +6,8 @@ using OpenQA.Selenium;
 
 namespace FrameworkCore.Helpers
 {
+    // TODO: Implement Support For Irregular Matrix Tables
+
     public static class HTMLTableHelpers
     {
         private static List<TableDataCollection> _tableDataCollectionsList;
