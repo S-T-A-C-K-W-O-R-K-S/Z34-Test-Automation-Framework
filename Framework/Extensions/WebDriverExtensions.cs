@@ -20,7 +20,7 @@ namespace Framework.Extensions
             }, 5000);
         }
 
-        [SuppressMessage("Design", "CA1031: Do Not Catch General Exception Types", Justification = "It Is Not Knows What Exception Types This Method May Throw")]
+        [SuppressMessage("Design", "CA1031: Do Not Catch General Exception Types", Justification = "Exception Type Is Unknown")]
         public static void WaitForCondition<T>(this T obj, Func<T, bool> condition, int timeout)
         {
             bool Execute(T arg)

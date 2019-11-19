@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace UnitTests.Features
+namespace TestAutomation.Features
 {
     using TechTalk.SpecFlow;
     using System;
@@ -66,7 +66,7 @@ namespace UnitTests.Features
             if (((testRunner.FeatureContext != null) 
                         && (testRunner.FeatureContext.FeatureInfo.Title != "Login")))
             {
-                global::UnitTests.Features.LoginFeature.FeatureSetup(null);
+                global::TestAutomation.Features.LoginFeature.FeatureSetup(null);
             }
         }
         

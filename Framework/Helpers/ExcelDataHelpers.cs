@@ -4,6 +4,7 @@ using System.Data;
 using System.IO;
 using System.Linq;
 using ExcelDataReader;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Framework.Helpers
 {
@@ -26,7 +27,7 @@ namespace Framework.Helpers
                     });
 
                     DataTableCollection table = result.Tables;
-                    DataTable resultTable = table["CREDENTIALS"];
+                    DataTable resultTable = table["DATASET"];
 
                     return resultTable;
                 }
@@ -38,19 +39,22 @@ namespace Framework.Helpers
             DataTable table = ExcelToDataTable(fileName);
 
             for (int row = 1; row <= table.Rows.Count; row++)
-            for (int col = 0; col < table.Columns.Count; col++)
             {
-                DataCollection dataTable = new DataCollection
+                for (int col = 0; col < table.Columns.Count; col++)
                 {
-                    RowNumber = row,
-                    ColumnName = table.Columns[col].ColumnName,
-                    ColumnValue = table.Rows[row - 1][col].ToString()
-                };
+                    DataCollection dataTable = new DataCollection
+                    {
+                        RowNumber = row,
+                        ColumnName = table.Columns[col].ColumnName,
+                        ColumnValue = table.Rows[row - 1][col].ToString()
+                    };
 
-                DataCollection.Add(dataTable);
+                    DataCollection.Add(dataTable);
+                }
             }
         }
 
+        [SuppressMessage("Design", "CA1031:Do Not Catch General Exception Types", Justification = "Exception Type Is Unknown")]
         public static string ReadData(int rowNumber, string columnName)
         {
             try

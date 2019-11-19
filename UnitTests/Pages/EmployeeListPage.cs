@@ -30,7 +30,7 @@ namespace UnitTests.Pages
 
         internal bool AssertEmployeePresence(string name)
         {
-            return HtmlTableHelpers.AssertValuePresence(HtmlTableHelpers.ReadTableToArray(TableEmployeeList), name);
+            return HTMLTableHelpers.AssertValuePresence(HTMLTableHelpers.ReadTableToArray(TableEmployeeList), name);
         }
     }
 }

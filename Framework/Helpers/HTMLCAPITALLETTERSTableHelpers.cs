@@ -6,7 +6,7 @@ using OpenQA.Selenium;
 
 namespace Framework.Helpers
 {
-    public static class HtmlTableHelpers
+    public static class HTMLTableHelpers
     {
         private static List<TableDataCollection> _tableDataCollectionsList;
         private static string[,] _tableDataCollectionsArray;

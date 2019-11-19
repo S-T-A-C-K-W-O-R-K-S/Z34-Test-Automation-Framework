@@ -12,7 +12,7 @@
     <PackageReference Include="MSTest.TestFramework" Version="2.0.0" />
     <PackageReference Include="Selenium.Support" Version="3.141.0" />
     <PackageReference Include="Selenium.Webdriver" Version="3.141.0" />
-    <PackageReference Include="Selenium.WebDriver.ChromeDriver" Version="78.0.3904.7000" />
+    <PackageReference Include="Selenium.WebDriver.ChromeDriver" Version="78.0.3904.10500" />
     <PackageReference Include="Selenium.WebDriver.GeckoDriver" Version="0.26.0" />
     <PackageReference Include="SpecFlow" Version="3.1.62" />
     <PackageReference Include="SpecFlow.Assist.Dynamic" Version="1.4.1" />
@@ -22,7 +22,6 @@
 
   <ItemGroup>
     <Folder Include="Scripts\" />
-    <Folder Include="WebAppForTesting\" />
   </ItemGroup>
 
   <ItemGroup>

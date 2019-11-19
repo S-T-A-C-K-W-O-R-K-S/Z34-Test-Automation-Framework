@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace UnitTests.Features
+namespace TestAutomation.Features
 {
     using TechTalk.SpecFlow;
     using System;
@@ -66,7 +66,7 @@ namespace UnitTests.Features
             if (((testRunner.FeatureContext != null) 
                         && (testRunner.FeatureContext.FeatureInfo.Title != "Employee")))
             {
-                global::UnitTests.Features.EmployeeFeature.FeatureSetup(null);
+                global::TestAutomation.Features.EmployeeFeature.FeatureSetup(null);
             }
         }
         
