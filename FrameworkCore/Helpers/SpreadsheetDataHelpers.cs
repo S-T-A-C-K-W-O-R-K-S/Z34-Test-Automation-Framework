@@ -8,7 +8,7 @@ using ExcelDataReader;
 
 namespace FrameworkCore.Helpers
 {
-    public static class ExcelDataHelpers
+    public static class SpreadsheetDataHelpers
     {
         private static readonly List<DataCollection> DataCollection = new List<DataCollection>();
 
