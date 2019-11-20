@@ -9,9 +9,8 @@
 # Specflow Code-Behind Files    #
 *.feature.cs
 #################################
-# Pickles Directories           #
-PICKLES-DHTML/
-PICKLES-RESULTS/
+# Extent Reports                #
+REPORTS/
 #################################
 # Log Files                     #
 LOGS/
