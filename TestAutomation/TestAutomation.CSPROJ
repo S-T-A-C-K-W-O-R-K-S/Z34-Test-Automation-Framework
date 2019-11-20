@@ -1,15 +1,16 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net48</TargetFramework>
+    <TargetFramework>NET48</TargetFramework>
 
-    <IsPackable>false</IsPackable>
+    <IsPackable>False</IsPackable>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.4.0" />
     <PackageReference Include="MSTest.TestAdapter" Version="2.0.0" />
     <PackageReference Include="MSTest.TestFramework" Version="2.0.0" />
+    <PackageReference Include="Pickles.MSBuild" Version="2.20.1" />
     <PackageReference Include="Selenium.Support" Version="3.141.0" />
     <PackageReference Include="Selenium.Webdriver" Version="3.141.0" />
     <PackageReference Include="Selenium.WebDriver.ChromeDriver" Version="78.0.3904.10500" />
@@ -35,8 +36,25 @@
     <None Update="Data\CREDENTIALS.XLSX">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="Features\Login.feature">
-    </None>
   </ItemGroup>
+
+  <PropertyGroup>
+    <Pickles_Generate>True</Pickles_Generate>
+    <Pickles_FeatureDirectory>$(MSBuildProjectDirectory)\Features</Pickles_FeatureDirectory>
+    <Pickles_OutputDirectory>$(MSBuildProjectDirectory)\..\PICKLES-DHTML</Pickles_OutputDirectory>
+    <Pickles_DocumentationFormat>DHTML</Pickles_DocumentationFormat>
+    <Pickles_ResultsFormat>MSTest</Pickles_ResultsFormat>
+    <Pickles_ResultsFile>$(MSBuildProjectDirectory)\..\PICKLES-RESULTS</Pickles_ResultsFile>
+    <Pickles_SystemUnderTestName>Z34 Application Under Test</Pickles_SystemUnderTestName>
+    <Pickles_SystemUnderTestVersion>6.6.6</Pickles_SystemUnderTestVersion>
+  </PropertyGroup>
+
+  <!-- TODO: Properly Implement Pickles Results >>> http://docs.picklesdoc.com/en/latest/MSBuildTask/ -->
+
+  <UsingTask AssemblyFile="C:\Users\$(USERNAME)\.nuget\packages\pickles.msbuild\2.20.1\tools\PicklesDoc.Pickles.MSBuild.Tasks.dll" TaskName="PICKLES" />
+
+  <Target Name="DOCUMENT">
+    <PICKLES ResultsFile="$(MSBuildProjectDirectory)\..\PICKLES-RESULTS\RESULTS.XML" />
+  </Target>
 
 </Project>

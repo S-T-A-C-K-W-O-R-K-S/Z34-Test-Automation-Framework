@@ -3,8 +3,19 @@
 ##
 ## Get latest from https://github.com/github/gitignore/blob/master/VisualStudio.gitignore
 
-# Specflow code-behind files
+#################################
+# Z34 Test Automation Framework #
+#################################
+# Specflow Code-Behind Files    #
 *.feature.cs
+#################################
+# Pickles Directories           #
+PICKLES-DHTML/
+PICKLES-RESULTS/
+#################################
+# Log Files                     #
+LOGS/
+#################################
 
 # User-specific files
 *.rsuser
