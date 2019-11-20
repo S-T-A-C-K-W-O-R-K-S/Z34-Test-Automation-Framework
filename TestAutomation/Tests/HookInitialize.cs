@@ -26,31 +26,35 @@ namespace TestAutomation.Tests
         private static ExtentTest _scenario;
 
         private static ExtentReports _extent;
-        // private static ExtentKlovReporter _klov;
+        private static ExtentKlovReporter _klov;
 
         [BeforeTestRun]
         public static void BeforeTestRun()
         {
             InitializeConfig();
             Settings.DatabaseConnection = Settings.DatabaseConnection.DBConnect(Settings.ConnectionString);
+            string run = $"{DateTime.Now:yyyy-MM-dd_HH-mm-ss}";
 
-            ExtentHtmlReporter reporter = new ExtentHtmlReporter($"..\\..\\..\\..\\REPORTS\\");
-            reporter.Config.ReportName = $"name_{DateTime.Now:yyyy-MM-dd_HH-mm-ss}.html";
-            reporter.Config.DocumentTitle = $"title_{DateTime.Now:yyyy-MM-dd_HH-mm-ss}.html";
-            reporter.Config.Theme = Theme.Dark;
+            ExtentHtmlReporter reporter = new ExtentHtmlReporter($"..\\..\\..\\..\\REPORTS\\{run}\\");
+            reporter.Config.ReportName = run;
+            reporter.Config.DocumentTitle = run;
+            reporter.Config.Theme = Theme.Standard;
 
             _extent = new ExtentReports();
-            // _klov = new ExtentKlovReporter();
 
-            // _klov.InitMongoDbConnection("localhost", 27017);
-            // _klov.ProjectName = "Execute Automation Tests";
-            // _klov.InitKlovServerConnection("http://localhost:5689");
-            // _klov.ReportName = $"run_{DateTime.Now:yyyy-MM-dd_HH-mm-ss}";
+            if (false) // TODO: Handle Exception Thrown While KLOV Is Not Running
+            {
+                _klov = new ExtentKlovReporter();
 
-            // Extent.AttachReporter(reporter, _klov);
+                _klov.InitMongoDbConnection("localhost", 27017);
+                _klov.ProjectName = "Execute Automation Tests";
+                _klov.InitKlovServerConnection("http://localhost:5689");
+                _klov.ReportName = $"run_{DateTime.Now:yyyy-MM-dd_HH-mm-ss}";
+
+                _extent.AttachReporter(reporter, _klov);
+            }
+
             _extent.AttachReporter(reporter);
-
-            // TODO: Handle Exception Thrown While KLOV Is Not Running
         }
 
         [BeforeScenario]
@@ -59,7 +63,7 @@ namespace TestAutomation.Tests
             _feature = _extent.CreateTest<Feature>(_featureContext.FeatureInfo.Title);
             _scenario = _feature.CreateNode<Scenario>(_scenarioContext.ScenarioInfo.Title);
 
-            LogHelpers.WriteToLog($"Start :: {_feature} > {_scenario}");
+            LogHelpers.WriteToLog($"[START] :: {_featureContext.FeatureInfo.Title} >>> {_scenarioContext.ScenarioInfo.Title}");
         }
 
         [AfterStep]
@@ -137,12 +141,12 @@ namespace TestAutomation.Tests
         }
 
         [AfterScenario]
-        public static void AfterScenario()
+        public void AfterScenario()
         {
             DriverContext.Driver.Close();
             DriverContext.Driver.Quit();
 
-            LogHelpers.WriteToLog($"End :: {_feature} > {_scenario}");
+            LogHelpers.WriteToLog($"[END] :: {_featureContext.FeatureInfo.Title} >>> {_scenarioContext.ScenarioInfo.Title}");
 
             _extent.Flush();
         }
