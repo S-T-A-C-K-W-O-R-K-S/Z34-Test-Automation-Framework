@@ -3,28 +3,25 @@ using FrameworkCore.Config;
 using FrameworkCore.Extensions;
 using FrameworkCore.Helpers;
 using TechTalk.SpecFlow;
+using TestAutomation.Pages;
 
 namespace TestAutomation.Steps
 {
     [Binding]
-    public sealed class StepExtensions : BaseStep
+    public class StepExtensions : BaseStep
     {
-        // TODO: Implement Scenario Context Via Context Injection
-        // For additional details on SpecFlow step definitions see https://go.specflow.org/doc-stepdef
-        //
-        // private readonly ScenarioContext context;
-        //
-        // public Employee(ScenarioContext injectedContext)
-        // {
-        //     context = injectedContext;
-        // }
+        private readonly ParallelTestExecution _parallelTestExecution;
 
-        public void NavigateToAUT()
+        public StepExtensions (ParallelTestExecution parallelTestExecution) : base (parallelTestExecution)
         {
-            DriverContext.Browser.GoToURL(Settings.AUT);
-            LogHelpers.WriteToLog($"Navigating To Page: {Settings.AUT}");
-            DriverContext.Driver.WaitForPageLoaded();
-            LogHelpers.WriteToLog($"DOM On Page Fully Loaded: {Settings.AUT}");
+            _parallelTestExecution = parallelTestExecution;
+        }
+
+        [Given]
+        public void Given_I_HAVE_NAVIGATED_TO_THE_APPLICATION()
+        {
+            NavigateToAUT();
+            _parallelTestExecution.CurrentPage = new HomePage(_parallelTestExecution);
         }
 
         [Given(@"I DELETE EMPLOYEE ""(.*)"" PRIOR TO RUNNING TEST")]
@@ -32,6 +29,14 @@ namespace TestAutomation.Steps
         {
             string query = "DELETE FROM Employees WHERE NAME = '" + employeeName + "'";
             Settings.DatabaseConnection.ExecuteQuery(query);
+        }
+
+        public void NavigateToAUT()
+        {
+            _parallelTestExecution.Driver.Navigate().GoToUrl(Settings.AUT);
+            LogHelpers.WriteToLog($"Navigating To Page: {Settings.AUT}");
+            _parallelTestExecution.Driver.WaitForPageLoaded();
+            LogHelpers.WriteToLog($"DOM On Page Fully Loaded: {Settings.AUT}");
         }
     }
 }

@@ -6,12 +6,16 @@ namespace TestAutomation.Pages
 {
     internal class CreateEmployeePage : BasePage
     {
-        private static IWebElement TextName => DriverContext.Driver.FindElement(By.Id("Name"), 2500);
-        private static IWebElement TextSalary => DriverContext.Driver.FindElement(By.Id("Salary"), 2500);
-        private static IWebElement TextWorkHours => DriverContext.Driver.FindElement(By.Id("DurationWorked"), 2500);
-        private static IWebElement TextGrade => DriverContext.Driver.FindElement(By.Id("Grade"), 2500);
-        private static IWebElement TextEmail => DriverContext.Driver.FindElement(By.Id("Email"), 2500);
-        private static IWebElement ButtonCreateEmployee => DriverContext.Driver.FindElement(By.XPath("//input[@value='Create']"), 2500);
+        public CreateEmployeePage(ParallelTestExecution parallelTestExecution) : base(parallelTestExecution)
+        {
+        }
+
+        private IWebElement TextName => ParallelTestExecution.Driver.FindElement(By.Id("Name"), 2500);
+        private IWebElement TextSalary => ParallelTestExecution.Driver.FindElement(By.Id("Salary"), 2500);
+        private IWebElement TextWorkHours => ParallelTestExecution.Driver.FindElement(By.Id("DurationWorked"), 2500);
+        private IWebElement TextGrade => ParallelTestExecution.Driver.FindElement(By.Id("Grade"), 2500);
+        private IWebElement TextEmail => ParallelTestExecution.Driver.FindElement(By.Id("Email"), 2500);
+        private IWebElement ButtonCreateEmployee => ParallelTestExecution.Driver.FindElement(By.XPath("//input[@value='Create']"), 2500);
 
         internal void EnterEmployeeDetails(string name, string salary, string hours, string grade, string email)
         {
@@ -25,8 +29,8 @@ namespace TestAutomation.Pages
         internal EmployeeListPage ClickCreateEmployeeButton()
         {
             ButtonCreateEmployee.Click();
-            DriverContext.Driver.WaitForPageLoaded();
-            return new EmployeeListPage();
+            ParallelTestExecution.Driver.WaitForPageLoaded();
+            return new EmployeeListPage(ParallelTestExecution);
         }
     }
 }

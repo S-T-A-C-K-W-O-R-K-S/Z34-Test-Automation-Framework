@@ -14,11 +14,13 @@ namespace TestAutomation.Tests
     [Binding]
     public class HookInitialize : TestInitializeHook
     {
+        private readonly ParallelTestExecution _parallelTestExecution;
         private readonly FeatureContext _featureContext;
         private readonly ScenarioContext _scenarioContext;
 
-        public HookInitialize(FeatureContext featureContext, ScenarioContext scenarioContext)
+        public HookInitialize (ParallelTestExecution parallelTestExecution, FeatureContext featureContext, ScenarioContext scenarioContext) : base(parallelTestExecution)
         {
+            _parallelTestExecution = parallelTestExecution;
             _featureContext = featureContext;
             _scenarioContext = scenarioContext;
         }
@@ -31,7 +33,7 @@ namespace TestAutomation.Tests
 
         [BeforeTestRun]
         [SuppressMessage("Compiler Warning", "CS0162: Unreachable Code Detected", Justification = "Refactor Pending")]
-        public static void BeforeTestRun()
+        public void BeforeTestRun()
         {
             InitializeConfig();
             Settings.DatabaseConnection = Settings.DatabaseConnection.DBConnect(Settings.ConnectionString);
@@ -144,8 +146,8 @@ namespace TestAutomation.Tests
         [AfterScenario]
         public void AfterScenario()
         {
-            DriverContext.Driver.Close();
-            DriverContext.Driver.Quit();
+            _parallelTestExecution.Driver.Close();
+            _parallelTestExecution.Driver.Quit();
 
             LogHelpers.WriteToLog($"[END] :: {_featureContext.FeatureInfo.Title} >>> {_scenarioContext.ScenarioInfo.Title}");
 

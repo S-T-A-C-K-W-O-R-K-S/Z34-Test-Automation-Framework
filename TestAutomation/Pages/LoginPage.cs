@@ -6,9 +6,13 @@ namespace TestAutomation.Pages
 {
     internal class LoginPage : BasePage
     {
-        private static IWebElement TextUserName => DriverContext.Driver.FindElement(By.Id("UserName"), 2500);
-        private static IWebElement TextPassword => DriverContext.Driver.FindElement(By.Id("Password"), 2500);
-        private static IWebElement ButtonLogin => DriverContext.Driver.FindElement(By.CssSelector("input.btn"), 2500);
+        public LoginPage (ParallelTestExecution parallelTestExecution) : base (parallelTestExecution)
+        {
+        }
+
+        private IWebElement TextUserName => ParallelTestExecution.Driver.FindElement(By.Id("UserName"), 2500);
+        private IWebElement TextPassword => ParallelTestExecution.Driver.FindElement(By.Id("Password"), 2500);
+        private IWebElement ButtonLogin => ParallelTestExecution.Driver.FindElement(By.CssSelector("input.btn"), 2500);
 
         internal void EnterCredentials(string userName, string password)
         {
@@ -19,8 +23,8 @@ namespace TestAutomation.Pages
         public HomePage ClickLoginButton()
         {
             ButtonLogin.Click();
-            DriverContext.Driver.WaitForPageLoaded();
-            return GetInstance<HomePage>();
+            ParallelTestExecution.Driver.WaitForPageLoaded();
+            return new HomePage(ParallelTestExecution);
         }
 
         internal void AssertLoginFormExists()

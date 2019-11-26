@@ -9,24 +9,21 @@ using TestAutomation.Pages;
 namespace TestAutomation.Steps
 {
     [Binding]
-    public sealed class EmployeeSteps : BaseStep
+    public class EmployeeSteps : BaseStep
     {
-        // TODO: Implement Scenario Context Via Context Injection
-        // For additional details on SpecFlow step definitions see https://go.specflow.org/doc-stepdef
-        //
-        // private readonly ScenarioContext context;
-        //
-        // public Employee(ScenarioContext injectedContext)
-        // {
-        //     context = injectedContext;
-        // }
+        private readonly ParallelTestExecution _parallelTestExecution;
+
+        public EmployeeSteps(ParallelTestExecution parallelTestExecution) : base(parallelTestExecution)
+        {
+            _parallelTestExecution = parallelTestExecution;
+        }
 
         private dynamic _employeeDetails;
 
         [When]
         public void When_I_FOLLOW_THE_EMPLOYEE_LIST_LINK()
         {
-            CurrentPage = CurrentPage.As<HomePage>().ClickEmployeeList();
+            _parallelTestExecution.CurrentPage = _parallelTestExecution.CurrentPage.As<HomePage>().ClickEmployeeList();
         }
 
         [When(@"I CLICK THE (.*) \[EMPLOYEE\] BUTTON")]
@@ -35,7 +32,7 @@ namespace TestAutomation.Steps
             switch (button)
             {
                 case "CREATE NEW":
-                    CurrentPage = CurrentPage.As<EmployeeListPage>().ClickCreateNew();
+                    _parallelTestExecution.CurrentPage = _parallelTestExecution.CurrentPage.As<EmployeeListPage>().ClickCreateNew();
                     break;
                 case "CREATE":
                     break;
@@ -49,14 +46,14 @@ namespace TestAutomation.Steps
         public void When_I_ENTER_THE_DETAILS_OF_THE_EMPLOYEE(Table employeeDetailsTable)
         {
             _employeeDetails = employeeDetailsTable.CreateDynamicInstance();
-            CurrentPage.As<CreateEmployeePage>().EnterEmployeeDetails(_employeeDetails.NAME.ToString(), _employeeDetails.SALARY.ToString(), _employeeDetails.HOURS.ToString(), _employeeDetails.GRADE.ToString(), _employeeDetails.EMAIL.ToString());
-            CurrentPage = CurrentPage.As<CreateEmployeePage>().ClickCreateEmployeeButton();
+            _parallelTestExecution.CurrentPage.As<CreateEmployeePage>().EnterEmployeeDetails(_employeeDetails.NAME.ToString(), _employeeDetails.SALARY.ToString(), _employeeDetails.HOURS.ToString(), _employeeDetails.GRADE.ToString(), _employeeDetails.EMAIL.ToString());
+            _parallelTestExecution.CurrentPage = _parallelTestExecution.CurrentPage.As<CreateEmployeePage>().ClickCreateEmployeeButton();
         }
 
         [Then]
         public void Then_THE_NEWLY_CREATED_EMPLOYEE_SHOULD_HAVE_SUCCESSFULLY_SAVED()
         {
-            Assert.IsTrue(CurrentPage.As<EmployeeListPage>().AssertEmployeePresence(_employeeDetails.NAME));
+            Assert.IsTrue(_parallelTestExecution.CurrentPage.As<EmployeeListPage>().AssertEmployeePresence(_employeeDetails.NAME));
         }
     }
 }

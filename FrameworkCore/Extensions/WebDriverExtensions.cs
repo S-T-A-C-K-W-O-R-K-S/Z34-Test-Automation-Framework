@@ -15,7 +15,7 @@ namespace FrameworkCore.Extensions
         {
             driver.WaitForCondition(dri =>
             {
-                string state = dri.ExecuteJS("return document.readyState").ToString();
+                string state = ((IJavaScriptExecutor) dri).ExecuteScript("return document.readyState").ToString();
                 return state == "complete";
             }, 5000);
         }
@@ -41,12 +41,6 @@ namespace FrameworkCore.Extensions
             while (stopwatch.ElapsedMilliseconds < timeout)
                 if (Execute(obj))
                     break;
-        }
-
-        [SuppressMessage("Style", "IDE0060: Remove Unused Parameter", Justification = "Extension Method Needs IWebDriver Parameter")]
-        internal static object ExecuteJS(this IWebDriver driver, string script)
-        {
-            return ((IJavaScriptExecutor) DriverContext.Driver).ExecuteScript(script);
         }
 
         public static IWebElement FindElement(this IWebDriver driver, By by, int timeoutInMilliseconds)
