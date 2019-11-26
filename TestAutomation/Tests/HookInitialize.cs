@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 using AventStack.ExtentReports;
 using AventStack.ExtentReports.Gherkin.Model;
 using AventStack.ExtentReports.Reporter;
@@ -29,6 +30,7 @@ namespace TestAutomation.Tests
         private static ExtentKlovReporter _klov;
 
         [BeforeTestRun]
+        [SuppressMessage("Compiler Warning", "CS0162: Unreachable Code Detected", Justification = "Refactor Pending")]
         public static void BeforeTestRun()
         {
             InitializeConfig();
@@ -45,7 +47,6 @@ namespace TestAutomation.Tests
             if (false) // TODO: Handle Exception Thrown While KLOV Is Not Running
             {
                 _klov = new ExtentKlovReporter();
-
                 _klov.InitMongoDbConnection("localhost", 27017);
                 _klov.ProjectName = "Execute Automation Tests";
                 _klov.InitKlovServerConnection("http://localhost:5689");
