@@ -1,6 +1,7 @@
 ﻿using System;
 using FrameworkCore.Config;
 using FrameworkCore.Helpers;
+using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.Remote;
@@ -26,34 +27,27 @@ namespace FrameworkCore.Base
             LogHelpers.WriteToLog("Framework Initialized");
         }
 
+        // TODO: Try Selenium Grid (RemoteWebDriver)
         private void OpenBrowser(BrowserType browserType)
         {
-            DesiredCapabilities capabilities = new DesiredCapabilities();
-
             switch (browserType)
             {
                 case BrowserType.Firefox:
-                    //FirefoxOptions optionsGecko = new FirefoxOptions();
-                    //optionsGecko.AddArguments("--width=1280", "--height=720", "--private");
-                    //_parallelTestExecution.Driver = new RemoteWebDriver(new Uri("http://localhost:4444/wd/hub"), optionsGecko);
-
-                    capabilities.SetCapability(CapabilityType.BrowserName, "firefox");
+                    FirefoxOptions optionsGecko = new FirefoxOptions();
+                    optionsGecko.AddArguments("--width=1280", "--height=720", "--private");
+                    _parallelTestExecution.Driver = new FirefoxDriver(optionsGecko);
                     break;
 
                 case BrowserType.Chrome:
-                    //ChromeOptions optionsChrome = new ChromeOptions();
-                    //optionsChrome.AddArguments("--window-size=1280,720", "--incognito");
-                    //_parallelTestExecution.Driver = new RemoteWebDriver(new Uri("http://localhost:4444/wd/hub"), optionsChrome);
-
-                    capabilities.SetCapability(CapabilityType.BrowserName, "chrome");
+                    ChromeOptions optionsChrome = new ChromeOptions();
+                    optionsChrome.AddArguments("--window-size=1280,720", "--incognito");
+                    _parallelTestExecution.Driver = new ChromeDriver(optionsChrome);
                     break;
 
                 default:
                     LogHelpers.WriteToLog($"[ERROR] :: Invalid Browser Type: {browserType}");
                     throw new ArgumentOutOfRangeException(nameof(browserType), browserType, $"Invalid Browser Type: {browserType}");
             }
-
-            _parallelTestExecution.Driver = new RemoteWebDriver(new Uri("http://localhost:4444/wd/hub"), capabilities);
         }
     }
 }
