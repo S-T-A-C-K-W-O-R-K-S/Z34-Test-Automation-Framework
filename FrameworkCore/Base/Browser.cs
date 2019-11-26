@@ -5,21 +5,14 @@ namespace FrameworkCore.Base
 {
     public class Browser
     {
-        [SuppressMessage("Code Quality", "IDE0052: Remove Unread Private Members", Justification = "False-Positive")]
-        private readonly IWebDriver _driver;
+        private readonly DriverContext DriverContext;
 
-        public Browser(IWebDriver driver)
+        public Browser(DriverContext driverContext)
         {
-            _driver = driver;
+            DriverContext = driverContext;
         }
 
         public BrowserType Type { get; set; }
-
-        [SuppressMessage("Performance", "CA1822: Mark Members As Static", Justification = "False-Positive")]
-        public void GoToURL(string url)
-        {
-            DriverContext.Driver.Url = url;
-        }
     }
 
     public enum BrowserType

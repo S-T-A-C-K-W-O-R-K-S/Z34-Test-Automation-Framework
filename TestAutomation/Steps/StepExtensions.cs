@@ -1,5 +1,6 @@
 ﻿using FrameworkCore.Base;
 using FrameworkCore.Config;
+using FrameworkCore.Extensions;
 using FrameworkCore.Helpers;
 using TechTalk.SpecFlow;
 
@@ -17,6 +18,14 @@ namespace TestAutomation.Steps
         // {
         //     context = injectedContext;
         // }
+
+        public void NavigateToAUT()
+        {
+            DriverContext.Browser.GoToURL(Settings.AUT);
+            LogHelpers.WriteToLog($"Navigating To Page: {Settings.AUT}");
+            DriverContext.Driver.WaitForPageLoaded();
+            LogHelpers.WriteToLog($"DOM On Page Fully Loaded: {Settings.AUT}");
+        }
 
         [Given(@"I DELETE EMPLOYEE ""(.*)"" PRIOR TO RUNNING TEST")]
         public void Given_I_DELETE_EMPLOYEE_PRIOR_TO_RUNNING_TEST(string employeeName)

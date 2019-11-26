@@ -4,14 +4,10 @@ using FrameworkCore.Helpers;
 
 namespace FrameworkCore.Base
 {
-    public abstract class BaseStep : Base
+    public class BaseStep : Base
     {
-        public virtual void NavigateToAUT()
+        protected BaseStep (ParallelTestExecution parallelTestExecution) : base (parallelTestExecution)
         {
-            DriverContext.Browser.GoToURL(Settings.AUT);
-            LogHelpers.WriteToLog($"Navigating To Page: {Settings.AUT}");
-            DriverContext.Driver.WaitForPageLoaded();
-            LogHelpers.WriteToLog($"DOM On Page Fully Loaded: {Settings.AUT}");
         }
     }
 }

@@ -5,14 +5,14 @@ namespace FrameworkCore.Base
 {
     public class Base
     {
-        // TODO: Implement Scenario Context Via Context Injection
-        public BasePage CurrentPage
+        public readonly ParallelTestExecution ParallelTestExecution;
+
+        public Base(ParallelTestExecution parallelTestExecution)
         {
-            get => (BasePage) ScenarioContext.Current["currentPage"];
-            set => ScenarioContext.Current["currentPage"] = value;
+            ParallelTestExecution = parallelTestExecution;
         }
 
-        protected static TPage GetInstance<TPage>() where TPage : BasePage, new()
+        protected TPage GetInstance<TPage>() where TPage : BasePage, new()
         {
             return (TPage) Activator.CreateInstance(typeof(TPage));
         }

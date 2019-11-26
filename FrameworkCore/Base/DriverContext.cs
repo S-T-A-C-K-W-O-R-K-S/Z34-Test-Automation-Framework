@@ -2,10 +2,20 @@
 
 namespace FrameworkCore.Base
 {
-    public static class DriverContext
+    public class DriverContext
     {
-        public static IWebDriver Driver { get; set; }
+        public readonly ParallelTestExecution ParallelTestExecution;
 
-        public static Browser Browser { get; set; }
+        public DriverContext(ParallelTestExecution parallelTestExecution)
+        {
+            ParallelTestExecution = parallelTestExecution;
+        }
+
+        public void GoToURL(string url)
+        {
+            ParallelTestExecution.Driver.Url = url;
+        }
+
+        public Browser Browser { get; set; }
     }
 }

@@ -3,12 +3,21 @@ using FrameworkCore.Config;
 using FrameworkCore.Helpers;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Firefox;
+using OpenQA.Selenium.Remote;
+using TechTalk.SpecFlow;
 
 namespace FrameworkCore.Base
 {
-    public abstract class TestInitializeHook : Base
+    public class TestInitializeHook : Steps
     {
-        public static void InitializeConfig()
+        private readonly ParallelTestExecution _parallelTestExecution;
+
+        public TestInitializeHook(ParallelTestExecution parallelTestExecution)
+        {
+            _parallelTestExecution = parallelTestExecution;
+        }
+
+        public void InitializeConfig()
         {
             ConfigReader.SetFrameworkSettings("CHROME");
             LogHelpers.CreateLogFile();
@@ -17,22 +26,20 @@ namespace FrameworkCore.Base
             LogHelpers.WriteToLog("Framework Initialized");
         }
 
-        private static void OpenBrowser(BrowserType browserType = BrowserType.Firefox)
+        private void OpenBrowser(BrowserType browserType)
         {
             switch (browserType)
             {
                 case BrowserType.Firefox:
                     FirefoxOptions optionsGecko = new FirefoxOptions();
                     optionsGecko.AddArguments("--width=1280", "--height=720", "--private");
-                    DriverContext.Driver = new FirefoxDriver(optionsGecko);
-                    DriverContext.Browser = new Browser(DriverContext.Driver);
+                    _parallelTestExecution.Driver = new RemoteWebDriver(new Uri("http://localhost:4444/wd/hub"), optionsGecko);
                     break;
 
                 case BrowserType.Chrome:
                     ChromeOptions optionsChrome = new ChromeOptions();
                     optionsChrome.AddArguments("--window-size=1280,720", "--incognito");
-                    DriverContext.Driver = new ChromeDriver(optionsChrome);
-                    DriverContext.Browser = new Browser(DriverContext.Driver);
+                    _parallelTestExecution.Driver = new RemoteWebDriver(new Uri("http://localhost:4444/wd/hub"), optionsChrome);
                     break;
 
                 default:
