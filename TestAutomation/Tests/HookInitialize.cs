@@ -66,19 +66,19 @@ namespace TestAutomation.Tests
                 switch (stepType)
                 {
                     case "Given":
-                        _scenario.CreateNode<Given>(ScenarioStepContext.Current.StepInfo.Text);
+                        _scenario.CreateNode<Given>(_scenarioContext.StepContext.StepInfo.Text);
                         break;
 
                     case "When":
-                        _scenario.CreateNode<When>(ScenarioStepContext.Current.StepInfo.Text);
+                        _scenario.CreateNode<When>(_scenarioContext.StepContext.StepInfo.Text);
                         break;
 
                     case "Then":
-                        _scenario.CreateNode<Then>(ScenarioStepContext.Current.StepInfo.Text);
+                        _scenario.CreateNode<Then>(_scenarioContext.StepContext.StepInfo.Text);
                         break;
 
                     case "And":
-                        _scenario.CreateNode<And>(ScenarioStepContext.Current.StepInfo.Text);
+                        _scenario.CreateNode<And>(_scenarioContext.StepContext.StepInfo.Text);
                         break;
 
                     default:
@@ -94,19 +94,19 @@ namespace TestAutomation.Tests
                 switch (stepType)
                 {
                     case "Given":
-                        _scenario.CreateNode<Given>(ScenarioStepContext.Current.StepInfo.Text).Fail(_scenarioContext.TestError.StackTrace);
+                        _scenario.CreateNode<Given>(_scenarioContext.StepContext.StepInfo.Text).Fail(_scenarioContext.TestError.StackTrace);
                         break;
 
                     case "When":
-                        _scenario.CreateNode<When>(ScenarioStepContext.Current.StepInfo.Text).Fail(_scenarioContext.TestError.StackTrace);
+                        _scenario.CreateNode<When>(_scenarioContext.StepContext.StepInfo.Text).Fail(_scenarioContext.TestError.StackTrace);
                         break;
 
                     case "Then":
-                        _scenario.CreateNode<Then>(ScenarioStepContext.Current.StepInfo.Text).Fail(_scenarioContext.TestError.StackTrace);
+                        _scenario.CreateNode<Then>(_scenarioContext.StepContext.StepInfo.Text).Fail(_scenarioContext.TestError.StackTrace);
                         break;
 
                     case "And":
-                        _scenario.CreateNode<And>(ScenarioStepContext.Current.StepInfo.Text).Fail(_scenarioContext.TestError.StackTrace);
+                        _scenario.CreateNode<And>(_scenarioContext.StepContext.StepInfo.Text).Fail(_scenarioContext.TestError.StackTrace);
                         break;
 
                     default:
@@ -120,19 +120,19 @@ namespace TestAutomation.Tests
                 switch (stepType)
                 {
                     case "Given":
-                        _scenario.CreateNode<Given>(ScenarioStepContext.Current.StepInfo.Text).Skip("Step Definition Pending");
+                        _scenario.CreateNode<Given>(_scenarioContext.StepContext.StepInfo.Text).Skip("Step Definition Pending");
                         break;
 
                     case "When":
-                        _scenario.CreateNode<When>(ScenarioStepContext.Current.StepInfo.Text).Skip("Step Definition Pending");
+                        _scenario.CreateNode<When>(_scenarioContext.StepContext.StepInfo.Text).Skip("Step Definition Pending");
                         break;
 
                     case "Then":
-                        _scenario.CreateNode<Then>(ScenarioStepContext.Current.StepInfo.Text).Skip("Step Definition Pending");
+                        _scenario.CreateNode<Then>(_scenarioContext.StepContext.StepInfo.Text).Skip("Step Definition Pending");
                         break;
 
                     case "And":
-                        _scenario.CreateNode<And>(ScenarioStepContext.Current.StepInfo.Text).Skip("Step Definition Pending");
+                        _scenario.CreateNode<And>(_scenarioContext.StepContext.StepInfo.Text).Skip("Step Definition Pending");
                         break;
 
                     default:
@@ -152,7 +152,7 @@ namespace TestAutomation.Tests
         }
 
         [AfterTestRun]
-        public void AfterTestRun()
+        public static void AfterTestRun()
         {
             _extent.Flush();
         }
