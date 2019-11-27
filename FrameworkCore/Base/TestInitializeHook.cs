@@ -1,10 +1,8 @@
 ﻿using System;
 using FrameworkCore.Config;
 using FrameworkCore.Helpers;
-using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Firefox;
-using OpenQA.Selenium.Remote;
 using TechTalk.SpecFlow;
 
 namespace FrameworkCore.Base

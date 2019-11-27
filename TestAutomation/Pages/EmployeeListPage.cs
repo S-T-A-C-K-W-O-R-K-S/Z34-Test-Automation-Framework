@@ -7,7 +7,7 @@ namespace TestAutomation.Pages
 {
     internal class EmployeeListPage : BasePage
     {
-        public EmployeeListPage (ParallelTestExecution parallelTestExecution) : base (parallelTestExecution)
+        public EmployeeListPage(ParallelTestExecution parallelTestExecution) : base(parallelTestExecution)
         {
         }
 

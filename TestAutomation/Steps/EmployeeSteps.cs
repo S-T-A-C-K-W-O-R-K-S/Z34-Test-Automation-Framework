@@ -13,12 +13,12 @@ namespace TestAutomation.Steps
     {
         private readonly ParallelTestExecution _parallelTestExecution;
 
+        private dynamic _employeeDetails;
+
         public EmployeeSteps(ParallelTestExecution parallelTestExecution) : base(parallelTestExecution)
         {
             _parallelTestExecution = parallelTestExecution;
         }
-
-        private dynamic _employeeDetails;
 
         [When]
         public void When_I_FOLLOW_THE_EMPLOYEE_LIST_LINK()

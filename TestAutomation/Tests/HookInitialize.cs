@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Diagnostics.CodeAnalysis;
 using AventStack.ExtentReports;
 using AventStack.ExtentReports.Gherkin.Model;
 using AventStack.ExtentReports.Reporter;
@@ -14,25 +13,25 @@ namespace TestAutomation.Tests
     [Binding]
     public class HookInitialize : TestInitializeHook
     {
-        private readonly ParallelTestExecution _parallelTestExecution;
+        private static ExtentTest _feature;
+        private static ExtentTest _scenario;
+
+        private static ExtentReports _extent;
+
         private readonly FeatureContext _featureContext;
+        private readonly ParallelTestExecution _parallelTestExecution;
         private readonly ScenarioContext _scenarioContext;
 
-        public HookInitialize (ParallelTestExecution parallelTestExecution, FeatureContext featureContext, ScenarioContext scenarioContext) : base(parallelTestExecution)
+        public HookInitialize(ParallelTestExecution parallelTestExecution, FeatureContext featureContext, ScenarioContext scenarioContext) : base(parallelTestExecution)
         {
             _parallelTestExecution = parallelTestExecution;
             _featureContext = featureContext;
             _scenarioContext = scenarioContext;
         }
 
-        private static ExtentTest _feature;
-        private static ExtentTest _scenario;
-
-        private static ExtentReports _extent;
-
         [BeforeTestRun]
         public static void BeforeTestRun()
-        { 
+        {
             string run = $"{DateTime.Now:yyyy-MM-dd_HH-mm-ss}";
 
             ExtentHtmlReporter reporter = new ExtentHtmlReporter($"..\\..\\..\\..\\REPORTS\\{run}\\");

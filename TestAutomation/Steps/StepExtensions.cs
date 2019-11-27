@@ -12,7 +12,7 @@ namespace TestAutomation.Steps
     {
         private readonly ParallelTestExecution _parallelTestExecution;
 
-        public StepExtensions (ParallelTestExecution parallelTestExecution) : base (parallelTestExecution)
+        public StepExtensions(ParallelTestExecution parallelTestExecution) : base(parallelTestExecution)
         {
             _parallelTestExecution = parallelTestExecution;
         }

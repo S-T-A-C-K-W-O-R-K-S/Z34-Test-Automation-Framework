@@ -1,6 +1,6 @@
 ﻿namespace FrameworkCore.Helpers
 {
-    class JSONDataHelpers
+    internal class JSONDataHelpers
     {
         // TODO: Implement This Class
     }

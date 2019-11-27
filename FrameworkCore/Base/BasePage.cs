@@ -2,7 +2,7 @@
 {
     public abstract class BasePage : Base
     {
-        protected BasePage (ParallelTestExecution parallelTestExecution) : base (parallelTestExecution)
+        protected BasePage(ParallelTestExecution parallelTestExecution) : base(parallelTestExecution)
         {
         }
     }

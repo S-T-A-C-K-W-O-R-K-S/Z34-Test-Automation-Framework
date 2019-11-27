@@ -6,7 +6,7 @@ namespace TestAutomation.Pages
 {
     internal class LoginPage : BasePage
     {
-        public LoginPage (ParallelTestExecution parallelTestExecution) : base (parallelTestExecution)
+        public LoginPage(ParallelTestExecution parallelTestExecution) : base(parallelTestExecution)
         {
         }
 

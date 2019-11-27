@@ -13,10 +13,7 @@ namespace FrameworkCore.Helpers
 
         public static void CreateLogFile()
         {
-            if (!Directory.Exists(LogPath))
-            {
-                Directory.CreateDirectory(LogPath);
-            }
+            if (!Directory.Exists(LogPath)) Directory.CreateDirectory(LogPath);
 
             if (!Settings.DebugMode || File.Exists(LogFile)) return;
 

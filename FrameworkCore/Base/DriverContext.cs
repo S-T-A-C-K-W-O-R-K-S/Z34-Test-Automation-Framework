@@ -1,6 +1,4 @@
-﻿using OpenQA.Selenium;
-
-namespace FrameworkCore.Base
+﻿namespace FrameworkCore.Base
 {
     public class DriverContext
     {
@@ -11,11 +9,11 @@ namespace FrameworkCore.Base
             ParallelTestExecution = parallelTestExecution;
         }
 
+        public Browser Browser { get; set; }
+
         public void GoToURL(string url)
         {
             ParallelTestExecution.Driver.Url = url;
         }
-
-        public Browser Browser { get; set; }
     }
 }

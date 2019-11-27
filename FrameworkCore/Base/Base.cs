@@ -1,7 +1,4 @@
-﻿using System;
-using TechTalk.SpecFlow;
-
-namespace FrameworkCore.Base
+﻿namespace FrameworkCore.Base
 {
     public class Base
     {

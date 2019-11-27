@@ -11,7 +11,7 @@ namespace TestAutomation.Steps
     {
         private readonly ParallelTestExecution _parallelTestExecution;
 
-        public LoginSteps (ParallelTestExecution parallelTestExecution) : base (parallelTestExecution)
+        public LoginSteps(ParallelTestExecution parallelTestExecution) : base(parallelTestExecution)
         {
             _parallelTestExecution = parallelTestExecution;
         }
