@@ -26,7 +26,7 @@ namespace FrameworkCore.Base
             LogHelpers.CreateLogFile();
             OpenBrowser(Settings.BrowserType);
 
-            LogHelpers.WriteToLog($"Configuration Initialized : {config}");
+            LogHelpers.WriteToLog($"Configuration Initialized :: {config}");
         }
 
         // TODO: Try Selenium Grid (RemoteWebDriver)

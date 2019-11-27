@@ -7,7 +7,7 @@ namespace FrameworkCore.Helpers
     public static class LogHelpers
     {
         private static readonly string LogFileName = $"{DateTime.Now:yyyy-MM-dd_HH-mm-ss}";
-        private static string LogPath = Settings.LogPath;
+        private static readonly string LogPath = Settings.LogPath;
         private static readonly string LogFile = LogPath + LogFileName + ".log";
         private static StreamWriter _streamWriter;
 

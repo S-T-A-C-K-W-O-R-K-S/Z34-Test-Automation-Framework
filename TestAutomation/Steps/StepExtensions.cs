@@ -34,9 +34,9 @@ namespace TestAutomation.Steps
         public void NavigateToAUT()
         {
             _parallelTestExecution.Driver.Navigate().GoToUrl(Settings.AUT);
-            LogHelpers.WriteToLog($"Navigating To Page: {Settings.AUT}");
+            LogHelpers.WriteToLog($"Navigating To Page :: {Settings.AUT}");
             _parallelTestExecution.Driver.WaitForPageLoaded();
-            LogHelpers.WriteToLog($"DOM On Page Fully Loaded: {Settings.AUT}");
+            LogHelpers.WriteToLog($"DOM On Page Fully Loaded :: {Settings.AUT}");
         }
     }
 }

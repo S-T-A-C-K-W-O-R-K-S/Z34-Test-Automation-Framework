@@ -52,12 +52,6 @@ namespace FrameworkCore.Extensions
             }
         }
 
-        //public static void HoverElement(this IWebElement element)
-        //{
-        //    Actions actions = new Actions(DriverContext.Driver);
-        //    actions.MoveToElement(element).Perform();
-        //}
-
         public static string GetLinkText(this IWebElement element)
         {
             return element.Text;
