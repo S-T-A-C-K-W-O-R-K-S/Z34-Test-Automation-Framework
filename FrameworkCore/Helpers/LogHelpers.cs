@@ -7,36 +7,34 @@ namespace FrameworkCore.Helpers
     public static class LogHelpers
     {
         private static readonly string LogFileName = $"{DateTime.Now:yyyy-MM-dd_HH-mm-ss}";
+        private static string LogPath = Settings.LogPath;
+        private static readonly string LogFile = LogPath + LogFileName + ".log";
         private static StreamWriter _streamWriter;
 
         public static void CreateLogFile()
         {
-            string logPath = Settings.LogPath;
-            if (Directory.Exists(logPath))
+            if (!Directory.Exists(LogPath))
             {
-                _streamWriter = File.AppendText(logPath + LogFileName + ".log");
+                Directory.CreateDirectory(LogPath);
             }
 
-            else
-            {
-                Directory.CreateDirectory(logPath);
-                _streamWriter = File.AppendText(logPath + LogFileName + ".log");
-            }
+            if (!Settings.DebugMode || File.Exists(LogFile)) return;
 
-            if (Settings.DebugMode)
-                _streamWriter.WriteLine("[DEBUG] :: LOG CREATED" + Environment.NewLine +
-                                        "\t" + "DateTime.Now" + "\t" + "\t" + ":" + "\t" + DateTime.Now + Environment.NewLine +
-                                        "\t" + ".ToLongDateString" + "\t" + ":" + "\t" + DateTime.Now.ToLongDateString() + Environment.NewLine +
-                                        "\t" + ".ToLongTimeString" + "\t" + ":" + "\t" + DateTime.Now.ToLongTimeString() + Environment.NewLine +
-                                        "\t" + ".ToUniversalTime" + "\t" + ":" + "\t" + DateTime.Now.ToUniversalTime() + Environment.NewLine +
-                                        "\t" + ".ToLocalTime" + "\t" + "\t" + ":" + "\t" + DateTime.Now.ToLocalTime() + Environment.NewLine);
+            _streamWriter = File.AppendText(LogFile);
+            _streamWriter.WriteLine("[DEBUG] :: LOGGING STARTED" + Environment.NewLine +
+                                    "\t" + "DateTime.Now" + "\t" + "\t" + ":" + "\t" + DateTime.Now + Environment.NewLine +
+                                    "\t" + ".ToLongDateString" + "\t" + ":" + "\t" + DateTime.Now.ToLongDateString() + Environment.NewLine +
+                                    "\t" + ".ToLongTimeString" + "\t" + ":" + "\t" + DateTime.Now.ToLongTimeString() + Environment.NewLine +
+                                    "\t" + ".ToUniversalTime" + "\t" + ":" + "\t" + DateTime.Now.ToUniversalTime() + Environment.NewLine +
+                                    "\t" + ".ToLocalTime" + "\t" + "\t" + ":" + "\t" + DateTime.Now.ToLocalTime() + Environment.NewLine);
+            _streamWriter.Close();
         }
 
-        // TODO: Fix Inconsistent Timestamps
         public static void WriteToLog(string logMessage)
         {
-            _streamWriter.WriteLine("{0} @ {1} >>> {2}", DateTime.Now.ToLongDateString(), DateTime.Now.ToLongTimeString(), logMessage);
-            _streamWriter.Flush();
+            _streamWriter = File.AppendText(LogFile);
+            _streamWriter.WriteLine("{0:dd.MM.yyyy} @ {0:HH.mm.ss} >>> {1}", DateTime.Now, logMessage);
+            _streamWriter.Close();
         }
     }
 }

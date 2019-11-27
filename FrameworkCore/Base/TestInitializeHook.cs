@@ -20,11 +20,13 @@ namespace FrameworkCore.Base
 
         public void InitializeConfig()
         {
-            ConfigReader.SetFrameworkSettings("CHROME");
+            const string config = "CHROME";
+
+            ConfigReader.SetFrameworkSettings(config);
             LogHelpers.CreateLogFile();
             OpenBrowser(Settings.BrowserType);
 
-            LogHelpers.WriteToLog("Framework Initialized");
+            LogHelpers.WriteToLog($"Configuration Initialized : {config}");
         }
 
         // TODO: Try Selenium Grid (RemoteWebDriver)

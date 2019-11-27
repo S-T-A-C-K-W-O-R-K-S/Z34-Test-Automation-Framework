@@ -42,6 +42,8 @@ namespace TestAutomation.Tests
 
             _extent = new ExtentReports();
             _extent.AttachReporter(reporter);
+
+            LogHelpers.WriteToLog("[START] :: Test Run");
         }
 
         [BeforeScenario]
@@ -155,6 +157,8 @@ namespace TestAutomation.Tests
         public static void AfterTestRun()
         {
             _extent.Flush();
+
+            LogHelpers.WriteToLog("[END] :: Test Run");
         }
     }
 }
