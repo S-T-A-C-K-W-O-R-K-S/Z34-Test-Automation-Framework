@@ -52,7 +52,9 @@ namespace TestAutomation.Tests
             _feature = _extent.CreateTest<Feature>(_featureContext.FeatureInfo.Title);
             _scenario = _feature.CreateNode<Scenario>(_scenarioContext.ScenarioInfo.Title);
 
-            LogHelpers.WriteToLog($"[START] :: {_featureContext.FeatureInfo.Title} >>> {_scenarioContext.ScenarioInfo.Title}");
+            #pragma warning disable CS4014
+            LogHelpers.WriteToLog($"[START] :: {_featureContext.FeatureInfo.Title} :: {_scenarioContext.ScenarioInfo.Title}");
+            #pragma warning restore CS4014
         }
 
         [AfterStep]
@@ -81,14 +83,19 @@ namespace TestAutomation.Tests
                         break;
 
                     default:
+                        #pragma warning disable CS4014
                         LogHelpers.WriteToLog($"[ERROR] :: Invalid Step Type: {stepType}");
+                        #pragma warning restore CS4014
+
                         throw new ArgumentOutOfRangeException(nameof(stepType), stepType, $"Invalid Step Type: {stepType}");
                 }
             }
 
             else if (_scenarioContext.TestError != null)
             {
+                #pragma warning disable CS4014
                 LogHelpers.WriteToLog($"[ERROR] :: Current Scenario Error: {_scenarioContext.TestError.Message}");
+                #pragma warning restore CS4014
 
                 switch (stepType)
                 {
@@ -109,7 +116,10 @@ namespace TestAutomation.Tests
                         break;
 
                     default:
+                        #pragma warning disable CS4014
                         LogHelpers.WriteToLog($"[ERROR] :: Invalid Step Type: {stepType}");
+                        #pragma warning restore CS4014
+
                         throw new ArgumentOutOfRangeException(nameof(stepType), stepType, $"Invalid Step Type: {stepType}");
                 }
             }
@@ -135,7 +145,10 @@ namespace TestAutomation.Tests
                         break;
 
                     default:
+                        #pragma warning disable CS4014
                         LogHelpers.WriteToLog($"[ERROR] :: Invalid Step Type: {stepType}");
+                        #pragma warning restore CS4014
+
                         throw new ArgumentOutOfRangeException(nameof(stepType), stepType, $"Invalid Step Type: {stepType}");
                 }
             }
@@ -147,7 +160,9 @@ namespace TestAutomation.Tests
             _parallelTestExecution.Driver.Close();
             _parallelTestExecution.Driver.Quit();
 
-            LogHelpers.WriteToLog($"[END] :: {_featureContext.FeatureInfo.Title} >>> {_scenarioContext.ScenarioInfo.Title}");
+            #pragma warning disable CS4014
+            LogHelpers.WriteToLog($"[READY] :: {_featureContext.FeatureInfo.Title} :: {_scenarioContext.ScenarioInfo.Title}");
+            #pragma warning restore CS4014
         }
 
         [AfterTestRun]
@@ -155,7 +170,9 @@ namespace TestAutomation.Tests
         {
             _extent.Flush();
 
+            #pragma warning disable CS4014
             LogHelpers.WriteToLog("Test Run Results :: TODO: ADD LINK TO RESULTS FILE");
+            #pragma warning restore CS4014
         }
     }
 }

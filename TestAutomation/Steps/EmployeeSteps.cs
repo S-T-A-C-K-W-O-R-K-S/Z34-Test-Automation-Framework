@@ -37,7 +37,10 @@ namespace TestAutomation.Steps
                 case "CREATE":
                     break;
                 default:
+                    #pragma warning disable CS4014
                     LogHelpers.WriteToLog($"[ERROR] :: Invalid Button Name: {button}");
+                    #pragma warning restore CS4014
+
                     throw new ArgumentOutOfRangeException(nameof(button), button, $"Invalid Button Name: {button}");
             }
         }

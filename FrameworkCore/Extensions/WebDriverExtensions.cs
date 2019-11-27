@@ -31,7 +31,10 @@ namespace FrameworkCore.Extensions
 
                 catch (Exception exception)
                 {
+                    #pragma warning disable CS4014
                     LogHelpers.WriteToLog("[ERROR] :: " + exception.Message);
+                    #pragma warning restore CS4014
+
                     return false;
                 }
             }

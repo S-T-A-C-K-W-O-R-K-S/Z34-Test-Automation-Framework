@@ -24,7 +24,9 @@ namespace FrameworkCore.Base
             LogHelpers.CreateLogFile();
             OpenBrowser(Settings.BrowserType);
 
+            #pragma warning disable CS4014
             LogHelpers.WriteToLog($"Configuration Initialized :: {config}");
+            #pragma warning restore CS4014
         }
 
         // TODO: Try Selenium Grid (RemoteWebDriver)
@@ -45,7 +47,10 @@ namespace FrameworkCore.Base
                     break;
 
                 default:
+                    #pragma warning disable CS4014
                     LogHelpers.WriteToLog($"[ERROR] :: Invalid Browser Type: {browserType}");
+                    #pragma warning restore CS4014
+
                     throw new ArgumentOutOfRangeException(nameof(browserType), browserType, $"Invalid Browser Type: {browserType}");
             }
         }

@@ -45,7 +45,10 @@ namespace TestAutomation.Steps
         public void Then_I_SHOULD_BE_AUTHENTICATED_AND_SEE_A_GREETING_MESSAGE()
         {
             const string user = "admin";
+
+            #pragma warning disable CS4014
             LogHelpers.WriteToLog(_parallelTestExecution.CurrentPage.As<HomePage>().GetLoggedInUser().Contains(user) ? $"Successfully Logged In As :: {user}" : $"[ERROR] :: Login Failed As :: {user}");
+            #pragma warning restore CS4014
         }
     }
 }
