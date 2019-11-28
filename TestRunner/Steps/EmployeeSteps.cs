@@ -4,7 +4,7 @@ using FrameworkCore.Helpers;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using TechTalk.SpecFlow;
 using TechTalk.SpecFlow.Assist;
-using TestRunner.Pages;
+using ApplicationMap.Pages;
 
 namespace TestRunner.Steps
 {

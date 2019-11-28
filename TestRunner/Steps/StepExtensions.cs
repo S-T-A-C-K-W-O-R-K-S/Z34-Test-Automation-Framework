@@ -4,7 +4,7 @@ using FrameworkCore.Extensions;
 using FrameworkCore.Helpers;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using TechTalk.SpecFlow;
-using TestRunner.Pages;
+using ApplicationMap.Pages;
 
 [assembly: Parallelize(Workers = 0, Scope = ExecutionScope.ClassLevel)]
 /* A TestAssembly, TestClass, TestMethod can explicitly opt-out of parallelization using the [DoNotParallelize()]) attribute. */
@@ -29,7 +29,7 @@ namespace TestRunner.Steps
         }
 
         [Given(@"I DELETE EMPLOYEE ""(.*)"" PRIOR TO RUNNING TEST")]
-        public void Given_I_DELETE_EMPLOYEE_PRIOR_TO_RUNNING_TEST(string employeeName)
+        public static void Given_I_DELETE_EMPLOYEE_PRIOR_TO_RUNNING_TEST(string employeeName)
         {
             string query = "DELETE FROM Employees WHERE NAME = '" + employeeName + "'";
             Settings.DatabaseConnection.ExecuteQuery(query);

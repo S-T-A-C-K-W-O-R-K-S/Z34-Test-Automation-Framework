@@ -2,9 +2,9 @@
 using FrameworkCore.Extensions;
 using OpenQA.Selenium;
 
-namespace TestRunner.Pages
+namespace ApplicationMap.Pages
 {
-    internal class CreateEmployeePage : BasePage
+    public class CreateEmployeePage : BasePage
     {
         public CreateEmployeePage(ParallelTestExecution parallelTestExecution) : base(parallelTestExecution)
         {
@@ -17,7 +17,7 @@ namespace TestRunner.Pages
         private IWebElement TextEmail => ParallelTestExecution.Driver.FindElementOrTimeOut(By.Id("Email"));
         private IWebElement ButtonCreateEmployee => ParallelTestExecution.Driver.FindElementOrTimeOut(By.XPath("//input[@value='Create']"));
 
-        internal void EnterEmployeeDetails(string name, string salary, string hours, string grade, string email)
+        public void EnterEmployeeDetails(string name, string salary, string hours, string grade, string email)
         {
             TextName.SendKeys(name);
             TextSalary.SendKeys(salary);
@@ -26,7 +26,7 @@ namespace TestRunner.Pages
             TextEmail.SendKeys(email);
         }
 
-        internal EmployeeListPage ClickCreateEmployeeButton()
+        public EmployeeListPage ClickCreateEmployeeButton()
         {
             ButtonCreateEmployee.Click();
             ParallelTestExecution.Driver.WaitForPageLoaded();

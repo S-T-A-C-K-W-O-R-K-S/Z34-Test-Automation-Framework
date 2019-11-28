@@ -4,11 +4,11 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using OpenQA.Selenium;
 
-namespace FrameworkCore.Helpers
+namespace ApplicationMap.CommonElements
 {
     // TODO: Implement Support For Irregular Matrix Tables
 
-    public static class HTMLTableHelpers
+    public static class HTMLTable
     {
         private static List<TableDataCollection> _tableDataCollectionsList;
         private static string[,] _tableDataCollectionsArray;

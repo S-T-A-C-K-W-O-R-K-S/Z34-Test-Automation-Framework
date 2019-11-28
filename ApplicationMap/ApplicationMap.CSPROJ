@@ -4,4 +4,8 @@
     <TargetFramework>NET48</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\FrameworkCore\FrameworkCore.CSPROJ" />
+  </ItemGroup>
+
 </Project>

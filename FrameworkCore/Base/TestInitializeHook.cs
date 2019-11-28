@@ -29,7 +29,7 @@ namespace FrameworkCore.Base
             #pragma warning restore CS4014
         }
 
-        // TODO: Try Selenium Grid (RemoteWebDriver)
+        // TODO: Try Selenium Grid (RemoteWebDriver) :: https://github.com/SeleniumHQ/selenium/wiki/Selenium-Grid-4
         private void OpenBrowser(BrowserType browserType)
         {
             switch (browserType)

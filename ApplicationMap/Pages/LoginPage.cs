@@ -2,9 +2,9 @@
 using FrameworkCore.Extensions;
 using OpenQA.Selenium;
 
-namespace TestRunner.Pages
+namespace ApplicationMap.Pages
 {
-    internal class LoginPage : BasePage
+    public class LoginPage : BasePage
     {
         public LoginPage(ParallelTestExecution parallelTestExecution) : base(parallelTestExecution)
         {
@@ -14,7 +14,7 @@ namespace TestRunner.Pages
         private IWebElement TextPassword => ParallelTestExecution.Driver.FindElementOrTimeOut(By.Id("Password"));
         private IWebElement ButtonLogin => ParallelTestExecution.Driver.FindElementOrTimeOut(By.CssSelector("input.btn"));
 
-        internal void EnterCredentials(string userName, string password)
+        public void EnterCredentials(string userName, string password)
         {
             TextUserName.SendKeys(userName);
             TextPassword.SendKeys(password);
@@ -27,7 +27,7 @@ namespace TestRunner.Pages
             return new HomePage(ParallelTestExecution);
         }
 
-        internal void AssertLoginFormExists()
+        public void AssertLoginFormExists()
         {
             TextUserName.ElementIsDisplayed();
             TextPassword.ElementIsDisplayed();

@@ -1,11 +1,12 @@
-﻿using FrameworkCore.Base;
+﻿using ApplicationMap.CommonElements;
+using FrameworkCore.Base;
 using FrameworkCore.Extensions;
 using FrameworkCore.Helpers;
 using OpenQA.Selenium;
 
-namespace TestRunner.Pages
+namespace ApplicationMap.Pages
 {
-    internal class EmployeeListPage : BasePage
+    public class EmployeeListPage : BasePage
     {
         public EmployeeListPage(ParallelTestExecution parallelTestExecution) : base(parallelTestExecution)
         {
@@ -22,19 +23,19 @@ namespace TestRunner.Pages
             return new CreateEmployeePage(ParallelTestExecution);
         }
 
-        internal IWebElement GetEmployeeList()
+        public IWebElement GetEmployeeList()
         {
             return TableEmployeeList;
         }
 
-        internal void PopulateSearchBox(string name)
+        public void PopulateSearchBox(string name)
         {
             TextSearch.SendKeys(name);
         }
 
-        internal bool AssertEmployeePresence(string name)
+        public bool AssertEmployeePresence(string name)
         {
-            return HTMLTableHelpers.AssertValuePresence(HTMLTableHelpers.ReadTableToArray(TableEmployeeList), name);
+            return HTMLTable.AssertValuePresence(HTMLTable.ReadTableToArray(TableEmployeeList), name);
         }
     }
 }

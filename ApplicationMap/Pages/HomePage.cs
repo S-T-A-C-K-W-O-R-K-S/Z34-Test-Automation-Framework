@@ -2,9 +2,9 @@
 using FrameworkCore.Extensions;
 using OpenQA.Selenium;
 
-namespace TestRunner.Pages
+namespace ApplicationMap.Pages
 {
-    internal class HomePage : BasePage
+    public class HomePage : BasePage
     {
         public HomePage(ParallelTestExecution parallelTestExecution) : base(parallelTestExecution)
         {
@@ -15,7 +15,7 @@ namespace TestRunner.Pages
         private IWebElement LinkLoggedInUser => ParallelTestExecution.Driver.FindElementOrTimeOut(By.XPath("//a[@title='Manage']"));
         private IWebElement LinkLogOff => ParallelTestExecution.Driver.FindElementOrTimeOut(By.LinkText("Log off"));
 
-        internal void AssertLoginLinkPresence() => LinkLogIn.ElementIsDisplayed();
+        public void AssertLoginLinkPresence() => LinkLogIn.ElementIsDisplayed();
 
         public LoginPage ClickLogIn()
         {
@@ -24,7 +24,7 @@ namespace TestRunner.Pages
             return new LoginPage(ParallelTestExecution);
         }
 
-        internal string GetLoggedInUser() => LinkLoggedInUser.GetElementText();
+        public string GetLoggedInUser() => LinkLoggedInUser.GetElementText();
 
         public EmployeeListPage ClickEmployeeList()
         {
