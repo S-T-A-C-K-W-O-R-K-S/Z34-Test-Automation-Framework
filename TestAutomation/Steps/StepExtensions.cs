@@ -2,8 +2,12 @@
 using FrameworkCore.Config;
 using FrameworkCore.Extensions;
 using FrameworkCore.Helpers;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using TechTalk.SpecFlow;
 using TestAutomation.Pages;
+
+[assembly: Parallelize(Workers = 0, Scope = ExecutionScope.ClassLevel)]
+/* A TestAssembly, TestClass, TestMethod can explicitly opt-out of parallelization using the [DoNotParallelize()]) attribute. */
 
 namespace TestAutomation.Steps
 {
