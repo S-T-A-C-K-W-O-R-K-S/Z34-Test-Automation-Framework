@@ -40,3 +40,5 @@ namespace FrameworkCore.Helpers
         }
     }
 }
+
+// TODO: Create One Log Per Feature And Combine At The End & Sort Out Pragma Suppression All Over The Codebase

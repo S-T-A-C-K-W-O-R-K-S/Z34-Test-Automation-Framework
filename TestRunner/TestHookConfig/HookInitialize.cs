@@ -14,7 +14,7 @@ namespace TestRunner.TestHookConfig
     public class HookInitialize : TestInitializeHook
     {
         private static ExtentTest _feature;
-        private static ExtentTest _scenario;
+        private ExtentTest _currentScenario;
 
         private static ExtentReports _extent;
 
@@ -50,7 +50,7 @@ namespace TestRunner.TestHookConfig
             Settings.DatabaseConnection = Settings.DatabaseConnection.DBConnect(Settings.ConnectionString);
 
             _feature = _extent.CreateTest<Feature>(_featureContext.FeatureInfo.Title);
-            _scenario = _feature.CreateNode<Scenario>(_scenarioContext.ScenarioInfo.Title);
+            _currentScenario = _feature.CreateNode<Scenario>(_scenarioContext.ScenarioInfo.Title);
 
             #pragma warning disable CS4014
             LogHelpers.WriteToLog($"[START] :: {_featureContext.FeatureInfo.Title} :: {_scenarioContext.ScenarioInfo.Title}");
@@ -67,19 +67,19 @@ namespace TestRunner.TestHookConfig
                 switch (stepType)
                 {
                     case "Given":
-                        _scenario.CreateNode<Given>(_scenarioContext.StepContext.StepInfo.Text);
+                        _currentScenario.CreateNode<Given>(_scenarioContext.StepContext.StepInfo.Text);
                         break;
 
                     case "When":
-                        _scenario.CreateNode<When>(_scenarioContext.StepContext.StepInfo.Text);
+                        _currentScenario.CreateNode<When>(_scenarioContext.StepContext.StepInfo.Text);
                         break;
 
                     case "Then":
-                        _scenario.CreateNode<Then>(_scenarioContext.StepContext.StepInfo.Text);
+                        _currentScenario.CreateNode<Then>(_scenarioContext.StepContext.StepInfo.Text);
                         break;
 
                     case "And":
-                        _scenario.CreateNode<And>(_scenarioContext.StepContext.StepInfo.Text);
+                        _currentScenario.CreateNode<And>(_scenarioContext.StepContext.StepInfo.Text);
                         break;
 
                     default:
@@ -100,19 +100,19 @@ namespace TestRunner.TestHookConfig
                 switch (stepType)
                 {
                     case "Given":
-                        _scenario.CreateNode<Given>(_scenarioContext.StepContext.StepInfo.Text).Fail(_scenarioContext.TestError.StackTrace);
+                        _currentScenario.CreateNode<Given>(_scenarioContext.StepContext.StepInfo.Text).Fail(_scenarioContext.TestError.StackTrace);
                         break;
 
                     case "When":
-                        _scenario.CreateNode<When>(_scenarioContext.StepContext.StepInfo.Text).Fail(_scenarioContext.TestError.StackTrace);
+                        _currentScenario.CreateNode<When>(_scenarioContext.StepContext.StepInfo.Text).Fail(_scenarioContext.TestError.StackTrace);
                         break;
 
                     case "Then":
-                        _scenario.CreateNode<Then>(_scenarioContext.StepContext.StepInfo.Text).Fail(_scenarioContext.TestError.StackTrace);
+                        _currentScenario.CreateNode<Then>(_scenarioContext.StepContext.StepInfo.Text).Fail(_scenarioContext.TestError.StackTrace);
                         break;
 
                     case "And":
-                        _scenario.CreateNode<And>(_scenarioContext.StepContext.StepInfo.Text).Fail(_scenarioContext.TestError.StackTrace);
+                        _currentScenario.CreateNode<And>(_scenarioContext.StepContext.StepInfo.Text).Fail(_scenarioContext.TestError.StackTrace);
                         break;
 
                     default:
@@ -129,19 +129,19 @@ namespace TestRunner.TestHookConfig
                 switch (stepType)
                 {
                     case "Given":
-                        _scenario.CreateNode<Given>(_scenarioContext.StepContext.StepInfo.Text).Skip("Step Definition Pending");
+                        _currentScenario.CreateNode<Given>(_scenarioContext.StepContext.StepInfo.Text).Skip("Step Definition Pending");
                         break;
 
                     case "When":
-                        _scenario.CreateNode<When>(_scenarioContext.StepContext.StepInfo.Text).Skip("Step Definition Pending");
+                        _currentScenario.CreateNode<When>(_scenarioContext.StepContext.StepInfo.Text).Skip("Step Definition Pending");
                         break;
 
                     case "Then":
-                        _scenario.CreateNode<Then>(_scenarioContext.StepContext.StepInfo.Text).Skip("Step Definition Pending");
+                        _currentScenario.CreateNode<Then>(_scenarioContext.StepContext.StepInfo.Text).Skip("Step Definition Pending");
                         break;
 
                     case "And":
-                        _scenario.CreateNode<And>(_scenarioContext.StepContext.StepInfo.Text).Skip("Step Definition Pending");
+                        _currentScenario.CreateNode<And>(_scenarioContext.StepContext.StepInfo.Text).Skip("Step Definition Pending");
                         break;
 
                     default:
