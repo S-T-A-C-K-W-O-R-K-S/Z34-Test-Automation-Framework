@@ -1,0 +1,7 @@
+﻿<Project Sdk="Microsoft.NET.SDK">
+
+  <PropertyGroup>
+    <TargetFramework>NET48</TargetFramework>
+  </PropertyGroup>
+
+</Project>
