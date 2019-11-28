@@ -1,6 +1,6 @@
 ﻿namespace FrameworkCore.Helpers
 {
-    internal class WebServiceHelpers
+    internal class MicroServiceHelpers
     {
         // TODO: Implement This Class
     }

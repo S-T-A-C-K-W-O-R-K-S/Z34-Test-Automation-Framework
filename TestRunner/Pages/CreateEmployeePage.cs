@@ -2,7 +2,7 @@
 using FrameworkCore.Extensions;
 using OpenQA.Selenium;
 
-namespace TestAutomation.Pages
+namespace TestRunner.Pages
 {
     internal class CreateEmployeePage : BasePage
     {

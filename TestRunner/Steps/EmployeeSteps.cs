@@ -4,9 +4,9 @@ using FrameworkCore.Helpers;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using TechTalk.SpecFlow;
 using TechTalk.SpecFlow.Assist;
-using TestAutomation.Pages;
+using TestRunner.Pages;
 
-namespace TestAutomation.Steps
+namespace TestRunner.Steps
 {
     [Binding]
     public class EmployeeSteps : BaseStep

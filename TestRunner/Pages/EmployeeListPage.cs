@@ -3,7 +3,7 @@ using FrameworkCore.Extensions;
 using FrameworkCore.Helpers;
 using OpenQA.Selenium;
 
-namespace TestAutomation.Pages
+namespace TestRunner.Pages
 {
     internal class EmployeeListPage : BasePage
     {

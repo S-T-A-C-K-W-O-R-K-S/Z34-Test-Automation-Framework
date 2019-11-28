@@ -8,7 +8,7 @@ using FrameworkCore.Config;
 using FrameworkCore.Helpers;
 using TechTalk.SpecFlow;
 
-namespace TestAutomation.TestHookConfig
+namespace TestRunner.TestHookConfig
 {
     [Binding]
     public class HookInitialize : TestInitializeHook
