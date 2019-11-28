@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
+using FrameworkCore.Config;
 using FrameworkCore.Helpers;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
@@ -29,14 +30,8 @@ namespace FrameworkCore.Extensions
             dropdown.SelectByText(value);
         }
 
-        public static void AssertElementPresent(this IWebElement element)
-        {
-            if (!IsElementPresent(element))
-                throw new Exception(string.Format("Element Not Present: " + element));
-        }
-
         [SuppressMessage("Design", "CA1031:Do Not Catch General Exception Types", Justification = "Exception Type Is Unknown")]
-        private static bool IsElementPresent(IWebElement element)
+        public static bool ElementIsDisplayed(this IWebElement element)
         {
             try
             {
@@ -46,14 +41,14 @@ namespace FrameworkCore.Extensions
             catch (Exception exception)
             {
                 #pragma warning disable CS4014
-                LogHelpers.WriteToLog("[ERROR] :: " + exception.Message);
+                LogHelpers.WriteToLog($"[ERROR] :: Element Not Found :: {element} :: {exception.Message}");
                 #pragma warning restore CS4014
 
                 return false;
             }
         }
 
-        public static string GetLinkText(this IWebElement element)
+        public static string GetElementText(this IWebElement element)
         {
             return element.Text;
         }

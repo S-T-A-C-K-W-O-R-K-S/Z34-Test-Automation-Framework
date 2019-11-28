@@ -10,12 +10,12 @@ namespace TestRunner.Pages
         {
         }
 
-        private IWebElement LinkLogIn => ParallelTestExecution.Driver.FindElement(By.CssSelector("a#loginLink"), 2500);
-        private IWebElement LinkEmployeeList => ParallelTestExecution.Driver.FindElement(By.LinkText("Employee List"), 2500);
-        private IWebElement LinkLoggedInUser => ParallelTestExecution.Driver.FindElement(By.XPath("//a[@title='Manage']"), 2500);
-        private IWebElement LinkLogOff => ParallelTestExecution.Driver.FindElement(By.LinkText("Log off"), 2500);
+        private IWebElement LinkLogIn => ParallelTestExecution.Driver.FindElementOrTimeOut(By.CssSelector("a#loginLink"));
+        private IWebElement LinkEmployeeList => ParallelTestExecution.Driver.FindElementOrTimeOut(By.LinkText("Employee List"));
+        private IWebElement LinkLoggedInUser => ParallelTestExecution.Driver.FindElementOrTimeOut(By.XPath("//a[@title='Manage']"));
+        private IWebElement LinkLogOff => ParallelTestExecution.Driver.FindElementOrTimeOut(By.LinkText("Log off"));
 
-        internal void AssertLoginLinkPresence() => LinkLogIn.AssertElementPresent();
+        internal void AssertLoginLinkPresence() => LinkLogIn.ElementIsDisplayed();
 
         public LoginPage ClickLogIn()
         {
@@ -24,7 +24,7 @@ namespace TestRunner.Pages
             return new LoginPage(ParallelTestExecution);
         }
 
-        internal string GetLoggedInUser() => LinkLoggedInUser.GetLinkText();
+        internal string GetLoggedInUser() => LinkLoggedInUser.GetElementText();
 
         public EmployeeListPage ClickEmployeeList()
         {

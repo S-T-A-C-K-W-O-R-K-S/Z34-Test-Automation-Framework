@@ -25,7 +25,7 @@ namespace FrameworkCore.Base
             OpenBrowser(Settings.BrowserType);
 
             #pragma warning disable CS4014
-            LogHelpers.WriteToLog($"Configuration Initialized :: {config}");
+            LogHelpers.WriteToLog($"[EVENT] :: Configuration Initialized :: {config}");
             #pragma warning restore CS4014
         }
 

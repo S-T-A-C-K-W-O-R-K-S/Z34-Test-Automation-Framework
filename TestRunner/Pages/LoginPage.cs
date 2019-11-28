@@ -10,9 +10,9 @@ namespace TestRunner.Pages
         {
         }
 
-        private IWebElement TextUserName => ParallelTestExecution.Driver.FindElement(By.Id("UserName"), 2500);
-        private IWebElement TextPassword => ParallelTestExecution.Driver.FindElement(By.Id("Password"), 2500);
-        private IWebElement ButtonLogin => ParallelTestExecution.Driver.FindElement(By.CssSelector("input.btn"), 2500);
+        private IWebElement TextUserName => ParallelTestExecution.Driver.FindElementOrTimeOut(By.Id("UserName"));
+        private IWebElement TextPassword => ParallelTestExecution.Driver.FindElementOrTimeOut(By.Id("Password"));
+        private IWebElement ButtonLogin => ParallelTestExecution.Driver.FindElementOrTimeOut(By.CssSelector("input.btn"));
 
         internal void EnterCredentials(string userName, string password)
         {
@@ -29,8 +29,8 @@ namespace TestRunner.Pages
 
         internal void AssertLoginFormExists()
         {
-            TextUserName.AssertElementPresent();
-            TextPassword.AssertElementPresent();
+            TextUserName.ElementIsDisplayed();
+            TextPassword.ElementIsDisplayed();
         }
     }
 }

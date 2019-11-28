@@ -21,7 +21,7 @@ namespace FrameworkCore.Helpers
             catch (Exception exception)
             {
                 #pragma warning disable CS4014
-                LogHelpers.WriteToLog("[ERROR] :: " + exception.Message);
+                LogHelpers.WriteToLog($"[ERROR] :: {exception.Message}");
                 #pragma warning restore CS4014
             }
 
@@ -40,7 +40,7 @@ namespace FrameworkCore.Helpers
             catch (Exception exception)
             {
                 #pragma warning disable CS4014
-                LogHelpers.WriteToLog("[ERROR] :: " + exception.Message);
+                LogHelpers.WriteToLog($"[ERROR] :: {exception.Message}");
                 #pragma warning restore CS4014
             }
         }
@@ -80,7 +80,7 @@ namespace FrameworkCore.Helpers
                 sqlConnection?.Close();
 
                 #pragma warning disable CS4014
-                LogHelpers.WriteToLog("[ERROR] :: " + exception.Message);
+                LogHelpers.WriteToLog($"[ERROR] :: {exception.Message}");
                 #pragma warning restore CS4014
 
                 return null;

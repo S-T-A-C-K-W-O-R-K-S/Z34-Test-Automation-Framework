@@ -11,9 +11,9 @@ namespace TestRunner.Pages
         {
         }
 
-        private IWebElement TextSearch => ParallelTestExecution.Driver.FindElement(By.Name("searchTerm"), 2500);
-        private IWebElement LinkCreateNew => ParallelTestExecution.Driver.FindElement(By.LinkText("Create New"), 2500);
-        private IWebElement TableEmployeeList => ParallelTestExecution.Driver.FindElement(By.ClassName("table"), 2500);
+        private IWebElement TextSearch => ParallelTestExecution.Driver.FindElementOrTimeOut(By.Name("searchTerm"));
+        private IWebElement LinkCreateNew => ParallelTestExecution.Driver.FindElementOrTimeOut(By.LinkText("Create New"));
+        private IWebElement TableEmployeeList => ParallelTestExecution.Driver.FindElementOrTimeOut(By.ClassName("table"));
 
         public CreateEmployeePage ClickCreateNew()
         {

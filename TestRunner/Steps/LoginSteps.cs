@@ -47,7 +47,7 @@ namespace TestRunner.Steps
             const string user = "admin";
 
             #pragma warning disable CS4014
-            LogHelpers.WriteToLog(_parallelTestExecution.CurrentPage.As<HomePage>().GetLoggedInUser().Contains(user) ? $"Successfully Logged In As :: {user}" : $"[ERROR] :: Login Failed As :: {user}");
+            LogHelpers.WriteToLog(_parallelTestExecution.CurrentPage.As<HomePage>().GetLoggedInUser().Contains(user) ? $"[EVENT] :: Successfully Logged In As :: {user}" : $"[ERROR] :: Login Failed As :: {user}");
             #pragma warning restore CS4014
         }
     }

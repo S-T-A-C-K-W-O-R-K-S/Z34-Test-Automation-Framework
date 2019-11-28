@@ -40,13 +40,13 @@ namespace TestRunner.Steps
             _parallelTestExecution.Driver.Navigate().GoToUrl(Settings.AUT);
 
             #pragma warning disable CS4014
-            LogHelpers.WriteToLog($"Navigating To Page :: {Settings.AUT}");
+            LogHelpers.WriteToLog($"[EVENT] :: Navigate To Page :: {Settings.AUT}");
             #pragma warning restore CS4014
 
             _parallelTestExecution.Driver.WaitForPageLoaded();
 
             #pragma warning disable CS4014
-            LogHelpers.WriteToLog($"DOM On Page Fully Loaded :: {Settings.AUT}");
+            LogHelpers.WriteToLog($"[EVENT] :: DOM On Page Loaded :: {Settings.AUT}");
             #pragma warning restore CS4014
         }
     }

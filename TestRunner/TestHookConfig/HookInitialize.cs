@@ -171,7 +171,7 @@ namespace TestRunner.TestHookConfig
             _extent.Flush();
 
             #pragma warning disable CS4014
-            LogHelpers.WriteToLog("Test Run Results :: TODO: ADD LINK TO RESULTS FILE");
+            LogHelpers.WriteToLog("[FINAL] :: Test Run Results :: TODO: ADD LINK TO RESULTS FILE");
             #pragma warning restore CS4014
         }
     }

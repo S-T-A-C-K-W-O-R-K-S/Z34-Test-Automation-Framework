@@ -10,12 +10,12 @@ namespace TestRunner.Pages
         {
         }
 
-        private IWebElement TextName => ParallelTestExecution.Driver.FindElement(By.Id("Name"), 2500);
-        private IWebElement TextSalary => ParallelTestExecution.Driver.FindElement(By.Id("Salary"), 2500);
-        private IWebElement TextWorkHours => ParallelTestExecution.Driver.FindElement(By.Id("DurationWorked"), 2500);
-        private IWebElement TextGrade => ParallelTestExecution.Driver.FindElement(By.Id("Grade"), 2500);
-        private IWebElement TextEmail => ParallelTestExecution.Driver.FindElement(By.Id("Email"), 2500);
-        private IWebElement ButtonCreateEmployee => ParallelTestExecution.Driver.FindElement(By.XPath("//input[@value='Create']"), 2500);
+        private IWebElement TextName => ParallelTestExecution.Driver.FindElementOrTimeOut(By.Id("Name"));
+        private IWebElement TextSalary => ParallelTestExecution.Driver.FindElementOrTimeOut(By.Id("Salary"));
+        private IWebElement TextWorkHours => ParallelTestExecution.Driver.FindElementOrTimeOut(By.Id("DurationWorked"));
+        private IWebElement TextGrade => ParallelTestExecution.Driver.FindElementOrTimeOut(By.Id("Grade"));
+        private IWebElement TextEmail => ParallelTestExecution.Driver.FindElementOrTimeOut(By.Id("Email"));
+        private IWebElement ButtonCreateEmployee => ParallelTestExecution.Driver.FindElementOrTimeOut(By.XPath("//input[@value='Create']"));
 
         internal void EnterEmployeeDetails(string name, string salary, string hours, string grade, string email)
         {

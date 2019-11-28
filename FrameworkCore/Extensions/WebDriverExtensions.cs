@@ -10,13 +10,13 @@ namespace FrameworkCore.Extensions
 {
     public static class WebDriverExtensions
     {
-        public static void WaitForPageLoaded(this IWebDriver driver)
+        public static void WaitForPageLoaded(this IWebDriver driver, int timeoutInMilliseconds = 5000)
         {
             driver.WaitForCondition(dri =>
             {
                 string state = ((IJavaScriptExecutor) dri).ExecuteScript("return document.readyState").ToString();
                 return state == "complete";
-            }, 5000);
+            }, timeoutInMilliseconds);
         }
 
         [SuppressMessage("Design", "CA1031: Do Not Catch General Exception Types", Justification = "Exception Type Is Unknown")]
@@ -32,7 +32,7 @@ namespace FrameworkCore.Extensions
                 catch (Exception exception)
                 {
                     #pragma warning disable CS4014
-                    LogHelpers.WriteToLog("[ERROR] :: " + exception.Message);
+                    LogHelpers.WriteToLog($"[ERROR] :: {exception.Message}");
                     #pragma warning restore CS4014
 
                     return false;
@@ -45,12 +45,24 @@ namespace FrameworkCore.Extensions
                     break;
         }
 
-        public static IWebElement FindElement(this IWebDriver driver, By by, int timeoutInMilliseconds)
+        public static IWebElement FindElementOrTimeOut(this IWebDriver driver, By by, int timeoutInMilliseconds = 2500)
         {
-            if (timeoutInMilliseconds <= 0) return driver.FindElement(by);
+            try
+            {
+                if (timeoutInMilliseconds <= 0) return driver.FindElement(by);
 
-            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromMilliseconds(timeoutInMilliseconds));
-            return wait.Until(drv => drv.FindElement(by));
+                WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromMilliseconds(timeoutInMilliseconds));
+                return wait.Until(webDriver => webDriver.FindElement(by));
+            }
+
+            catch (Exception exception)
+            {
+                #pragma warning disable CS4014
+                LogHelpers.WriteToLog($"[ERROR] :: Element Not Found :: {by} :: {exception.Message}");
+                #pragma warning restore CS4014
+
+                throw new NoSuchElementException($"No Such Element: {by}");
+            }
         }
 
         public static ReadOnlyCollection<IWebElement> FindElements(this IWebDriver driver, By by, int timeoutInMilliseconds)
