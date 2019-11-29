@@ -1,14 +1,15 @@
 ﻿using System;
 using FrameworkCore.Base;
 using FrameworkCore.Helpers;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using TechTalk.SpecFlow;
 using TechTalk.SpecFlow.Assist;
 using ApplicationMap.Pages;
+using NUnit.Framework;
 
 namespace TestRunner.Steps
 {
     [Binding]
+    [Parallelizable]
     public class EmployeeSteps : BaseStep
     {
         private readonly ParallelTestExecution _parallelTestExecution;

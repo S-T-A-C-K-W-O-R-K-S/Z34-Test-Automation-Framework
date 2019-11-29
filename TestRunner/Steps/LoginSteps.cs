@@ -3,10 +3,12 @@ using FrameworkCore.Helpers;
 using TechTalk.SpecFlow;
 using TechTalk.SpecFlow.Assist;
 using ApplicationMap.Pages;
+using NUnit.Framework;
 
 namespace TestRunner.Steps
 {
     [Binding]
+    [Parallelizable]
     public class LoginSteps : BaseStep
     {
         private readonly ParallelTestExecution _parallelTestExecution;
