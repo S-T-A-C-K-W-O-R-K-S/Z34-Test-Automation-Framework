@@ -9,7 +9,6 @@ using NUnit.Framework;
 namespace TestRunner.Steps
 {
     [Binding]
-    [Parallelizable]
     public class EmployeeSteps : BaseStep
     {
         private readonly ParallelTestExecution _parallelTestExecution;

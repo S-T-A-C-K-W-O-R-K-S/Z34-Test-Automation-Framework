@@ -6,7 +6,10 @@ using AventStack.ExtentReports.Reporter.Configuration;
 using FrameworkCore.Base;
 using FrameworkCore.Config;
 using FrameworkCore.Helpers;
+using NUnit.Framework;
 using TechTalk.SpecFlow;
+
+[assembly: Parallelizable(ParallelScope.Fixtures)]
 
 namespace TestRunner.TestHookConfig
 {
@@ -34,7 +37,7 @@ namespace TestRunner.TestHookConfig
         {
             string run = $"{DateTime.Now:yyyy-MM-dd_HH-mm-ss}";
 
-            ExtentHtmlReporter reporter = new ExtentHtmlReporter($"..\\..\\..\\..\\REPORTS\\{run}\\");
+            ExtentHtmlReporter reporter = new ExtentHtmlReporter($"REPORTS\\{run}\\");
             reporter.Config.ReportName = run;
             reporter.Config.DocumentTitle = run;
             reporter.Config.Theme = Theme.Standard;
