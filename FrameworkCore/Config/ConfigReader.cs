@@ -9,6 +9,8 @@
             Settings.LogPath = TestConfiguration.Settings.TestSettings[config].LogPath;
             Settings.ConnectionString = TestConfiguration.Settings.TestSettings[config].ConnectionString;
             Settings.DebugMode = TestConfiguration.Settings.TestSettings[config].DebugMode;
+            Settings.RemoteExecution = TestConfiguration.Settings.TestSettings[config].RemoteExecution;
+            Settings.RemoteHost = TestConfiguration.Settings.TestSettings[config].RemoteHost;
         }
     }
 }

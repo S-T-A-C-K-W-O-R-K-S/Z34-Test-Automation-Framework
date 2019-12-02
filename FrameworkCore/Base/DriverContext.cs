@@ -10,10 +10,5 @@
         }
 
         public Browser Browser { get; set; }
-
-        public void GoToURL(string url)
-        {
-            ParallelTestExecution.Driver.Url = url;
-        }
     }
 }

@@ -11,5 +11,7 @@ namespace FrameworkCore.Config
         public static SqlConnection DatabaseConnection { get; set; }
         public static string ConnectionString { get; set; }
         public static bool DebugMode { get; set; }
+        public static bool RemoteExecution { get; set; }
+        public static string RemoteHost { get; set; }
     }
 }

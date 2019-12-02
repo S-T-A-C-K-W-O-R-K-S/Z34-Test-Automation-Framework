@@ -22,5 +22,11 @@ namespace FrameworkCore.Config
 
         [ConfigurationProperty("debug-mode", IsRequired = true)]
         public bool DebugMode => (bool) base["debug-mode"];
+
+        [ConfigurationProperty("remote-execution", IsRequired = true)]
+        public bool RemoteExecution => (bool) base["remote-execution"];
+
+        [ConfigurationProperty("remote-host", IsRequired = true)]
+        public string RemoteHost => (string)base["remote-host"];
     }
 }
