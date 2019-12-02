@@ -1,4 +1,6 @@
-﻿USE [MASTER]
+﻿/* Requires Microsoft SQL Server Or Equivalent Database Management System */
+
+USE [MASTER]
 
 IF EXISTS (SELECT * FROM SYS.DATABASES WHERE NAME='Z34')
 BEGIN
