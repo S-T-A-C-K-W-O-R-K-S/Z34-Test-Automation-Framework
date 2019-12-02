@@ -11,6 +11,7 @@
             Settings.DebugMode = TestConfiguration.Settings.TestSettings[config].DebugMode;
             Settings.RemoteExecution = TestConfiguration.Settings.TestSettings[config].RemoteExecution;
             Settings.RemoteHost = TestConfiguration.Settings.TestSettings[config].RemoteHost;
+            Settings.RemoteBrowserVersion = TestConfiguration.Settings.TestSettings[config].RemoteBrowserVersion;
         }
     }
 }

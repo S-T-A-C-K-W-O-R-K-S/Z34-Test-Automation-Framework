@@ -13,5 +13,6 @@ namespace FrameworkCore.Config
         public static bool DebugMode { get; set; }
         public static bool RemoteExecution { get; set; }
         public static string RemoteHost { get; set; }
+        public static string RemoteBrowserVersion { get; set; }
     }
 }

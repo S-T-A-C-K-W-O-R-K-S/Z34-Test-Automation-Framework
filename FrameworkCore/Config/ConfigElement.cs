@@ -28,5 +28,8 @@ namespace FrameworkCore.Config
 
         [ConfigurationProperty("remote-host", IsRequired = true)]
         public string RemoteHost => (string)base["remote-host"];
+        
+        [ConfigurationProperty("remote-browser-version", IsRequired = true)]
+        public string RemoteBrowserVersion => (string)base["remote-browser-version"];
     }
 }

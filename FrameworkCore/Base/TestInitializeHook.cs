@@ -45,7 +45,7 @@ namespace FrameworkCore.Base
             {
                 case BrowserType.Firefox:
                     #pragma warning disable CS0618
-                    DesiredCapabilities geckoCapabilities = new DesiredCapabilities("firefox", "70.0", new Platform(PlatformType.Any));
+                    DesiredCapabilities geckoCapabilities = new DesiredCapabilities("firefox", Settings.RemoteBrowserVersion, new Platform(PlatformType.Any));
                     #pragma warning restore CS0618
                     geckoCapabilities.AcceptInsecureCerts = true;
                     _parallelTestExecution.Driver = new RemoteWebDriver(new Uri($"http://{Settings.RemoteHost}:4444/wd/hub"), geckoCapabilities);
@@ -53,7 +53,7 @@ namespace FrameworkCore.Base
 
                 case BrowserType.Chrome:
                     #pragma warning disable CS0618
-                    DesiredCapabilities chromeCapabilities = new DesiredCapabilities("chrome", "78.0", new Platform(PlatformType.Any));
+                    DesiredCapabilities chromeCapabilities = new DesiredCapabilities("chrome", Settings.RemoteBrowserVersion, new Platform(PlatformType.Any));
                     #pragma warning restore CS0618
                     chromeCapabilities.AcceptInsecureCerts = true;
                     _parallelTestExecution.Driver = new RemoteWebDriver(new Uri($"http://{Settings.RemoteHost}:4444/wd/hub"), chromeCapabilities);
