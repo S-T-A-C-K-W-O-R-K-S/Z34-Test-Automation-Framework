@@ -16,4 +16,10 @@
     <Reference Include="System.Configuration" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Scripts\Selenoid\" />
+    <Folder Include="Scripts\WebDriver\" />
+    <Folder Include="Scripts\SampleDatabase\" />
+  </ItemGroup>
+
 </Project>
