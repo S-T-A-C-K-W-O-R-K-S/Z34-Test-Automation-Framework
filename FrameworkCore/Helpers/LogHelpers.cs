@@ -19,26 +19,29 @@ namespace FrameworkCore.Helpers
             if (!Settings.DebugMode || File.Exists(LogFile)) return;
 
             StreamWriter streamWriter = File.AppendText(LogFile);
-            streamWriter.WriteLine("[DEBUG] :: LOGGING STARTED" + Environment.NewLine +
-                                   "\t" + "DateTime.Now" + "\t" + "\t" + ":" + "\t" + DateTime.Now + Environment.NewLine +
-                                   "\t" + ".ToLongDateString" + "\t" + ":" + "\t" + DateTime.Now.ToLongDateString() + Environment.NewLine +
-                                   "\t" + ".ToLongTimeString" + "\t" + ":" + "\t" + DateTime.Now.ToLongTimeString() + Environment.NewLine +
-                                   "\t" + ".ToUniversalTime" + "\t" + ":" + "\t" + DateTime.Now.ToUniversalTime() + Environment.NewLine +
-                                   "\t" + ".ToLocalTime" + "\t" + "\t" + ":" + "\t" + DateTime.Now.ToLocalTime() + Environment.NewLine);
+
+            streamWriter.WriteLine(new StringBuilder()
+                .AppendLine("[DEBUG] :: LOGGING STARTED")
+                .AppendLine("\t" + "DateTime.Now" + "\t" + "\t" + ":" + "\t" + DateTime.Now)
+                .AppendLine("\t" + ".ToLongDateString" + "\t" + ":" + "\t" + DateTime.Now.ToLongDateString())
+                .AppendLine("\t" + ".ToLongTimeString" + "\t" + ":" + "\t" + DateTime.Now.ToLongTimeString())
+                .AppendLine("\t" + ".ToUniversalTime" + "\t" + ":" + "\t" + DateTime.Now.ToUniversalTime())
+                .AppendLine("\t" + ".ToLocalTime" + "\t" + "\t" + ":" + "\t" + DateTime.Now.ToLocalTime()));
+
             streamWriter.Close();
+
+            // TODO: Look Into Maybe Returning A FileInfo Object, Rather Than Using Static Members All The Time (Could Fix The Log Events Occasionally Overlapping And Throwing Errors)
         }
 
-        public static async Task WriteToLog(string logMessage, bool append = true)
+        public static void WriteToLog(string logMessage, bool append = true)
         {
             string logEvent = $"{DateTime.Now:dd.MM.yyyy} @ {DateTime.Now:HH.mm.ss} >>> {logMessage}" + Environment.NewLine;
-            byte[] encodedText = Encoding.ASCII.GetBytes(logEvent);
+            byte[] encodedLogEvent = Encoding.ASCII.GetBytes(logEvent);
 
-            using (FileStream sourceStream = new FileStream(LogFile, append ? FileMode.Append : FileMode.Create, FileAccess.Write, FileShare.None, 4096, true))
+            using (FileStream sourceStream = new FileStream(LogFile, append ? FileMode.Append : FileMode.Create, FileAccess.Write, FileShare.Write, 4096, true))
             {
-                await sourceStream.WriteAsync(encodedText, 0, encodedText.Length);
+                sourceStream.Write(encodedLogEvent, 0, encodedLogEvent.Length);
             }
         }
     }
 }
-
-// TODO: Create One Log Per Feature And Combine At The End & Sort Out Pragma Suppression All Over The Codebase
