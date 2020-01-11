@@ -7,44 +7,27 @@ namespace FrameworkCore.Helpers
 {
     public static class LogHelpers
     {
-        internal static class Log
+        private static readonly string LogFileName = $"{DateTime.Now:yyyy-MM-dd_HH-mm-ss}";
+        private static readonly string LogPath = Settings.LogPath;
+        private static readonly string LogFile = LogPath + LogFileName + ".log";
+
+        public static void CreateLogFile()
         {
-            internal static string FileName { get; set; }
-            internal static string Path { get; set; }
-            internal static string File { get; set; }
-            public static FileInfo FileInstance { get; set; }
-        }
+            if (!Directory.Exists(LogPath)) Directory.CreateDirectory(LogPath);
 
-        private static void InitializeLog()
-        {
-            Log.FileName = $"{DateTime.Now:yyyy-MM-dd_HH-mm-ss}";
-            Log.Path = Settings.LogPath;
-            Log.File = Log.Path + Log.FileName + ".log";
-        }
+            if (!Settings.DebugMode || File.Exists(LogFile)) return;
 
-        public static FileInfo CreateLogFile()
-        {
-            InitializeLog();
+            StreamWriter streamWriter = File.AppendText(LogFile);
 
-            if (!Directory.Exists(Log.Path)) Directory.CreateDirectory(Log.Path);
+            streamWriter.WriteLine(new StringBuilder()
+                .AppendLine("[DEBUG] :: LOGGING STARTED")
+                .AppendLine("\t" + "DateTime.Now" + "\t" + "\t" + ":" + "\t" + DateTime.Now)
+                .AppendLine("\t" + ".ToLongDateString" + "\t" + ":" + "\t" + DateTime.Now.ToLongDateString())
+                .AppendLine("\t" + ".ToLongTimeString" + "\t" + ":" + "\t" + DateTime.Now.ToLongTimeString())
+                .AppendLine("\t" + ".ToUniversalTime" + "\t" + ":" + "\t" + DateTime.Now.ToUniversalTime())
+                .AppendLine("\t" + ".ToLocalTime" + "\t" + "\t" + ":" + "\t" + DateTime.Now.ToLocalTime()));
 
-            FileInfo logFileInstance = new FileInfo(Log.File);
-
-            if (Settings.DebugMode)
-            {
-                byte[] encodedDebugModeLogCreationEvent = Encoding.ASCII.GetBytes(new StringBuilder()
-                    .AppendLine("[DEBUG] :: LOGGING STARTED")
-                    .AppendLine("\t" + "DateTime.Now" + "\t" + "\t" + ":" + "\t" + DateTime.Now)
-                    .AppendLine("\t" + ".ToLongDateString" + "\t" + ":" + "\t" + DateTime.Now.ToLongDateString())
-                    .AppendLine("\t" + ".ToLongTimeString" + "\t" + ":" + "\t" + DateTime.Now.ToLongTimeString())
-                    .AppendLine("\t" + ".ToUniversalTime" + "\t" + ":" + "\t" + DateTime.Now.ToUniversalTime())
-                    .AppendLine("\t" + ".ToLocalTime" + "\t" + "\t" + ":" + "\t" + DateTime.Now.ToLocalTime())
-                    .ToString());
-
-                logFileInstance.AppendText().Write(encodedDebugModeLogCreationEvent);
-            }
-
-            return logFileInstance;
+            streamWriter.Close();
         }
 
         public static void WriteToLog(string logMessage, bool append = true)
@@ -52,7 +35,7 @@ namespace FrameworkCore.Helpers
             string logEvent = $"{DateTime.Now:dd.MM.yyyy} @ {DateTime.Now:HH.mm.ss} >>> {logMessage}" + Environment.NewLine;
             byte[] encodedLogEvent = Encoding.ASCII.GetBytes(logEvent);
 
-            using (FileStream sourceStream = new FileStream(Log.File, append ? FileMode.Append : FileMode.Create, FileAccess.Write, FileShare.ReadWrite, 4096, true))
+            using (FileStream sourceStream = new FileStream(LogFile, append ? FileMode.Append : FileMode.Create, FileAccess.Write, FileShare.ReadWrite, 4096, true))
             {
                 sourceStream.Write(encodedLogEvent, 0, encodedLogEvent.Length);
             }
