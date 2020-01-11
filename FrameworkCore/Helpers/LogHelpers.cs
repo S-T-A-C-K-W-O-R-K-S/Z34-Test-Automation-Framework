@@ -1,7 +1,6 @@
 ﻿using System;
 using System.IO;
 using System.Text;
-using System.Threading.Tasks;
 using FrameworkCore.Config;
 
 namespace FrameworkCore.Helpers
@@ -11,26 +10,29 @@ namespace FrameworkCore.Helpers
         private static readonly string LogFileName = $"{DateTime.Now:yyyy-MM-dd_HH-mm-ss}";
         private static readonly string LogPath = Settings.LogPath;
         private static readonly string LogFile = LogPath + LogFileName + ".log";
+        public static FileInfo LogFileInstance;
 
-        public static void CreateLogFile()
+        public static FileInfo CreateLogFile()
         {
             if (!Directory.Exists(LogPath)) Directory.CreateDirectory(LogPath);
 
-            if (!Settings.DebugMode || File.Exists(LogFile)) return;
+            FileInfo logFileInstance = new FileInfo(LogFile);
 
-            StreamWriter streamWriter = File.AppendText(LogFile);
+            if (Settings.DebugMode)
+            {
+                byte[] encodedDebugLogCreationEvent = Encoding.ASCII.GetBytes(new StringBuilder()
+                    .AppendLine("[DEBUG] :: LOGGING STARTED")
+                    .AppendLine("\t" + "DateTime.Now" + "\t" + "\t" + ":" + "\t" + DateTime.Now)
+                    .AppendLine("\t" + ".ToLongDateString" + "\t" + ":" + "\t" + DateTime.Now.ToLongDateString())
+                    .AppendLine("\t" + ".ToLongTimeString" + "\t" + ":" + "\t" + DateTime.Now.ToLongTimeString())
+                    .AppendLine("\t" + ".ToUniversalTime" + "\t" + ":" + "\t" + DateTime.Now.ToUniversalTime())
+                    .AppendLine("\t" + ".ToLocalTime" + "\t" + "\t" + ":" + "\t" + DateTime.Now.ToLocalTime())
+                    .ToString());
 
-            streamWriter.WriteLine(new StringBuilder()
-                .AppendLine("[DEBUG] :: LOGGING STARTED")
-                .AppendLine("\t" + "DateTime.Now" + "\t" + "\t" + ":" + "\t" + DateTime.Now)
-                .AppendLine("\t" + ".ToLongDateString" + "\t" + ":" + "\t" + DateTime.Now.ToLongDateString())
-                .AppendLine("\t" + ".ToLongTimeString" + "\t" + ":" + "\t" + DateTime.Now.ToLongTimeString())
-                .AppendLine("\t" + ".ToUniversalTime" + "\t" + ":" + "\t" + DateTime.Now.ToUniversalTime())
-                .AppendLine("\t" + ".ToLocalTime" + "\t" + "\t" + ":" + "\t" + DateTime.Now.ToLocalTime()));
+                logFileInstance.AppendText().Write(encodedDebugLogCreationEvent);
+            }
 
-            streamWriter.Close();
-
-            // TODO: Look Into Maybe Returning A FileInfo Object, Rather Than Using Static Members All The Time (Could Fix The Log Events Occasionally Overlapping And Throwing Errors)
+            return logFileInstance;
         }
 
         public static void WriteToLog(string logMessage, bool append = true)

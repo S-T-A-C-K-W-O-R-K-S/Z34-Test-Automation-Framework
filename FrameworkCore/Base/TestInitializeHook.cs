@@ -23,7 +23,7 @@ namespace FrameworkCore.Base
             const string config = "LOCAL | CHROME";
 
             ConfigReader.SetFrameworkSettings(config);
-            LogHelpers.CreateLogFile();
+            LogHelpers.LogFileInstance = LogHelpers.CreateLogFile();
             OpenBrowser(Settings.BrowserType);
 
             LogHelpers.WriteToLog($"[EVENT] :: Configuration Initialized :: {config}");
