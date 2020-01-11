@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
-using FrameworkCore.Config;
 using FrameworkCore.Helpers;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
@@ -40,10 +39,7 @@ namespace FrameworkCore.Extensions
 
             catch (Exception exception)
             {
-                #pragma warning disable CS4014
                 LogHelpers.WriteToLog($"[ERROR] :: Element Not Found :: {element} :: {exception.Message}");
-                #pragma warning restore CS4014
-
                 return false;
             }
         }

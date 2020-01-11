@@ -34,13 +34,12 @@ namespace TestRunner.Steps
                 case "CREATE NEW":
                     _parallelTestExecution.CurrentPage = _parallelTestExecution.CurrentPage.As<EmployeeListPage>().ClickCreateNew();
                     break;
+
                 case "CREATE":
                     break;
-                default:
-                    #pragma warning disable CS4014
-                    LogHelpers.WriteToLog($"[ERROR] :: Invalid Button Name: {button}");
-                    #pragma warning restore CS4014
 
+                default:
+                    LogHelpers.WriteToLog($"[ERROR] :: Invalid Button Name: {button}");
                     throw new ArgumentOutOfRangeException(nameof(button), button, $"Invalid Button Name: {button}");
             }
         }

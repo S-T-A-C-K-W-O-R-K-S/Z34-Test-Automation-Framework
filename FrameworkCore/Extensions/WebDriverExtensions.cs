@@ -31,10 +31,7 @@ namespace FrameworkCore.Extensions
 
                 catch (Exception exception)
                 {
-                    #pragma warning disable CS4014
                     LogHelpers.WriteToLog($"[ERROR] :: {exception.Message}");
-                    #pragma warning restore CS4014
-
                     return false;
                 }
             }
@@ -57,10 +54,7 @@ namespace FrameworkCore.Extensions
 
             catch (Exception exception)
             {
-                #pragma warning disable CS4014
                 LogHelpers.WriteToLog($"[ERROR] :: Element Not Found :: {by} :: {exception.Message}");
-                #pragma warning restore CS4014
-
                 throw new NoSuchElementException($"No Such Element: {by}");
             }
         }
