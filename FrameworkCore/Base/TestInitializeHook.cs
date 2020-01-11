@@ -23,7 +23,7 @@ namespace FrameworkCore.Base
             const string config = "LOCAL | CHROME";
 
             ConfigReader.SetFrameworkSettings(config);
-            LogHelpers.LogFileInstance = LogHelpers.CreateLogFile();
+            LogHelpers.Log.FileInstance = LogHelpers.CreateLogFile();
             OpenBrowser(Settings.BrowserType);
 
             LogHelpers.WriteToLog($"[EVENT] :: Configuration Initialized :: {config}");
@@ -41,18 +41,16 @@ namespace FrameworkCore.Base
         {
             switch (browserType)
             {
+                #pragma warning disable CS0618, IDE0017
+
                 case BrowserType.Firefox:
-                    #pragma warning disable CS0618
                     DesiredCapabilities geckoCapabilities = new DesiredCapabilities("firefox", Settings.RemoteBrowserVersion, new Platform(PlatformType.Any));
-                    #pragma warning restore CS0618
                     geckoCapabilities.AcceptInsecureCerts = true;
                     _parallelTestExecution.Driver = new RemoteWebDriver(new Uri($"http://{Settings.RemoteHost}:4444/wd/hub"), geckoCapabilities);
                     break;
 
                 case BrowserType.Chrome:
-                    #pragma warning disable CS0618
                     DesiredCapabilities chromeCapabilities = new DesiredCapabilities("chrome", Settings.RemoteBrowserVersion, new Platform(PlatformType.Any));
-                    #pragma warning restore CS0618
                     chromeCapabilities.AcceptInsecureCerts = true;
                     _parallelTestExecution.Driver = new RemoteWebDriver(new Uri($"http://{Settings.RemoteHost}:4444/wd/hub"), chromeCapabilities);
                     break;
@@ -60,6 +58,8 @@ namespace FrameworkCore.Base
                 default:
                     LogHelpers.WriteToLog($"[ERROR] :: Invalid Browser Type: {browserType}");
                     throw new ArgumentOutOfRangeException(nameof(browserType), browserType, $"Invalid Browser Type: {browserType}");
+
+                #pragma warning restore CS0618, IDE0017
             }
         }
 
