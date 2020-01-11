@@ -1,7 +1,6 @@
 ﻿using ApplicationMap.CommonElements;
 using FrameworkCore.Base;
 using FrameworkCore.Extensions;
-using FrameworkCore.Helpers;
 using OpenQA.Selenium;
 
 namespace ApplicationMap.Pages

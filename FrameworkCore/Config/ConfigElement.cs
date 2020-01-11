@@ -27,9 +27,9 @@ namespace FrameworkCore.Config
         public bool RemoteExecution => (bool) base["remote-execution"];
 
         [ConfigurationProperty("remote-host", IsRequired = true)]
-        public string RemoteHost => (string)base["remote-host"];
-        
+        public string RemoteHost => (string) base["remote-host"];
+
         [ConfigurationProperty("remote-browser-version", IsRequired = true)]
-        public string RemoteBrowserVersion => (string)base["remote-browser-version"];
+        public string RemoteBrowserVersion => (string) base["remote-browser-version"];
     }
 }

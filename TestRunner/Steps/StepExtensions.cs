@@ -1,9 +1,9 @@
-﻿using FrameworkCore.Base;
+﻿using ApplicationMap.Pages;
+using FrameworkCore.Base;
 using FrameworkCore.Config;
 using FrameworkCore.Extensions;
 using FrameworkCore.Helpers;
 using TechTalk.SpecFlow;
-using ApplicationMap.Pages;
 
 namespace TestRunner.Steps
 {

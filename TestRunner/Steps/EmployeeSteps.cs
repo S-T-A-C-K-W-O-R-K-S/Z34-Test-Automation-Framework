@@ -1,10 +1,10 @@
 ﻿using System;
+using ApplicationMap.Pages;
 using FrameworkCore.Base;
 using FrameworkCore.Helpers;
+using NUnit.Framework;
 using TechTalk.SpecFlow;
 using TechTalk.SpecFlow.Assist;
-using ApplicationMap.Pages;
-using NUnit.Framework;
 
 namespace TestRunner.Steps
 {
