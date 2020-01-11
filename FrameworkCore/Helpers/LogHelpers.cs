@@ -20,7 +20,7 @@ namespace FrameworkCore.Helpers
 
             if (Settings.DebugMode)
             {
-                byte[] encodedDebugLogCreationEvent = Encoding.ASCII.GetBytes(new StringBuilder()
+                byte[] encodedDebugModeLogCreationEvent = Encoding.ASCII.GetBytes(new StringBuilder()
                     .AppendLine("[DEBUG] :: LOGGING STARTED")
                     .AppendLine("\t" + "DateTime.Now" + "\t" + "\t" + ":" + "\t" + DateTime.Now)
                     .AppendLine("\t" + ".ToLongDateString" + "\t" + ":" + "\t" + DateTime.Now.ToLongDateString())
@@ -29,7 +29,7 @@ namespace FrameworkCore.Helpers
                     .AppendLine("\t" + ".ToLocalTime" + "\t" + "\t" + ":" + "\t" + DateTime.Now.ToLocalTime())
                     .ToString());
 
-                logFileInstance.AppendText().Write(encodedDebugLogCreationEvent);
+                logFileInstance.AppendText().Write(encodedDebugModeLogCreationEvent);
             }
 
             return logFileInstance;
