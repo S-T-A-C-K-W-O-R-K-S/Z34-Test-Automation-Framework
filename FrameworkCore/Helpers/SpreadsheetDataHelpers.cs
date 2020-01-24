@@ -8,6 +8,13 @@ using ExcelDataReader;
 
 namespace FrameworkCore.Helpers
 {
+    public class DataCollection
+    {
+        public int RowNumber { get; set; }
+        public string ColumnName { get; set; }
+        public string CellValue { get; set; }
+    }
+
     public static class SpreadsheetDataHelpers
     {
         private static readonly List<DataCollection> DataCollection = new List<DataCollection>();
@@ -45,7 +52,7 @@ namespace FrameworkCore.Helpers
                 {
                     RowNumber = row,
                     ColumnName = table.Columns[col].ColumnName,
-                    ColumnValue = table.Rows[row - 1][col].ToString()
+                    CellValue = table.Rows[row - 1][col].ToString()
                 };
 
                 DataCollection.Add(dataTable);
@@ -59,7 +66,7 @@ namespace FrameworkCore.Helpers
             {
                 string data = (from colData in DataCollection
                     where colData.ColumnName == columnName && colData.RowNumber == rowNumber
-                    select colData.ColumnValue).SingleOrDefault();
+                    select colData.CellValue).SingleOrDefault();
 
                 return data;
             }
@@ -70,12 +77,5 @@ namespace FrameworkCore.Helpers
                 return null;
             }
         }
-    }
-
-    public class DataCollection
-    {
-        public int RowNumber { get; set; }
-        public string ColumnName { get; set; }
-        public string ColumnValue { get; set; }
     }
 }

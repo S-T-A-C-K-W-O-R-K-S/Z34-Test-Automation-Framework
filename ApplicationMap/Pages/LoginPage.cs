@@ -6,9 +6,7 @@ namespace ApplicationMap.Pages
 {
     public class LoginPage : BasePage
     {
-        public LoginPage(ParallelTestExecution parallelTestExecution) : base(parallelTestExecution)
-        {
-        }
+        public LoginPage(ParallelTestExecution parallelTestExecution) : base(parallelTestExecution) { }
 
         private IWebElement TextUserName => ParallelTestExecution.Driver.FindElementOrTimeOut(By.Id("UserName"));
         private IWebElement TextPassword => ParallelTestExecution.Driver.FindElementOrTimeOut(By.Id("Password"));

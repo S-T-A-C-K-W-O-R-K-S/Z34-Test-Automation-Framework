@@ -6,9 +6,7 @@ namespace ApplicationMap.Pages
 {
     public class HomePage : BasePage
     {
-        public HomePage(ParallelTestExecution parallelTestExecution) : base(parallelTestExecution)
-        {
-        }
+        public HomePage(ParallelTestExecution parallelTestExecution) : base(parallelTestExecution) { }
 
         private IWebElement LinkLogIn => ParallelTestExecution.Driver.FindElementOrTimeOut(By.CssSelector("a#loginLink"));
         private IWebElement LinkEmployeeList => ParallelTestExecution.Driver.FindElementOrTimeOut(By.LinkText("Employee List"));

@@ -7,9 +7,7 @@ namespace ApplicationMap.Pages
 {
     public class EmployeeListPage : BasePage
     {
-        public EmployeeListPage(ParallelTestExecution parallelTestExecution) : base(parallelTestExecution)
-        {
-        }
+        public EmployeeListPage(ParallelTestExecution parallelTestExecution) : base(parallelTestExecution) { }
 
         private IWebElement TextSearch => ParallelTestExecution.Driver.FindElementOrTimeOut(By.Name("searchTerm"));
         private IWebElement LinkCreateNew => ParallelTestExecution.Driver.FindElementOrTimeOut(By.LinkText("Create New"));

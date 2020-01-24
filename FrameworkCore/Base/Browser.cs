@@ -2,11 +2,11 @@
 {
     public class Browser
     {
-        private readonly DriverContext DriverContext;
+        private readonly DriverContext _driverContext;
 
         public Browser(DriverContext driverContext)
         {
-            DriverContext = driverContext;
+            _driverContext = driverContext;
         }
 
         public BrowserType Type { get; set; }
