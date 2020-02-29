@@ -22,9 +22,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Update="Config\APP.CONFIG.JSON.FULL.BACKUP">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
     <None Update="Config\APP.CONFIG.JSON">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

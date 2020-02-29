@@ -7,22 +7,21 @@ namespace FrameworkCore.Config
     {
         public static void SetFrameworkSettings(string config)
         {
-            var builder = new ConfigurationBuilder()
+            ConfigBindings configBindings = new ConfigurationBuilder()
                 .SetBasePath(Directory.GetCurrentDirectory() + Path.DirectorySeparatorChar + "Config")
-                .AddJsonFile("APP.CONFIG.JSON");
+                .AddJsonFile("APP.CONFIG.JSON")
+                .Build()
+                .GetSection(config)
+                .Get<ConfigBindings>();
 
-            var configRoot = builder.Build();
-
-            var selectedConfig = configRoot.GetSection("Configuration").Get<ConfigBindings>();
-
-            Settings.AUT = selectedConfig.AUT;
-            Settings.BrowserType = selectedConfig.BrowserType;
-            Settings.LogPath = selectedConfig.LogPath;
-            Settings.ConnectionString = selectedConfig.ConnectionString;
-            Settings.DebugMode = selectedConfig.DebugMode;
-            Settings.RemoteExecution = selectedConfig.RemoteExecution;
-            Settings.RemoteHost = selectedConfig.RemoteHost;
-            Settings.RemoteBrowserVersion = selectedConfig.RemoteBrowserVersion;
+            Settings.AUT = configBindings.AUT;
+            Settings.BrowserType = configBindings.BrowserType;
+            Settings.LogPath = configBindings.LogPath;
+            Settings.ConnectionString = configBindings.ConnectionString;
+            Settings.DebugMode = configBindings.DebugMode;
+            Settings.RemoteExecution = configBindings.RemoteExecution;
+            Settings.RemoteHost = configBindings.RemoteHost;
+            Settings.RemoteBrowserVersion = configBindings.RemoteBrowserVersion;
         }
     }
 }

@@ -3,12 +3,9 @@ using Newtonsoft.Json;
 
 namespace FrameworkCore.Config
 {
-    [JsonObject("Configuration")]
+    [JsonObject]
     public class ConfigBindings
     {
-        [JsonProperty("Name")]
-        public string Name { get; set; }
-
         [JsonProperty("AUT")]
         public string AUT { get; set; }
 
