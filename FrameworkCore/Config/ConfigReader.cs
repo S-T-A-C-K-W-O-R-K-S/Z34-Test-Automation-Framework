@@ -3,13 +3,13 @@ using Microsoft.Extensions.Configuration;
 
 namespace FrameworkCore.Config
 {
-    public static class ConfigReader
+    public class ConfigReader
     {
         public static void SetFrameworkSettings(string config)
         {
-            IConfigurationBuilder builder = new ConfigurationBuilder();
-                builder.SetBasePath(Directory.GetCurrentDirectory() + Path.DirectorySeparatorChar + "Config");
-                builder.AddJsonFile("APP.CONFIG.JSON");
+            var builder = new ConfigurationBuilder()
+                .SetBasePath(Directory.GetCurrentDirectory() + Path.DirectorySeparatorChar + "Config")
+                .AddJsonFile("APP.CONFIG.JSON");
 
             IConfigurationRoot configRoot = builder.Build();
 
