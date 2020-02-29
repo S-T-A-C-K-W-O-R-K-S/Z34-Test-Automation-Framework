@@ -20,7 +20,7 @@ namespace FrameworkCore.Base
 
         public void InitializeConfig()
         {
-            const string config = "LOCAL | CHROME";
+            const string config = "LOCAL-CHROME";
 
             ConfigReader.SetFrameworkSettings(config);
             LogHelpers.CreateLogFile();
