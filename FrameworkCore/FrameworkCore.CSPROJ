@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.SDK">
 
   <PropertyGroup>
-    <TargetFramework>NET48</TargetFramework>
+    <TargetFramework>NETCoreApp3.1</TargetFramework>
   </PropertyGroup>
 
   <ItemGroup>
@@ -10,6 +10,7 @@
     <PackageReference Include="Selenium.Support" Version="3.141.0" />
     <PackageReference Include="Selenium.WebDriver" Version="3.141.0" />
     <PackageReference Include="SpecFlow" Version="3.1.86" />
+    <PackageReference Include="System.Data.SqlClient" Version="4.8.1" />
   </ItemGroup>
 
   <ItemGroup>

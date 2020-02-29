@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.SDK">
 
   <PropertyGroup>
-    <TargetFramework>NET48</TargetFramework>
+    <TargetFramework>NETCoreApp3.1</TargetFramework>
   </PropertyGroup>
 
   <ItemGroup>

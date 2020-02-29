@@ -1,11 +1,12 @@
 ﻿<Project Sdk="Microsoft.NET.SDK">
 
   <PropertyGroup>
-    <TargetFramework>NET48</TargetFramework>
+    <TargetFramework>NETCoreApp3.1</TargetFramework>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="ExtentReports" Version="4.0.3" />
+    <PackageReference Include="ExtentReports.Core" Version="1.0.3" />
     <PackageReference Include="Microsoft.NET.Test.SDK" Version="16.5.0" />
     <PackageReference Include="NUnit" Version="3.12.0" />
     <PackageReference Include="NUnit3TestAdapter" Version="3.16.1" />
