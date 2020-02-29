@@ -1,5 +1,9 @@
 ﻿using System;
 using AventStack.ExtentReports;
+
+// Currently Using The Unofficial ExtentReports.Core While ExtentReports Adds Support For .NET Core
+// TODO: Revert To The Official ExtentReports Once Support For .NET Core Has Been Added
+
 using AventStack.ExtentReports.Gherkin.Model;
 using AventStack.ExtentReports.Reporter;
 using AventStack.ExtentReports.Reporter.Configuration;
@@ -19,7 +23,7 @@ namespace TestRunner.TestHookConfig
         private static ExtentTest _feature;
         private ExtentTest _currentScenario;
 
-        private static ExtentReports _extent;
+        private static AventStack.ExtentReports.ExtentReports _extent;
 
         private readonly FeatureContext _featureContext;
         private readonly ParallelTestExecution _parallelTestExecution;
@@ -42,7 +46,7 @@ namespace TestRunner.TestHookConfig
             reporter.Config.DocumentTitle = run;
             reporter.Config.Theme = Theme.Standard;
 
-            _extent = new ExtentReports();
+            _extent = new AventStack.ExtentReports.ExtentReports();
             _extent.AttachReporter(reporter);
         }
 
