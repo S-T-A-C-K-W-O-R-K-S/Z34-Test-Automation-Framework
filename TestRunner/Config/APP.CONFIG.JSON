@@ -1,13 +1,13 @@
 ﻿{
   "Configuration": {
-    "name": "LOCAL-CHROME",
-    "aut": "http://localhost/",
-    "browser-type": "Chrome",
-    "log-path": "LOGS",
-    "connection-string": "Data Source=LOCALHOST; Initial Catalog=Z34; Integrated Security=True",
-    "debug-mode": "True",
-    "remote-execution": "False",
-    "remote-host": "...",
-    "remote-browser-version": "..."
+    "Name": "LOCAL-CHROME",
+    "AUT": "http://localhost/",
+    "BrowserType": "Chrome",
+    "LogPath": "LOGS\\",
+    "ConnectionString": "Data Source=LOCALHOST; Initial Catalog=Z34; Integrated Security=True",
+    "DebugMode": "True",
+    "RemoteExecution": "False",
+    "RemoteHost": "...",
+    "RemoteBrowserVersion": "..."
   }
 }

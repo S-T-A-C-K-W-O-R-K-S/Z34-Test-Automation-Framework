@@ -11,16 +11,18 @@ namespace FrameworkCore.Config
                 .SetBasePath(Directory.GetCurrentDirectory() + Path.DirectorySeparatorChar + "Config")
                 .AddJsonFile("APP.CONFIG.JSON");
 
-            IConfigurationRoot configRoot = builder.Build();
+            var configRoot = builder.Build();
 
-            Settings.AUT = configRoot.GetSection("Configuration").Get<ConfigBindings>().AUT;
-            Settings.BrowserType = configRoot.GetSection("Configuration").Get<ConfigBindings>().BrowserType;
-            Settings.LogPath = configRoot.GetSection("Configuration").Get<ConfigBindings>().LogPath;
-            Settings.ConnectionString = configRoot.GetSection("Configuration").Get<ConfigBindings>().ConnectionString;
-            Settings.DebugMode = configRoot.GetSection("Configuration").Get<ConfigBindings>().DebugMode;
-            Settings.RemoteExecution = configRoot.GetSection("Configuration").Get<ConfigBindings>().RemoteExecution;
-            Settings.RemoteHost = configRoot.GetSection("Configuration").Get<ConfigBindings>().RemoteHost;
-            Settings.RemoteBrowserVersion = configRoot.GetSection("Configuration").Get<ConfigBindings>().RemoteBrowserVersion;
+            var selectedConfig = configRoot.GetSection("Configuration").Get<ConfigBindings>();
+
+            Settings.AUT = selectedConfig.AUT;
+            Settings.BrowserType = selectedConfig.BrowserType;
+            Settings.LogPath = selectedConfig.LogPath;
+            Settings.ConnectionString = selectedConfig.ConnectionString;
+            Settings.DebugMode = selectedConfig.DebugMode;
+            Settings.RemoteExecution = selectedConfig.RemoteExecution;
+            Settings.RemoteHost = selectedConfig.RemoteHost;
+            Settings.RemoteBrowserVersion = selectedConfig.RemoteBrowserVersion;
         }
     }
 }

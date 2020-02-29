@@ -6,31 +6,31 @@ namespace FrameworkCore.Config
     [JsonObject("Configuration")]
     public class ConfigBindings
     {
-        [JsonProperty("name")]
+        [JsonProperty("Name")]
         public string Name { get; set; }
 
-        [JsonProperty("aut")]
+        [JsonProperty("AUT")]
         public string AUT { get; set; }
 
-        [JsonProperty("browser-type")]
+        [JsonProperty("BrowserType")]
         public BrowserType BrowserType { get; set; }
 
-        [JsonProperty("log-path")]
+        [JsonProperty("LogPath")]
         public string LogPath { get; set; }
 
-        [JsonProperty("connection-string")]
+        [JsonProperty("ConnectionString")]
         public string ConnectionString { get; set; }
 
-        [JsonProperty("debug-mode")]
+        [JsonProperty("DebugMode")]
         public bool DebugMode { get; set; }
 
-        [JsonProperty("remote-execution")]
+        [JsonProperty("RemoteExecution")]
         public bool RemoteExecution { get; set; }
 
-        [JsonProperty("remote-host")]
+        [JsonProperty("RemoteHost")]
         public string RemoteHost { get; set; }
 
-        [JsonProperty("remote-browser-version")]
+        [JsonProperty("RemoteBrowserVersion")]
         public string RemoteBrowserVersion { get; set; }
     }
 }
