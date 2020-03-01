@@ -61,6 +61,9 @@ namespace FrameworkCore.Base
 
                 #pragma warning restore CS0618, IDE0017
             }
+
+            // TODO: Remove DesiredCapabilities (Deprecated) And Replace With Driver Options
+            // Currently RemoteWebDriver Doesn't Work With DriverOptions, However That May Change In Selenium 4 (To Be Released Later In 2020)
         }
 
         private void RunLocalBrowser(BrowserType browserType)
@@ -78,6 +81,21 @@ namespace FrameworkCore.Base
                     optionsChrome.AddArguments("--window-size=1280,720", "--incognito");
                     _parallelTestExecution.Driver = new ChromeDriver(optionsChrome);
                     break;
+
+                default:
+                    LogHelpers.WriteToLog($"[ERROR] :: Invalid Browser Type: {browserType}");
+                    throw new ArgumentOutOfRangeException(nameof(browserType), browserType, $"Invalid Browser Type: {browserType}");
+            }
+        }
+
+        private DriverOptions GetBrowserOptions(BrowserType browserType)
+        {
+            // TODO: Use This After Completely Deprecating DesiredCapabilities For RemoteWebDriver
+
+            switch (browserType)
+            {
+                case BrowserType.Firefox: return new FirefoxOptions();
+                case BrowserType.Chrome: return  new ChromeOptions();
 
                 default:
                     LogHelpers.WriteToLog($"[ERROR] :: Invalid Browser Type: {browserType}");
