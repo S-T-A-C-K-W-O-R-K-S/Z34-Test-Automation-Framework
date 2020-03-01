@@ -40,5 +40,7 @@ namespace FrameworkCore.Helpers
                 sourceStream.Write(encodedLogEvent, 0, encodedLogEvent.Length);
             }
         }
+
+        // TODO: Fix "Cannot Access File" Exception For Tests Running In Parallel
     }
 }
