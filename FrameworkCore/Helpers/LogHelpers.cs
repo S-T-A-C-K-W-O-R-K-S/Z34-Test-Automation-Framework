@@ -30,15 +30,11 @@ namespace FrameworkCore.Helpers
             streamWriter.Close();
         }
 
-        public static void WriteToLog(string logMessage, bool append = true)
+        public static void WriteToLog(string logMessage)
         {
             string logEvent = $"{DateTime.Now:dd.MM.yyyy} @ {DateTime.Now:HH.mm.ss} >>> {logMessage}" + Environment.NewLine;
-            byte[] encodedLogEvent = Encoding.ASCII.GetBytes(logEvent);
 
-            using (FileStream sourceStream = new FileStream(LogFile, append ? FileMode.Append : FileMode.Create, FileAccess.Write, FileShare.ReadWrite, 4096, true))
-            {
-                sourceStream.Write(encodedLogEvent, 0, encodedLogEvent.Length);
-            }
+            File.AppendAllText(LogFile, logEvent);
         }
 
         // TODO: Fix "Cannot Access File" Exception For Tests Running In Parallel
