@@ -55,6 +55,8 @@ namespace TestRunner.TestHookConfig
         [BeforeScenario]
         public void BeforeScenario()
         {
+            OpenBrowser(Settings.BrowserType);
+
             Settings.DatabaseConnection = Settings.DatabaseConnection.DBConnect(Settings.ConnectionString);
 
             _feature = _extent.CreateTest<Feature>(_featureContext.FeatureInfo.Title);

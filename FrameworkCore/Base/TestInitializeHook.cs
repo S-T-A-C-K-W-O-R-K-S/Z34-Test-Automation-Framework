@@ -26,12 +26,10 @@ namespace FrameworkCore.Base
 
             if (LogHelpers.LogFile == null) LogHelpers.InitializeLogFile();
 
-            OpenBrowser(Settings.BrowserType);
-
             LogHelpers.WriteToLog($"[EVENT] :: Configuration Initialized :: {config}");
         }
 
-        private void OpenBrowser(BrowserType browserType)
+        public void OpenBrowser(BrowserType browserType)
         {
             if (Settings.RemoteExecution)
                 RunRemoteBrowser(browserType);
