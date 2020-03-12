@@ -1,4 +1,5 @@
-﻿using ApplicationMap.Pages;
+﻿using System.Text;
+using ApplicationMap.Pages;
 using FrameworkCore.Base;
 using FrameworkCore.Config;
 using FrameworkCore.Extensions;
@@ -24,11 +25,15 @@ namespace TestRunner.Steps
             _parallelTestExecution.CurrentPage = new HomePage(_parallelTestExecution);
         }
 
-        [Given(@"I DELETE EMPLOYEE ""(.*)"" PRIOR TO RUNNING TEST")]
-        public static void Given_I_DELETE_EMPLOYEE_PRIOR_TO_RUNNING_TEST(string employeeName)
+        [Given(@"I DELETE EMPLOYEE ""(.*)"" FROM TABLE ""(.*)"" IN DATABASE ""(.*)"" PRIOR TO RUNNING TEST")]
+        public static void Given_I_DELETE_EMPLOYEE_PRIOR_TO_RUNNING_TEST(string employeeName, string tableName, string databaseName)
         {
-            string query = "DELETE FROM Employees WHERE NAME = '" + employeeName + "'";
-            Settings.DatabaseConnection.ExecuteQuery(query);
+            StringBuilder query = new StringBuilder()
+                .AppendLine($"USE {databaseName}")
+                .AppendLine($"DELETE FROM {tableName}")
+                .AppendLine($"WHERE NAME = '{employeeName}'");
+
+            Settings.DatabaseConnection.ExecuteQuery(query.ToString());
         }
 
         public void NavigateToAUT()

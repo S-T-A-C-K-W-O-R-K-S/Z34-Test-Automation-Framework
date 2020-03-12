@@ -20,7 +20,7 @@ namespace FrameworkCore.Helpers
 
             catch (Exception exception)
             {
-                LogHelpers.WriteToLog($"[ERROR] :: {exception.Message}");
+                LogHelpers.WriteToLog($"[ERROR] :: [DATABASE] :: {exception.Message}");
             }
 
             return null;
@@ -37,7 +37,7 @@ namespace FrameworkCore.Helpers
 
             catch (Exception exception)
             {
-                LogHelpers.WriteToLog($"[ERROR] :: {exception.Message}");
+                LogHelpers.WriteToLog($"[ERROR] :: [DATABASE] :: {exception.Message}");
             }
         }
 
@@ -75,7 +75,7 @@ namespace FrameworkCore.Helpers
                 dataSet = null;
                 sqlConnection?.Close();
 
-                LogHelpers.WriteToLog($"[ERROR] :: {exception.Message}");
+                LogHelpers.WriteToLog($"[ERROR] :: [DATABASE] :: {exception.Message}");
 
                 return null;
             }
