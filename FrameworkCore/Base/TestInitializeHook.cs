@@ -99,7 +99,7 @@ namespace FrameworkCore.Base
             switch (browserType)
             {
                 case BrowserType.Firefox: return new FirefoxOptions();
-                case BrowserType.Chrome: return  new ChromeOptions();
+                case BrowserType.Chrome: return new ChromeOptions();
 
                 default:
                     LogHelpers.WriteToLog($"[ERROR] :: Invalid Browser Type: {browserType}");
