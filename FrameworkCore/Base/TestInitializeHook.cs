@@ -23,7 +23,9 @@ namespace FrameworkCore.Base
             const string config = "LOCAL-CHROME";
 
             ConfigReader.SetFrameworkSettings(config);
-            LogHelpers.CreateLogFile();
+
+            if (LogHelpers.LogFile == null) LogHelpers.InitializeLogFile();
+
             OpenBrowser(Settings.BrowserType);
 
             LogHelpers.WriteToLog($"[EVENT] :: Configuration Initialized :: {config}");
@@ -36,6 +38,8 @@ namespace FrameworkCore.Base
             else if (!Settings.RemoteExecution)
                 RunLocalBrowser(browserType);
         }
+
+        // TODO: Add OpenBrowsers Method That Iterates Through Each Supported Browser
 
         private void RunRemoteBrowser(BrowserType browserType)
         {
@@ -62,7 +66,7 @@ namespace FrameworkCore.Base
                 #pragma warning restore CS0618, IDE0017
             }
 
-            // TODO: Remove DesiredCapabilities (Deprecated) And Replace With Driver Options
+            // TODO: Remove DesiredCapabilities (Deprecated) And Replace With DriverOptions
             // Currently RemoteWebDriver Doesn't Work With DriverOptions, However That May Change In Selenium 4 (To Be Released Later In 2020)
         }
 

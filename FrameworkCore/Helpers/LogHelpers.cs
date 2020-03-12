@@ -9,9 +9,9 @@ namespace FrameworkCore.Helpers
     {
         private static readonly string LogFileName = $"{DateTime.Now:yyyy-MM-dd_HH-mm-ss}";
         private static readonly string LogPath = Settings.LogPath;
-        private static readonly string LogFile = LogPath + LogFileName + ".log";
+        public static readonly string LogFile = LogPath + LogFileName + ".log";
 
-        public static void CreateLogFile()
+        public static void InitializeLogFile()
         {
             if (!Directory.Exists(LogPath)) Directory.CreateDirectory(LogPath);
 
@@ -30,13 +30,11 @@ namespace FrameworkCore.Helpers
             streamWriter.Close();
         }
 
-        public static void WriteToLog(string logMessage)
+        public static async void WriteToLog(string logMessage)
         {
             string logEvent = $"{DateTime.Now:dd.MM.yyyy} @ {DateTime.Now:HH.mm.ss} >>> {logMessage}" + Environment.NewLine;
 
-            File.AppendAllText(LogFile, logEvent);
+            await File.AppendAllTextAsync(LogFile, logEvent);
         }
-
-        // TODO: Fix "Cannot Access File" Exception For Tests Running In Parallel
     }
 }
