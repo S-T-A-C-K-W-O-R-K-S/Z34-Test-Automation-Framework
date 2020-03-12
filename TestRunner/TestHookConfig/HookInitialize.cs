@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 using AventStack.ExtentReports;
 
 // Currently Using The Unofficial ExtentReports.Core While ExtentReports Adds Support For .NET Core
@@ -51,10 +52,14 @@ namespace TestRunner.TestHookConfig
         }
 
         [BeforeFeature]
-        public static void BeforeFeature(string config = "LOCAL-CHROME")
+        public static void BeforeFeature(FeatureContext featureContext)
         {
             // TODO: Refactor Hard-Coded Config
+            const string config = "LOCAL-CHROME";
+
             InitializeConfig(config);
+
+            LogHelpers.WriteToLog($"[EVENT] :: [{featureContext.FeatureInfo.Title.ToUpper()}] :: Configuration Initialized :: {config}");
         }
 
         [BeforeScenario]
@@ -67,7 +72,7 @@ namespace TestRunner.TestHookConfig
             _feature = _extent.CreateTest<Feature>(_featureContext.FeatureInfo.Title);
             _currentScenario = _feature.CreateNode<Scenario>(_scenarioContext.ScenarioInfo.Title);
 
-            LogHelpers.WriteToLog($"[START] :: {_featureContext.FeatureInfo.Title} :: {_scenarioContext.ScenarioInfo.Title}");
+            LogHelpers.WriteToLog($"[START] :: [{_featureContext.FeatureInfo.Title.ToUpper()}] :: {_scenarioContext.ScenarioInfo.Title}");
         }
 
         [AfterStep]
@@ -162,7 +167,7 @@ namespace TestRunner.TestHookConfig
             _parallelTestExecution.Driver.Close();
             _parallelTestExecution.Driver.Quit();
 
-            LogHelpers.WriteToLog($"[CLOSE] :: {_featureContext.FeatureInfo.Title} :: {_scenarioContext.ScenarioInfo.Title}");
+            LogHelpers.WriteToLog($"[CLOSE] :: [{_featureContext.FeatureInfo.Title.ToUpper()}] :: {_scenarioContext.ScenarioInfo.Title}");
         }
 
         [AfterTestRun]

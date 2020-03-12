@@ -27,8 +27,6 @@ namespace FrameworkCore.Base
             Thread.Sleep(new Random().Next(0, 1000));
 
             if (LogHelpers.LogFile == null) LogHelpers.InitializeLogFile();
-
-            LogHelpers.WriteToLog($"[EVENT] :: Configuration Initialized :: {config}");
         }
 
         public void OpenBrowser(BrowserType browserType)
