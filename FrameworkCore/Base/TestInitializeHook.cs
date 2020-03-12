@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading;
 using FrameworkCore.Config;
 using FrameworkCore.Helpers;
 using OpenQA.Selenium;
@@ -23,6 +24,9 @@ namespace FrameworkCore.Base
             const string config = "LOCAL-CHROME";
 
             ConfigReader.SetFrameworkSettings(config);
+
+            // Prevents Parallel Threads From Attempting To Create The Log File Simultaneously
+            Thread.Sleep(new Random().Next(0, 1000));
 
             if (LogHelpers.LogFile == null) LogHelpers.InitializeLogFile();
 
