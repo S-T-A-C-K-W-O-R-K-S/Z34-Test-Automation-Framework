@@ -34,8 +34,6 @@ namespace TestRunner.TestHookConfig
             _parallelTestExecution = parallelTestExecution;
             _featureContext = featureContext;
             _scenarioContext = scenarioContext;
-
-            InitializeConfig();
         }
 
         [BeforeTestRun]
@@ -50,6 +48,13 @@ namespace TestRunner.TestHookConfig
 
             _extent = new AventStack.ExtentReports.ExtentReports();
             _extent.AttachReporter(reporter);
+        }
+
+        [BeforeFeature]
+        public static void BeforeFeature(string config = "LOCAL-CHROME")
+        {
+            // TODO: Refactor Hard-Coded Config
+            InitializeConfig(config);
         }
 
         [BeforeScenario]
@@ -157,7 +162,7 @@ namespace TestRunner.TestHookConfig
             _parallelTestExecution.Driver.Close();
             _parallelTestExecution.Driver.Quit();
 
-            LogHelpers.WriteToLog($"[READY] :: {_featureContext.FeatureInfo.Title} :: {_scenarioContext.ScenarioInfo.Title}");
+            LogHelpers.WriteToLog($"[CLOSE] :: {_featureContext.FeatureInfo.Title} :: {_scenarioContext.ScenarioInfo.Title}");
         }
 
         [AfterTestRun]

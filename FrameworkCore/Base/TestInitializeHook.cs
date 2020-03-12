@@ -19,10 +19,8 @@ namespace FrameworkCore.Base
             _parallelTestExecution = parallelTestExecution;
         }
 
-        public void InitializeConfig()
+        public static void InitializeConfig(string config)
         {
-            const string config = "LOCAL-CHROME";
-
             ConfigReader.SetFrameworkSettings(config);
 
             // Prevents Parallel Threads From Attempting To Create The Log File Simultaneously
