@@ -5,22 +5,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Features\Employee.featurex" />
-    <None Remove="Features\Login.featurex" />
-    <None Remove="Steps\EmployeeSteps.csx" />
-    <None Remove="Steps\LoginSteps.csx" />
-    <None Remove="Steps\StepExtensions.csx" />
-    <None Remove="TestHookConfig\HookInitialize.csx" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Compile Include="Steps\EmployeeSteps.csx" />
-    <Compile Include="Steps\LoginSteps.csx" />
-    <Compile Include="Steps\StepExtensions.csx" />
-    <Compile Include="TestHookConfig\HookInitialize.csx" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="ExtentReports.Core" Version="1.0.3" />
     <PackageReference Include="Microsoft.NET.Test.SDK" Version="16.5.0" />
     <PackageReference Include="NUnit" Version="3.12.0" />
@@ -35,11 +19,6 @@
   <ItemGroup>
     <ProjectReference Include="..\ApplicationMap\ApplicationMap.CSPROJ" />
     <ProjectReference Include="..\FrameworkCore\FrameworkCore.CSPROJ" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <SpecFlowFeatureFiles Include="Features\Employee.featurex" />
-    <SpecFlowFeatureFiles Include="Features\Login.featurex" />
   </ItemGroup>
 
   <ItemGroup>

@@ -5,22 +5,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="CommonElements\HTMLTable.csx" />
-    <None Remove="Pages\CreateEmployeePage.csx" />
-    <None Remove="Pages\EmployeeListPage.csx" />
-    <None Remove="Pages\HomePage.csx" />
-    <None Remove="Pages\LoginPage.csx" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Compile Include="CommonElements\HTMLTable.csx" />
-    <Compile Include="Pages\CreateEmployeePage.csx" />
-    <Compile Include="Pages\EmployeeListPage.csx" />
-    <Compile Include="Pages\HomePage.csx" />
-    <Compile Include="Pages\LoginPage.csx" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\FrameworkCore\FrameworkCore.CSPROJ" />
   </ItemGroup>
 
