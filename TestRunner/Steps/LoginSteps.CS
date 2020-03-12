@@ -10,10 +10,12 @@ namespace TestRunner.Steps
     public class LoginSteps : BaseStep
     {
         private readonly ParallelTestExecution _parallelTestExecution;
+        private readonly FeatureContext _featureContext;
 
-        public LoginSteps(ParallelTestExecution parallelTestExecution) : base(parallelTestExecution)
+        public LoginSteps(ParallelTestExecution parallelTestExecution, FeatureContext featureContext) : base(parallelTestExecution)
         {
             _parallelTestExecution = parallelTestExecution;
+            _featureContext = featureContext;
         }
 
         [Given]
@@ -41,11 +43,12 @@ namespace TestRunner.Steps
             _parallelTestExecution.CurrentPage = _parallelTestExecution.CurrentPage.As<LoginPage>().ClickLoginButton();
         }
 
-        [Then]
-        public void Then_I_SHOULD_BE_AUTHENTICATED_AND_SEE_A_GREETING_MESSAGE()
+        [Then(@"I SHOULD BE AUTHENTICATED AS USER ""(.*)"" AND SEE A GREETING MESSAGE")]
+        public void Then_I_SHOULD_BE_AUTHENTICATED_AS_USER_AND_SEE_A_GREETING_MESSAGE(string user)
         {
-            const string user = "admin";
-            LogHelpers.WriteToLog(_parallelTestExecution.CurrentPage.As<HomePage>().GetLoggedInUser().Contains(user) ? $"[EVENT] :: Successfully Logged In As :: {user}" : $"[ERROR] :: Login Failed As :: {user}");
+            LogHelpers.WriteToLog(_parallelTestExecution.CurrentPage.As<HomePage>().GetLoggedInUser().Contains(user)
+                ? $"[EVENT] :: [{_featureContext.FeatureInfo.Title.ToUpper()}] :: Successfully Logged In As :: {user}"
+                : $"[ERROR] :: [{_featureContext.FeatureInfo.Title.ToUpper()}] :: Login Failed As :: {user}");
         }
     }
 }

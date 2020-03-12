@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Globalization;
 using AventStack.ExtentReports;
 
 // Currently Using The Unofficial ExtentReports.Core While ExtentReports Adds Support For .NET Core
@@ -26,8 +25,8 @@ namespace TestRunner.TestHookConfig
 
         private static AventStack.ExtentReports.ExtentReports _extent;
 
-        private readonly FeatureContext _featureContext;
         private readonly ParallelTestExecution _parallelTestExecution;
+        private readonly FeatureContext _featureContext;
         private readonly ScenarioContext _scenarioContext;
 
         public HookInitialize(ParallelTestExecution parallelTestExecution, FeatureContext featureContext, ScenarioContext scenarioContext) : base(parallelTestExecution)

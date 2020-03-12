@@ -12,10 +12,12 @@ namespace TestRunner.Steps
     public class StepExtensions : BaseStep
     {
         private readonly ParallelTestExecution _parallelTestExecution;
+        private readonly FeatureContext _featureContext;
 
-        public StepExtensions(ParallelTestExecution parallelTestExecution) : base(parallelTestExecution)
+        public StepExtensions(ParallelTestExecution parallelTestExecution, FeatureContext featureContext) : base(parallelTestExecution)
         {
             _parallelTestExecution = parallelTestExecution;
+            _featureContext = featureContext;
         }
 
         [Given]
@@ -39,10 +41,10 @@ namespace TestRunner.Steps
         public void NavigateToAUT()
         {
             _parallelTestExecution.Driver.Navigate().GoToUrl(Settings.AUT);
-            LogHelpers.WriteToLog($"[EVENT] :: Navigate To Page :: {Settings.AUT}");
+            LogHelpers.WriteToLog($"[EVENT] :: [{_featureContext.FeatureInfo.Title.ToUpper()}] :: Navigate To Page :: {Settings.AUT}");
 
             _parallelTestExecution.Driver.WaitForPageLoaded();
-            LogHelpers.WriteToLog($"[EVENT] :: DOM On Page Loaded :: {Settings.AUT}");
+            LogHelpers.WriteToLog($"[EVENT] :: [{_featureContext.FeatureInfo.Title.ToUpper()}] :: DOM On Page Loaded :: {Settings.AUT}");
         }
     }
 }

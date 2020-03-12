@@ -12,6 +12,8 @@ namespace FrameworkCore.Helpers
 
         public static string LogFile { get; set; }
 
+        // TODO: Make Log HTML File, For More Aesthetic Text Formatting
+
         public static void InitializeLogFile()
         {
             LogFile = LogPath + LogFileName + ".log";
