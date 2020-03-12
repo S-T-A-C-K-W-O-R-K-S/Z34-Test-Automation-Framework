@@ -34,6 +34,8 @@ namespace TestRunner.TestHookConfig
             _parallelTestExecution = parallelTestExecution;
             _featureContext = featureContext;
             _scenarioContext = scenarioContext;
+
+            InitializeConfig();
         }
 
         [BeforeTestRun]
@@ -53,7 +55,6 @@ namespace TestRunner.TestHookConfig
         [BeforeScenario]
         public void BeforeScenario()
         {
-            InitializeConfig();
             Settings.DatabaseConnection = Settings.DatabaseConnection.DBConnect(Settings.ConnectionString);
 
             _feature = _extent.CreateTest<Feature>(_featureContext.FeatureInfo.Title);

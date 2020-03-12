@@ -9,10 +9,13 @@ namespace FrameworkCore.Helpers
     {
         private static readonly string LogFileName = $"{DateTime.Now:yyyy-MM-dd_HH-mm-ss}";
         private static readonly string LogPath = Settings.LogPath;
-        public static readonly string LogFile = LogPath + LogFileName + ".log";
+
+        public static string LogFile { get; set; }
 
         public static void InitializeLogFile()
         {
+            LogFile = LogPath + LogFileName + ".log";
+
             if (!Directory.Exists(LogPath)) Directory.CreateDirectory(LogPath);
 
             if (!Settings.DebugMode || File.Exists(LogFile)) return;
