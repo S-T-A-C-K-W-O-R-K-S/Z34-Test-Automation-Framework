@@ -1,4 +1,4 @@
-﻿/* Requires Microsoft SQL Server Or Equivalent Database Management System */
+﻿/* Requires Microsoft SQL Server, SQLite Or Equivalent Database Management System */
 
 USE [MASTER]
 
