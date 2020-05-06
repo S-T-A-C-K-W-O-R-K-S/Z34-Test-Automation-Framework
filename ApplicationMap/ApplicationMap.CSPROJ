@@ -1,11 +1,11 @@
 ﻿<Project Sdk="Microsoft.NET.SDK">
 
-  <PropertyGroup>
-    <TargetFramework>NETCoreApp3.1</TargetFramework>
-  </PropertyGroup>
+	<PropertyGroup>
+		<TargetFramework>NETCoreApp3.1</TargetFramework>
+	</PropertyGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\FrameworkCore\FrameworkCore.CSPROJ" />
-  </ItemGroup>
+	<ItemGroup>
+		<ProjectReference Include="..\FrameworkCore\FrameworkCore.CSPROJ" />
+	</ItemGroup>
 
 </Project>

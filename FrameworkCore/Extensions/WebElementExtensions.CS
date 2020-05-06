@@ -32,10 +32,7 @@ namespace FrameworkCore.Extensions
         [SuppressMessage("Design", "CA1031:Do Not Catch General Exception Types", Justification = "Exception Type Is Unknown")]
         public static bool ElementIsDisplayed(this IWebElement element)
         {
-            try
-            {
-                return element.Displayed;
-            }
+            try { return element.Displayed; }
 
             catch (Exception exception)
             {
@@ -44,9 +41,6 @@ namespace FrameworkCore.Extensions
             }
         }
 
-        public static string GetElementText(this IWebElement element)
-        {
-            return element.Text;
-        }
+        public static string GetElementText(this IWebElement element) { return element.Text; }
     }
 }

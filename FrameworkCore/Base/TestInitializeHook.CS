@@ -14,10 +14,7 @@ namespace FrameworkCore.Base
     {
         private readonly ParallelTestExecution _parallelTestExecution;
 
-        public TestInitializeHook(ParallelTestExecution parallelTestExecution)
-        {
-            _parallelTestExecution = parallelTestExecution;
-        }
+        public TestInitializeHook(ParallelTestExecution parallelTestExecution) { _parallelTestExecution = parallelTestExecution; }
 
         public static void InitializeConfig(string config)
         {

@@ -11,8 +11,8 @@ namespace TestRunner.Steps
     [Binding]
     public class StepExtensions : BaseStep
     {
-        private readonly ParallelTestExecution _parallelTestExecution;
         private readonly FeatureContext _featureContext;
+        private readonly ParallelTestExecution _parallelTestExecution;
 
         public StepExtensions(ParallelTestExecution parallelTestExecution, FeatureContext featureContext) : base(parallelTestExecution)
         {

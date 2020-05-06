@@ -24,10 +24,7 @@ namespace FrameworkCore.Extensions
         {
             bool Execute(T arg)
             {
-                try
-                {
-                    return condition(arg);
-                }
+                try { return condition(arg); }
 
                 catch (Exception exception)
                 {

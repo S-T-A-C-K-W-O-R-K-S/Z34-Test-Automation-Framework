@@ -2,8 +2,6 @@
 {
     public class BaseStep : Base
     {
-        protected BaseStep(ParallelTestExecution parallelTestExecution) : base(parallelTestExecution)
-        {
-        }
+        protected BaseStep(ParallelTestExecution parallelTestExecution) : base(parallelTestExecution) { }
     }
 }

@@ -123,17 +123,11 @@ namespace ApplicationMap.CommonElements
                     }
                 }
 
-                else
-                {
-                    controlElement?.ElementCollection?.First().Click();
-                }
+                else { controlElement?.ElementCollection?.First().Click(); }
             }
         }
 
-        public static string GetCellValue(string[,] tableAsTwoDimensionalArray, int row, int column)
-        {
-            return tableAsTwoDimensionalArray[row, column];
-        }
+        public static string GetCellValue(string[,] tableAsTwoDimensionalArray, int row, int column) { return tableAsTwoDimensionalArray[row, column]; }
 
         public static bool AssertValuePresence(string[,] tableAsTwoDimensionalArray, string value)
         {

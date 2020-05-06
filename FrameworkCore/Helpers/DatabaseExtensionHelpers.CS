@@ -18,10 +18,7 @@ namespace FrameworkCore.Helpers
                 return sqlConnection;
             }
 
-            catch (Exception exception)
-            {
-                LogHelpers.WriteToLog($"[ERROR] :: [DATABASE] :: {exception.Message}");
-            }
+            catch (Exception exception) { LogHelpers.WriteToLog($"[ERROR] :: [DATABASE] :: {exception.Message}"); }
 
             return null;
         }
@@ -30,15 +27,9 @@ namespace FrameworkCore.Helpers
         [SuppressMessage("Design", "CA1031:Do Not Catch General Exception Types", Justification = "Exception Type Is Unknown")]
         public static void DBClose(this SqlConnection sqlConnection, string connectionString)
         {
-            try
-            {
-                sqlConnection.Close();
-            }
+            try { sqlConnection.Close(); }
 
-            catch (Exception exception)
-            {
-                LogHelpers.WriteToLog($"[ERROR] :: [DATABASE] :: {exception.Message}");
-            }
+            catch (Exception exception) { LogHelpers.WriteToLog($"[ERROR] :: [DATABASE] :: {exception.Message}"); }
         }
 
         [SuppressMessage("Security", "CA2100: Review SQL Queries For Security Vulnerabilities", Justification = "Not Needed")]

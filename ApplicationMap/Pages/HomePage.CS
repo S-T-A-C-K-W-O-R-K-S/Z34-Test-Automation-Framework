@@ -13,7 +13,7 @@ namespace ApplicationMap.Pages
         private IWebElement LinkLoggedInUser => ParallelTestExecution.Driver.FindElementOrTimeOut(By.XPath("//a[@title='Manage']"));
         private IWebElement LinkLogOff => ParallelTestExecution.Driver.FindElementOrTimeOut(By.LinkText("Log off"));
 
-        public void AssertLoginLinkPresence() => LinkLogIn.ElementIsDisplayed();
+        public void AssertLoginLinkPresence() { LinkLogIn.ElementIsDisplayed(); }
 
         public LoginPage ClickLogIn()
         {
@@ -22,7 +22,7 @@ namespace ApplicationMap.Pages
             return new LoginPage(ParallelTestExecution);
         }
 
-        public string GetLoggedInUser() => LinkLoggedInUser.GetElementText();
+        public string GetLoggedInUser() { return LinkLoggedInUser.GetElementText(); }
 
         public EmployeeListPage ClickEmployeeList()
         {

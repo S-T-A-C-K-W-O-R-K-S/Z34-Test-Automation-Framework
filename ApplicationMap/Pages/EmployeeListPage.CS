@@ -20,19 +20,10 @@ namespace ApplicationMap.Pages
             return new CreateEmployeePage(ParallelTestExecution);
         }
 
-        public IWebElement GetEmployeeList()
-        {
-            return TableEmployeeList;
-        }
+        public IWebElement GetEmployeeList() { return TableEmployeeList; }
 
-        public void PopulateSearchBox(string name)
-        {
-            TextSearch.SendKeys(name);
-        }
+        public void PopulateSearchBox(string name) { TextSearch.SendKeys(name); }
 
-        public bool AssertEmployeePresence(string name)
-        {
-            return HTMLTable.AssertValuePresence(HTMLTable.ReadTableToArray(TableEmployeeList), name);
-        }
+        public bool AssertEmployeePresence(string name) { return HTMLTable.AssertValuePresence(HTMLTable.ReadTableToArray(TableEmployeeList), name); }
     }
 }

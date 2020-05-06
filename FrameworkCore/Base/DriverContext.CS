@@ -4,10 +4,7 @@
     {
         public readonly ParallelTestExecution ParallelTestExecution;
 
-        public DriverContext(ParallelTestExecution parallelTestExecution)
-        {
-            ParallelTestExecution = parallelTestExecution;
-        }
+        public DriverContext(ParallelTestExecution parallelTestExecution) { ParallelTestExecution = parallelTestExecution; }
 
         public Browser Browser { get; set; }
     }

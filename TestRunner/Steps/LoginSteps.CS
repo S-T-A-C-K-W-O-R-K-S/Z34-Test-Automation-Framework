@@ -9,8 +9,8 @@ namespace TestRunner.Steps
     [Binding]
     public class LoginSteps : BaseStep
     {
-        private readonly ParallelTestExecution _parallelTestExecution;
         private readonly FeatureContext _featureContext;
+        private readonly ParallelTestExecution _parallelTestExecution;
 
         public LoginSteps(ParallelTestExecution parallelTestExecution, FeatureContext featureContext) : base(parallelTestExecution)
         {
@@ -19,16 +19,10 @@ namespace TestRunner.Steps
         }
 
         [Given]
-        public void Given_I_CONFIRM_THE_APPLICATION_IS_RUNNING()
-        {
-            _parallelTestExecution.CurrentPage.As<HomePage>().AssertLoginLinkPresence();
-        }
+        public void Given_I_CONFIRM_THE_APPLICATION_IS_RUNNING() { _parallelTestExecution.CurrentPage.As<HomePage>().AssertLoginLinkPresence(); }
 
         [Given]
-        public void Given_I_CLICK_THE_LOGIN_LINK()
-        {
-            _parallelTestExecution.CurrentPage = _parallelTestExecution.CurrentPage.As<HomePage>().ClickLogIn();
-        }
+        public void Given_I_CLICK_THE_LOGIN_LINK() { _parallelTestExecution.CurrentPage = _parallelTestExecution.CurrentPage.As<HomePage>().ClickLogIn(); }
 
         [When]
         public void When_I_ENTER_MY_USERNAME_AND_PASSWORD(Table credentialsTable)
@@ -38,10 +32,7 @@ namespace TestRunner.Steps
         }
 
         [When]
-        public void When_I_CLICK_THE_LOGIN_BUTTON()
-        {
-            _parallelTestExecution.CurrentPage = _parallelTestExecution.CurrentPage.As<LoginPage>().ClickLoginButton();
-        }
+        public void When_I_CLICK_THE_LOGIN_BUTTON() { _parallelTestExecution.CurrentPage = _parallelTestExecution.CurrentPage.As<LoginPage>().ClickLoginButton(); }
 
         [Then(@"I SHOULD BE AUTHENTICATED AS USER ""(.*)"" AND SEE A GREETING MESSAGE")]
         public void Then_I_SHOULD_BE_AUTHENTICATED_AS_USER_AND_SEE_A_GREETING_MESSAGE(string user)
