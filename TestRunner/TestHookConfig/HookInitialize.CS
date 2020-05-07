@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using AventStack.ExtentReports;
 
 // Currently Using The Unofficial ExtentReports.Core While ExtentReports Adds Support For .NET Core

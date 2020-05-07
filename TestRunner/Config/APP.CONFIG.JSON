@@ -1,42 +1,42 @@
 ﻿{
-  "LOCAL-FIREFOX": {
-    "AUT": "http://localhost/",
-    "BrowserType": "Firefox",
-    "LogPath": "LOGS\\",
-    "ConnectionString": "Data Source=LOCALHOST; Initial Catalog=Z34; Integrated Security=True",
-    "DebugMode": "True",
-    "RemoteExecution": "False",
-    "RemoteHost": "...",
-    "RemoteBrowserVersion": "..."
-  },
-  "REMOTE-FIREFOX": {
-    "AUT": "http://localhost/",
-    "BrowserType": "Firefox",
-    "LogPath": "LOGS\\",
-    "ConnectionString": "Data Source=LOCALHOST; Initial Catalog=Z34; Integrated Security=True",
-    "DebugMode": "True",
-    "RemoteExecution": "True",
-    "RemoteHost": "localhost",
-    "RemoteBrowserVersion": "70.0"
-  },
-  "LOCAL-CHROME": {
-    "AUT": "http://localhost/",
-    "BrowserType": "Chrome",
-    "LogPath": "LOGS\\",
-    "ConnectionString": "Data Source=LOCALHOST; Initial Catalog=Z34; Integrated Security=True",
-    "DebugMode": "True",
-    "RemoteExecution": "False",
-    "RemoteHost": "...",
-    "RemoteBrowserVersion": "..."
-  },
-  "REMOTE-CHROME": {
-    "AUT": "http://localhost/",
-    "BrowserType": "Chrome",
-    "LogPath": "LOGS\\",
-    "ConnectionString": "Data Source=LOCALHOST; Initial Catalog=Z34; Integrated Security=True",
-    "DebugMode": "True",
-    "RemoteExecution": "True",
-    "RemoteHost": "localhost",
-    "RemoteBrowserVersion": "70.0"
-  }
+    "LOCAL-FIREFOX": {
+        "AUT": "http://localhost/",
+        "BrowserType": "Firefox",
+        "LogPath": "LOGS\\",
+        "ConnectionString": "Data Source=LOCALHOST; Initial Catalog=Z34; Integrated Security=True",
+        "DebugMode": "True",
+        "RemoteExecution": "False",
+        "RemoteHost": "...",
+        "RemoteBrowserVersion": "..."
+    },
+    "REMOTE-FIREFOX": {
+        "AUT": "http://localhost/",
+        "BrowserType": "Firefox",
+        "LogPath": "LOGS\\",
+        "ConnectionString": "Data Source=LOCALHOST; Initial Catalog=Z34; Integrated Security=True",
+        "DebugMode": "True",
+        "RemoteExecution": "True",
+        "RemoteHost": "localhost",
+        "RemoteBrowserVersion": "70.0"
+    },
+    "LOCAL-CHROME": {
+        "AUT": "http://localhost/",
+        "BrowserType": "Chrome",
+        "LogPath": "LOGS\\",
+        "ConnectionString": "Data Source=LOCALHOST; Initial Catalog=Z34; Integrated Security=True",
+        "DebugMode": "True",
+        "RemoteExecution": "False",
+        "RemoteHost": "...",
+        "RemoteBrowserVersion": "..."
+    },
+    "REMOTE-CHROME": {
+        "AUT": "http://localhost/",
+        "BrowserType": "Chrome",
+        "LogPath": "LOGS\\",
+        "ConnectionString": "Data Source=LOCALHOST; Initial Catalog=Z34; Integrated Security=True",
+        "DebugMode": "True",
+        "RemoteExecution": "True",
+        "RemoteHost": "localhost",
+        "RemoteBrowserVersion": "70.0"
+    }
 }
