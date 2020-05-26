@@ -7,6 +7,7 @@ using OpenQA.Selenium;
 namespace ApplicationMap.CommonElements
 {
     // TODO: Implement Support For Irregular Matrix Tables
+    // TODO: Migrate To HTML Table Extensions
 
     public static class HTMLTable
     {
