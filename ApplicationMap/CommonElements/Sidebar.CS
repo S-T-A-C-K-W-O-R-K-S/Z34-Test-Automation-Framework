@@ -18,6 +18,7 @@ namespace ApplicationMap.CommonElements
 
         public Collapse ClickPagesAddon()
         {
+            LinkPagesAddon.Click();
             return PagesAddonIsCollapsed() ? new Collapse(ParallelTestExecution) : null;
         }
 
