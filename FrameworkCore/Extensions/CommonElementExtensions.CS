@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Diagnostics.CodeAnalysis;
+using System.Linq;
 using FrameworkCore.Helpers;
 using OpenQA.Selenium;
 
@@ -17,6 +18,11 @@ namespace FrameworkCore.Extensions
                 LogHelpers.WriteToLog($"[ERROR] :: Element Not Found :: {element} :: {exception.Message}");
                 return false;
             }
+        }
+
+        public static bool HasClass(this IWebElement element, string className)
+        {
+            return element.GetAttribute("class").Split(" ").Contains(className);
         }
 
         public static string GetElementText(this IWebElement element) { return element.Text; }
