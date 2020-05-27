@@ -8,27 +8,32 @@ namespace ApplicationMap.Pages
     {
         public LoginPage(ParallelTestExecution parallelTestExecution) : base(parallelTestExecution) { }
 
-        private IWebElement TextUserName => ParallelTestExecution.Driver.FindElementOrTimeOut(By.Id("UserName"));
-        private IWebElement TextPassword => ParallelTestExecution.Driver.FindElementOrTimeOut(By.Id("Password"));
-        private IWebElement ButtonLogin => ParallelTestExecution.Driver.FindElementOrTimeOut(By.CssSelector("input.btn"));
+        private IWebElement TextEmailAddress => ParallelTestExecution.Driver.FindElementOrTimeOut(By.Id("exampleInputEmail"));
+        private IWebElement TextPassword => ParallelTestExecution.Driver.FindElementOrTimeOut(By.Id("exampleInputPassword"));
+        private IWebElement InputRememberMe => ParallelTestExecution.Driver.FindElementOrTimeOut(By.CssSelector("input#customCheck[type='checkbox']"));
+        private IWebElement ButtonLogin => ParallelTestExecution.Driver.FindElementOrTimeOut(By.LinkText("Login"));
 
-        public void EnterCredentials(string userName, string password)
+        public bool LoginFormExists()
         {
-            TextUserName.SendKeys(userName);
+            return TextEmailAddress.ElementIsDisplayed() && TextPassword.ElementIsDisplayed();
+        }
+
+        public void EnterCredentials(string email, string password)
+        {
+            TextEmailAddress.SendKeys(email);
             TextPassword.SendKeys(password);
         }
 
-        public HomePage ClickLoginButton()
+        public void ClickRememberMe()
+        {
+            InputRememberMe.Click();
+        }
+
+        public Dashboard ClickLoginButton()
         {
             ButtonLogin.Click();
             ParallelTestExecution.Driver.WaitForPageLoaded();
-            return new HomePage(ParallelTestExecution);
-        }
-
-        public void AssertLoginFormExists()
-        {
-            TextUserName.ElementIsDisplayed();
-            TextPassword.ElementIsDisplayed();
+            return new Dashboard(ParallelTestExecution);
         }
     }
 }

@@ -6,6 +6,8 @@
 
         public Base(ParallelTestExecution parallelTestExecution) { ParallelTestExecution = parallelTestExecution; }
 
-        public TPage As<TPage>() where TPage : BasePage { return (TPage) this; }
+        public TPage AsPage<TPage>() where TPage : BasePage { return (TPage) this; }
+
+        public TElement AsElement<TElement>() where TElement : BaseElement { return (TElement) this; }
     }
 }

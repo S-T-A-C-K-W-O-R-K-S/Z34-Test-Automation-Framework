@@ -18,7 +18,7 @@ namespace TestRunner.Steps
         public EmployeeSteps(ParallelTestExecution parallelTestExecution) : base(parallelTestExecution) { _parallelTestExecution = parallelTestExecution; }
 
         [When]
-        public void When_I_FOLLOW_THE_EMPLOYEE_LIST_LINK() { _parallelTestExecution.CurrentPage = _parallelTestExecution.CurrentPage.As<HomePage>().ClickEmployeeList(); }
+        public void When_I_FOLLOW_THE_EMPLOYEE_LIST_LINK() { _parallelTestExecution.CurrentPage = _parallelTestExecution.CurrentPage.AsPage<HomePage>().ClickEmployeeList(); }
 
         [When(@"I CLICK THE (.*) \[EMPLOYEE\] BUTTON")]
         public void When_I_CLICK_THE_BUTTON(string button)
@@ -26,7 +26,7 @@ namespace TestRunner.Steps
             switch (button)
             {
                 case "CREATE NEW":
-                    _parallelTestExecution.CurrentPage = _parallelTestExecution.CurrentPage.As<EmployeeListPage>().ClickCreateNew();
+                    _parallelTestExecution.CurrentPage = _parallelTestExecution.CurrentPage.AsPage<EmployeeListPage>().ClickCreateNew();
                     break;
 
                 case "CREATE":
@@ -42,11 +42,11 @@ namespace TestRunner.Steps
         public void When_I_ENTER_THE_DETAILS_OF_THE_EMPLOYEE(Table employeeDetailsTable)
         {
             _employeeDetails = employeeDetailsTable.CreateDynamicInstance();
-            _parallelTestExecution.CurrentPage.As<CreateEmployeePage>().EnterEmployeeDetails(_employeeDetails.NAME.ToString(), _employeeDetails.SALARY.ToString(), _employeeDetails.HOURS.ToString(), _employeeDetails.GRADE.ToString(), _employeeDetails.EMAIL.ToString());
-            _parallelTestExecution.CurrentPage = _parallelTestExecution.CurrentPage.As<CreateEmployeePage>().ClickCreateEmployeeButton();
+            _parallelTestExecution.CurrentPage.AsPage<CreateEmployeePage>().EnterEmployeeDetails(_employeeDetails.NAME.ToString(), _employeeDetails.SALARY.ToString(), _employeeDetails.HOURS.ToString(), _employeeDetails.GRADE.ToString(), _employeeDetails.EMAIL.ToString());
+            _parallelTestExecution.CurrentPage = _parallelTestExecution.CurrentPage.AsPage<CreateEmployeePage>().ClickCreateEmployeeButton();
         }
 
         [Then]
-        public void Then_THE_NEWLY_CREATED_EMPLOYEE_SHOULD_HAVE_SUCCESSFULLY_SAVED() { Assert.IsTrue(_parallelTestExecution.CurrentPage.As<EmployeeListPage>().AssertEmployeePresence(_employeeDetails.NAME)); }
+        public void Then_THE_NEWLY_CREATED_EMPLOYEE_SHOULD_HAVE_SUCCESSFULLY_SAVED() { Assert.IsTrue(_parallelTestExecution.CurrentPage.AsPage<EmployeeListPage>().AssertEmployeePresence(_employeeDetails.NAME)); }
     }
 }
