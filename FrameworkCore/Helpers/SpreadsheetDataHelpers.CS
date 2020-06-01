@@ -8,18 +8,18 @@ using ExcelDataReader;
 
 namespace FrameworkCore.Helpers
 {
-    public class DataCollection
+    public class Cell
     {
         public int RowNumber { get; set; }
         public string ColumnName { get; set; }
-        public string CellValue { get; set; }
+        public string Value { get; set; }
     }
 
     public static class SpreadsheetDataHelpers
     {
-        private static readonly List<DataCollection> DataCollection = new List<DataCollection>();
+        private static readonly List<Cell> DataCollection = new List<Cell>();
 
-        private static DataTable ExcelToDataTable(string fileName)
+        private static DataTable ExcelToDataTable(string fileName, string sheetName = "DATASET")
         {
             using (FileStream stream = File.Open(fileName, FileMode.Open, FileAccess.Read))
             {
@@ -34,25 +34,25 @@ namespace FrameworkCore.Helpers
                     });
 
                     DataTableCollection table = result.Tables;
-                    DataTable resultTable = table["DATASET"];
+                    DataTable resultTable = table[sheetName];
 
                     return resultTable;
                 }
             }
         }
 
-        public static void PopulateInMemoryCollection(string fileName)
+        public static void PopulateDataCollection(string fileName)
         {
             DataTable table = ExcelToDataTable(fileName);
 
             for (int row = 1; row <= table.Rows.Count; row++)
             for (int col = 0; col < table.Columns.Count; col++)
             {
-                DataCollection dataTable = new DataCollection
+                Cell dataTable = new Cell
                 {
                     RowNumber = row,
                     ColumnName = table.Columns[col].ColumnName,
-                    CellValue = table.Rows[row - 1][col].ToString()
+                    Value = table.Rows[row - 1][col].ToString()
                 };
 
                 DataCollection.Add(dataTable);
@@ -60,13 +60,13 @@ namespace FrameworkCore.Helpers
         }
 
         [SuppressMessage("Design", "CA1031:Do Not Catch General Exception Types", Justification = "Exception Type Is Unknown")]
-        public static string ReadData(int rowNumber, string columnName)
+        public static string ReadCellData(int rowNumber, string columnName)
         {
             try
             {
                 string data = (from colData in DataCollection
                     where colData.ColumnName == columnName && colData.RowNumber == rowNumber
-                    select colData.CellValue).SingleOrDefault();
+                    select colData.Value).SingleOrDefault();
 
                 return data;
             }
