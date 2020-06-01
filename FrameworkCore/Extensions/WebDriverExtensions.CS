@@ -14,7 +14,7 @@ namespace FrameworkCore.Extensions
         {
             driver.WaitForCondition(dri =>
             {
-                string state = ((IJavaScriptExecutor) dri).ExecuteScript("return document.readyState").ToString();
+                string state = ((IJavaScriptExecutor)dri).ExecuteScript("return document.readyState").ToString();
                 return state == "complete";
             }, timeoutInMilliseconds);
         }
@@ -56,12 +56,21 @@ namespace FrameworkCore.Extensions
             }
         }
 
-        public static ReadOnlyCollection<IWebElement> FindElements(this IWebDriver driver, By by, int timeoutInMilliseconds)
+        public static ReadOnlyCollection<IWebElement> FindElementsOrTimeOut(this IWebDriver driver, By by, int timeoutInMilliseconds = 5000)
         {
-            if (timeoutInMilliseconds <= 0) return driver.FindElements(by);
+            try
+            {
+                if (timeoutInMilliseconds <= 0) return driver.FindElements(by);
 
-            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromMilliseconds(timeoutInMilliseconds));
-            return wait.Until(drv => drv.FindElements(by).Count > 0 ? drv.FindElements(by) : null);
+                WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromMilliseconds(timeoutInMilliseconds));
+                return wait.Until(drv => drv.FindElements(by).Count > 0 ? drv.FindElements(by) : null);
+            }
+
+            catch (Exception exception)
+            {
+                LogHelpers.WriteToLog($"[ERROR] :: No Elements Found :: {by} :: {exception.Message}");
+                throw new NoSuchElementException($"No Such Elements: {by}");
+            }
         }
     }
 }
