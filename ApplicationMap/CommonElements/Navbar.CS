@@ -6,7 +6,7 @@ namespace ApplicationMap.CommonElements
 {
     public class Navbar : BaseElement
     {
-        private readonly IWebElement Self;
+        public readonly IWebElement Self;
 
         public Navbar(ParallelTestExecution parallelTestExecution) : base(parallelTestExecution)
         {

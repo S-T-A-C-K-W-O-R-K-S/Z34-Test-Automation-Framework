@@ -6,7 +6,7 @@ namespace ApplicationMap.CommonElements
 {
     public class Sidebar : BaseElement
     {
-        private readonly IWebElement Self;
+        public readonly IWebElement Self;
 
         public Sidebar(ParallelTestExecution parallelTestExecution) : base(parallelTestExecution)
         {
