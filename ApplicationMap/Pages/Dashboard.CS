@@ -1,13 +1,17 @@
-﻿using FrameworkCore.Base;
-using FrameworkCore.Extensions;
-using OpenQA.Selenium;
+﻿using ApplicationMap.CommonElements;
+using FrameworkCore.Base;
 
 namespace ApplicationMap.Pages
 {
     public class Dashboard : BasePage
     {
-        public Dashboard(ParallelTestExecution parallelTestExecution) : base(parallelTestExecution) { }
+        private readonly Navbar Navbar;
+        private readonly Sidebar Sidebar;
 
-        // TODO Sidebar = new Sidebar(ParallelTestExecution); Navbar = new Navbar(ParallelTestExecution);
+        public Dashboard(ParallelTestExecution parallelTestExecution) : base(parallelTestExecution)
+        {
+            this.Navbar = new Navbar(ParallelTestExecution);
+            this.Sidebar = new Sidebar(ParallelTestExecution);
+        }
     }
 }
