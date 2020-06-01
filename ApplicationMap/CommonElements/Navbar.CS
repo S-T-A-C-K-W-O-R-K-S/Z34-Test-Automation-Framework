@@ -1,9 +1,16 @@
 ﻿using FrameworkCore.Base;
+using FrameworkCore.Extensions;
+using OpenQA.Selenium;
 
 namespace ApplicationMap.CommonElements
 {
     public class Navbar : BaseElement
     {
-        public Navbar(ParallelTestExecution parallelTestExecution) : base(parallelTestExecution) { }
+        private readonly IWebElement Self;
+
+        public Navbar(ParallelTestExecution parallelTestExecution) : base(parallelTestExecution)
+        {
+            this.Self = ParallelTestExecution.Driver.FindElementOrTimeOut(By.CssSelector("nav.navbar"));
+        }
     }
 }

@@ -1,13 +1,17 @@
 ﻿using FrameworkCore.Base;
 using FrameworkCore.Extensions;
 using OpenQA.Selenium;
-using System;
 
 namespace ApplicationMap.CommonElements
 {
     public class Sidebar : BaseElement
     {
-        public Sidebar(ParallelTestExecution parallelTestExecution) : base(parallelTestExecution) { }
+        private readonly IWebElement Self;
+
+        public Sidebar(ParallelTestExecution parallelTestExecution) : base(parallelTestExecution)
+        {
+            this.Self = ParallelTestExecution.Driver.FindElementOrTimeOut(By.CssSelector("ul#accordionSidebar"));
+        }
 
         private IWebElement LinkPagesAddon => ParallelTestExecution.Driver.FindElementOrTimeOut(By.CssSelector("a.nav-link[data-target='#collapsePages']"));
 
