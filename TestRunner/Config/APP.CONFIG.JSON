@@ -1,6 +1,6 @@
 ﻿{
     "LOCAL-FIREFOX": {
-        "AUT": "http://localhost/",
+        "AUT": "http://localhost:555/",
         "BrowserType": "Firefox",
         "LogPath": "LOGS\\",
         "ConnectionString": "Data Source=LOCALHOST; Initial Catalog=Z34; Integrated Security=True",
@@ -10,7 +10,7 @@
         "RemoteBrowserVersion": "..."
     },
     "REMOTE-FIREFOX": {
-        "AUT": "http://localhost/",
+        "AUT": "http://localhost:555/",
         "BrowserType": "Firefox",
         "LogPath": "LOGS\\",
         "ConnectionString": "Data Source=LOCALHOST; Initial Catalog=Z34; Integrated Security=True",
@@ -20,7 +20,7 @@
         "RemoteBrowserVersion": "70.0"
     },
     "LOCAL-CHROME": {
-        "AUT": "http://localhost/",
+        "AUT": "http://localhost:555/",
         "BrowserType": "Chrome",
         "LogPath": "LOGS\\",
         "ConnectionString": "Data Source=LOCALHOST; Initial Catalog=Z34; Integrated Security=True",
@@ -30,7 +30,7 @@
         "RemoteBrowserVersion": "..."
     },
     "REMOTE-CHROME": {
-        "AUT": "http://localhost/",
+        "AUT": "http://localhost:555/",
         "BrowserType": "Chrome",
         "LogPath": "LOGS\\",
         "ConnectionString": "Data Source=LOCALHOST; Initial Catalog=Z34; Integrated Security=True",
