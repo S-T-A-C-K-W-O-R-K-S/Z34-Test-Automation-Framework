@@ -5,13 +5,9 @@ namespace ApplicationMap.Pages
 {
     public class Dashboard : BasePage
     {
-        private readonly Navbar Navbar;
-        private readonly Sidebar Sidebar;
+        public Dashboard(ParallelTestExecution parallelTestExecution) : base(parallelTestExecution) { }
 
-        public Dashboard(ParallelTestExecution parallelTestExecution) : base(parallelTestExecution)
-        {
-            this.Navbar = new Navbar(ParallelTestExecution);
-            this.Sidebar = new Sidebar(ParallelTestExecution);
-        }
+        private Navbar Navbar => new Navbar(ParallelTestExecution);
+        private Sidebar Sidebar => new Sidebar(ParallelTestExecution);
     }
 }
