@@ -6,6 +6,7 @@ using NUnit.Framework;
 using TechTalk.SpecFlow;
 using TechTalk.SpecFlow.Assist;
 
+/*
 namespace TestRunner.Steps
 {
     [Binding]
@@ -50,3 +51,4 @@ namespace TestRunner.Steps
         public void Then_THE_NEWLY_CREATED_EMPLOYEE_SHOULD_HAVE_SUCCESSFULLY_SAVED() { Assert.IsTrue(_parallelTestExecution.CurrentPage.AsPage<EmployeeListPage>().AssertEmployeePresence(_employeeDetails.NAME)); }
     }
 }
+*/

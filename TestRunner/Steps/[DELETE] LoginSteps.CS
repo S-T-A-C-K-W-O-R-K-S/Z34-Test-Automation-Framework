@@ -4,15 +4,16 @@ using FrameworkCore.Helpers;
 using TechTalk.SpecFlow;
 using TechTalk.SpecFlow.Assist;
 
+/*
 namespace TestRunner.Steps
 {
     [Binding]
-    public class LoginSteps : BaseStep
+    public class LoginStepsOLD : BaseStep
     {
         private readonly FeatureContext _featureContext;
         private readonly ParallelTestExecution _parallelTestExecution;
 
-        public LoginSteps(ParallelTestExecution parallelTestExecution, FeatureContext featureContext) : base(parallelTestExecution)
+        public LoginStepsOLD(ParallelTestExecution parallelTestExecution, FeatureContext featureContext) : base(parallelTestExecution)
         {
             _parallelTestExecution = parallelTestExecution;
             _featureContext = featureContext;
@@ -43,3 +44,4 @@ namespace TestRunner.Steps
         }
     }
 }
+*/

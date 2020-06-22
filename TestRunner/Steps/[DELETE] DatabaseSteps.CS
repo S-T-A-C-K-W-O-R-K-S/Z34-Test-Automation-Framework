@@ -4,6 +4,7 @@ using FrameworkCore.Config;
 using FrameworkCore.Helpers;
 using TechTalk.SpecFlow;
 
+/*
 namespace TestRunner.Steps
 {
     [Binding]
@@ -30,3 +31,4 @@ namespace TestRunner.Steps
         }
     }
 }
+*/

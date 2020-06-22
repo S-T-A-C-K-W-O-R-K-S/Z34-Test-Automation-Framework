@@ -54,7 +54,7 @@ namespace TestRunner.TestHookConfig
         public static void BeforeFeature(FeatureContext featureContext)
         {
             // TODO: Refactor Hard-Coded Config
-            const string config = "LOCAL-CHROME";
+            const string config = "LOCAL-FIREFOX";
 
             InitializeConfig(config);
 
