@@ -1,10 +1,16 @@
-﻿using FrameworkCore.Base;
+﻿using ApplicationMap.Pages;
+using FrameworkCore.Base;
+using FrameworkCore.Helpers;
+using System;
+using System.Collections.Generic;
 using TechTalk.SpecFlow;
+using TechTalk.SpecFlow.Assist;
+using TestRunner.ObjectModels;
 
 namespace TestRunner.Steps
 {
     [Binding]
-    class LoginSteps : BaseStep
+    public class LoginSteps : BaseStep
     {
         private readonly FeatureContext _featureContext;
         private readonly ParallelTestExecution _parallelTestExecution;
@@ -18,37 +24,44 @@ namespace TestRunner.Steps
         [Given]
         public void Given_I_CONFIRM_THAT_THE_LOGIN_FORM_IS_DISPLAYED()
         {
-            ScenarioContext.Current.Pending();
+            LogHelpers.WriteToLog(_parallelTestExecution.CurrentPage.AsPage<LoginPage>().LoginFormExists()
+                ? $"[EVENT] :: [{_featureContext.FeatureInfo.Title.ToUpper()}] :: Login Form Exists On Login Page"
+                : $"[ERROR] :: [{_featureContext.FeatureInfo.Title.ToUpper()}] :: Login Form Does Not Exist On Login Page");
         }
 
         [When]
-        public void When_I_PICK_A_RANDOM_P0_ADDRESS_AND_P1_FROM_A_BDD_TABLE(string p0, string p1, Table table)
+        public void When_I_ENTER_A_RANDOM_EMAIL_ADDRESS_AND_PASSWORD_FROM_A_BDD_TABLE(Table credentialsTable)
         {
-            ScenarioContext.Current.Pending();
+            List<User> tableData = (List<User>)credentialsTable.CreateSet<User>();
+
+            var random = new Random();
+            User randomUser = tableData[random.Next(tableData.Count - 1)];
+
+            _parallelTestExecution.CurrentPage.AsPage<LoginPage>().EnterCredentials(randomUser.Email, randomUser.Password);
+        }
+
+        [When]
+        public void When_I_ENTER_A_RANDOM_EMAIL_ADDRESS_AND_PASSWORD_FROM_A_SPREADSHEET(string p0)
+        {
+            // TODO: Implement This
         }
 
         [When]
         public void When_I_CHOOSE_TO_REMEMBER_MY_CREDENTIALS()
         {
-            ScenarioContext.Current.Pending();
+            // TODO: Implement This
         }
 
         [When]
         public void When_I_CLICK_THE_LOGIN_BUTTON()
         {
-            ScenarioContext.Current.Pending();
+            _parallelTestExecution.CurrentPage = _parallelTestExecution.CurrentPage.AsPage<LoginPage>().ClickLoginButton();
         }
 
         [Then]
         public void Then_I_SHOULD_BE_AUTHENTICATED_AND_REDIRECTED_TO_THE_DASHBOARD()
         {
-            ScenarioContext.Current.Pending();
-        }
-
-        [When]
-        public void When_I_PICK_A_RANDOM_EMAIL_ADDRESS_AND_PASSWORD_FROM_A_P0(string p0)
-        {
-            ScenarioContext.Current.Pending();
+            // TODO: Implement This :: _parallelTestExecution.CurrentPage.AsPage<Dashboard>().AssertLogin();
         }
     }
 }

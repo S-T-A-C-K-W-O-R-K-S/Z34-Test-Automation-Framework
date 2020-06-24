@@ -1,6 +1,9 @@
 ﻿using FrameworkCore.Base;
 using FrameworkCore.Extensions;
+using FrameworkCore.Helpers;
 using OpenQA.Selenium;
+using System.Diagnostics;
+using TechTalk.SpecFlow.Bindings;
 
 namespace ApplicationMap.Pages
 {
@@ -26,7 +29,9 @@ namespace ApplicationMap.Pages
 
         public void ClickRememberMe()
         {
-            InputRememberMe.Click();
+            // JavaScript Click Needs To Be Used Instead Of Selenium Click, Due To Weird HTML/CSS (Label Is Obscuring Checkbox)
+            IJavaScriptExecutor clickRememberMe = (IJavaScriptExecutor)ParallelTestExecution.Driver;
+            clickRememberMe.ExecuteScript("document.querySelector('input#customCheck').click()");
         }
 
         public Dashboard ClickLoginButton()
