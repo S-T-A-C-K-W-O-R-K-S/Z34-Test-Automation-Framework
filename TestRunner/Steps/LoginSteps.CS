@@ -3,6 +3,8 @@ using FrameworkCore.Base;
 using FrameworkCore.Helpers;
 using System;
 using System.Collections.Generic;
+using System.Data;
+using System.IO;
 using TechTalk.SpecFlow;
 using TechTalk.SpecFlow.Assist;
 using TestRunner.ObjectModels;
@@ -41,9 +43,23 @@ namespace TestRunner.Steps
         }
 
         [When]
-        public void When_I_ENTER_A_RANDOM_EMAIL_ADDRESS_AND_PASSWORD_FROM_A_SPREADSHEET(string p0)
+        public void When_I_ENTER_A_RANDOM_EMAIL_ADDRESS_AND_PASSWORD_FROM_A_SPREADSHEET()
         {
-            // TODO: Implement This
+            string filePath = "Data" + Path.DirectorySeparatorChar + "CREDENTIALS.XLSX";
+            DataTable credentials = new SpreadsheetDataHelpers.Spreadsheet(filePath).GetSheetByName("DATASET");
+            DataColumnCollection cols = credentials.Columns;
+
+            List<User> tableData = new List<User>();
+
+            foreach (DataRow row in credentials.Rows)
+            {
+                tableData.Add(new User { Email = row.Field<string>("EMAIL"), Password = row.Field<string>("PASSWORD") });
+            }
+
+            var random = new Random();
+            User randomUser = tableData[random.Next(tableData.Count - 1)];
+
+            _parallelTestExecution.CurrentPage.AsPage<LoginPage>().EnterCredentials(randomUser.Email, randomUser.Password);
         }
 
         [When]

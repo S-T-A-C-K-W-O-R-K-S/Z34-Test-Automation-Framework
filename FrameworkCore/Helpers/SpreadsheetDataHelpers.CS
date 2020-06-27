@@ -1,79 +1,42 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Diagnostics.CodeAnalysis;
+﻿using System.Data;
 using System.IO;
-using System.Linq;
 using ExcelDataReader;
 
 namespace FrameworkCore.Helpers
 {
-    public class Cell
+    public class SpreadsheetDataHelpers
     {
-        public int RowNumber { get; set; }
-        public string ColumnName { get; set; }
-        public string Value { get; set; }
-    }
-
-    public static class SpreadsheetDataHelpers
-    {
-        private static readonly List<Cell> DataCollection = new List<Cell>();
-
-        private static DataTable ExcelToDataTable(string fileName, string sheetName = "DATASET")
+        public class Spreadsheet
         {
-            using (FileStream stream = File.Open(fileName, FileMode.Open, FileAccess.Read))
+            public DataSet DataSet { get; set; }
+
+            public Spreadsheet(string filePath)
             {
-                using (IExcelDataReader reader = ExcelReaderFactory.CreateReader(stream))
+                DataSet = GetData(filePath);
+            }
+
+            private DataSet GetData(string filePath)
+            {
+                using (var stream = File.Open(filePath, FileMode.Open, FileAccess.Read))
                 {
-                    DataSet result = reader.AsDataSet(new ExcelDataSetConfiguration
+                    using (var reader = ExcelReaderFactory.CreateReader(stream))
                     {
-                        ConfigureDataTable = data => new ExcelDataTableConfiguration
+                        return reader.AsDataSet(new ExcelDataSetConfiguration()
                         {
-                            UseHeaderRow = true
-                        }
-                    });
-
-                    DataTableCollection table = result.Tables;
-                    DataTable resultTable = table[sheetName];
-
-                    return resultTable;
+                            ConfigureDataTable = (tableReader) => new ExcelDataTableConfiguration() { UseHeaderRow = true }
+                        });
+                    }
                 }
             }
-        }
 
-        public static void PopulateDataCollection(string fileName)
-        {
-            DataTable table = ExcelToDataTable(fileName);
-
-            for (int row = 1; row <= table.Rows.Count; row++)
-            for (int col = 0; col < table.Columns.Count; col++)
+            public DataTable GetSheetByName(string tableName)
             {
-                Cell dataTable = new Cell
+                foreach (DataTable table in DataSet.Tables)
                 {
-                    RowNumber = row,
-                    ColumnName = table.Columns[col].ColumnName,
-                    Value = table.Rows[row - 1][col].ToString()
+                    if (table.TableName == tableName)
+                        return table;
                 };
 
-                DataCollection.Add(dataTable);
-            }
-        }
-
-        [SuppressMessage("Design", "CA1031:Do Not Catch General Exception Types", Justification = "Exception Type Is Unknown")]
-        public static string ReadCellData(int rowNumber, string columnName)
-        {
-            try
-            {
-                string data = (from colData in DataCollection
-                    where colData.ColumnName == columnName && colData.RowNumber == rowNumber
-                    select colData.Value).SingleOrDefault();
-
-                return data;
-            }
-
-            catch (Exception exception)
-            {
-                LogHelpers.WriteToLog($"[ERROR] :: {exception.Message}");
                 return null;
             }
         }
