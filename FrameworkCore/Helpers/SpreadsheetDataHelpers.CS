@@ -17,16 +17,12 @@ namespace FrameworkCore.Helpers
 
             private DataSet GetData(string filePath, bool hasHeaders)
             {
-                using (var stream = File.Open(filePath, FileMode.Open, FileAccess.Read))
+                using var stream = File.Open(filePath, FileMode.Open, FileAccess.Read);
+                using var reader = ExcelReaderFactory.CreateReader(stream);
+                return reader.AsDataSet(new ExcelDataSetConfiguration()
                 {
-                    using (var reader = ExcelReaderFactory.CreateReader(stream))
-                    {
-                        return reader.AsDataSet(new ExcelDataSetConfiguration()
-                        {
-                            ConfigureDataTable = (tableReader) => new ExcelDataTableConfiguration() { UseHeaderRow = hasHeaders }
-                        });
-                    }
-                }
+                    ConfigureDataTable = (tableReader) => new ExcelDataTableConfiguration() { UseHeaderRow = hasHeaders }
+                });
             }
 
             public DataTable GetSheetByName(string tableName)
