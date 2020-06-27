@@ -47,7 +47,6 @@ namespace TestRunner.Steps
         {
             string filePath = "Data" + Path.DirectorySeparatorChar + "CREDENTIALS.XLSX";
             DataTable credentials = new SpreadsheetDataHelpers.Spreadsheet(filePath).GetSheetByName("DATASET");
-            DataColumnCollection cols = credentials.Columns;
 
             List<User> tableData = new List<User>();
 
