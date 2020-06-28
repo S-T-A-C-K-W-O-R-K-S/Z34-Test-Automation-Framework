@@ -32,7 +32,5 @@ namespace ApplicationMap.CommonElements
 
             private IWebElement LinkLoginPage => ParallelTestExecution.Driver.FindElementOrTimeOut(By.CssSelector("a.collapse-item[href*='login']"));
         }
-
-
     }
 }

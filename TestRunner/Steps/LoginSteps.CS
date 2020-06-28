@@ -1,6 +1,7 @@
 ﻿using ApplicationMap.Pages;
 using FrameworkCore.Base;
 using FrameworkCore.Helpers;
+using NUnit.Framework;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -64,7 +65,7 @@ namespace TestRunner.Steps
         [When]
         public void When_I_CHOOSE_TO_REMEMBER_MY_CREDENTIALS()
         {
-            // TODO: Implement This
+            _parallelTestExecution.CurrentPage.AsPage<LoginPage>().ClickRememberMe();
         }
 
         [When]
@@ -76,7 +77,10 @@ namespace TestRunner.Steps
         [Then]
         public void Then_I_SHOULD_BE_AUTHENTICATED_AND_REDIRECTED_TO_THE_DASHBOARD()
         {
-            // TODO: Implement This :: _parallelTestExecution.CurrentPage.AsPage<Dashboard>().AssertLogin();
+            /*
+            Dashboard dashboard = _parallelTestExecution.CurrentPage.AsPage<Dashboard>();
+            Assert.IsTrue(new Dashboard.Navbar.)
+            ??? */
         }
     }
 }

@@ -1,9 +1,6 @@
 ﻿using FrameworkCore.Base;
 using FrameworkCore.Extensions;
-using FrameworkCore.Helpers;
 using OpenQA.Selenium;
-using System.Diagnostics;
-using TechTalk.SpecFlow.Bindings;
 
 namespace ApplicationMap.Pages
 {
