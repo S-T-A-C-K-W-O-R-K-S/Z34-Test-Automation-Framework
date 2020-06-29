@@ -7,7 +7,7 @@ namespace ApplicationMap.Pages
     {
         public Dashboard(ParallelTestExecution parallelTestExecution) : base(parallelTestExecution) { }
 
-        private Navbar Navbar => new Navbar(ParallelTestExecution);
-        private Sidebar Sidebar => new Sidebar(ParallelTestExecution);
+        public Navbar Navbar => new Navbar(ParallelTestExecution);
+        public Sidebar Sidebar => new Sidebar(ParallelTestExecution);
     }
 }

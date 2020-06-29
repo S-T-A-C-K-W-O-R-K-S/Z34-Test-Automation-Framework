@@ -24,16 +24,16 @@ namespace ApplicationMap.CommonElements
 
         public IWebElement DropdownUserLink => ParallelTestExecution.Driver.FindElementOrTimeOut(By.Id("userDropdown"));
         public IWebElement DropdownUserMenu => ParallelTestExecution.Driver.FindElementOrTimeOut(By.CssSelector("div[aria-labelledby='userDropdown']"));
-        public IWebElement LabelUserName => ParallelTestExecution.Driver.FindElementOrTimeOut(By.CssSelector("div[aria-labelledby='userDropdown'] span"));
-        public IWebElement LabelUserAvatar => ParallelTestExecution.Driver.FindElementOrTimeOut(By.CssSelector("div[aria-labelledby='userDropdown'] img"));
+        public IWebElement LabelUserName => ParallelTestExecution.Driver.FindElementOrTimeOut(By.CssSelector("a#userDropdown span"));
+        public IWebElement LabelUserAvatar => ParallelTestExecution.Driver.FindElementOrTimeOut(By.CssSelector("a#userDropdown img"));
 
         public bool UserNameIs(string userName)
         {
-            LogHelpers.WriteToLog(LabelUserName.Text == userName
+            LogHelpers.WriteToLog(LabelUserName.Text.ToUpperInvariant() == userName.ToUpperInvariant()
                 ? $"[EVENT] :: Logged In As '{LabelUserName.Text}'"
                 : $"[ERROR] :: Not Logged In As '{LabelUserName.Text}'");
 
-            return LabelUserName.Text == userName;
+            return LabelUserName.Text.ToUpperInvariant() == userName.ToUpperInvariant();
         }
     }
 }

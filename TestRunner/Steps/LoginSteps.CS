@@ -75,12 +75,15 @@ namespace TestRunner.Steps
         }
 
         [Then]
-        public void Then_I_SHOULD_BE_AUTHENTICATED_AND_REDIRECTED_TO_THE_DASHBOARD()
+        public void Then_I_SHOULD_BE_REDIRECTED_TO_THE_DASHBOARD()
         {
-            /*
-            Dashboard dashboard = _parallelTestExecution.CurrentPage.AsPage<Dashboard>();
-            Assert.IsTrue(new Dashboard.Navbar.)
-            ??? */
+            Assert.AreEqual(_parallelTestExecution.CurrentPage.AsPage<Dashboard>().PageTitle, "SB Admin 2 - Dashboard");
+        }
+
+        [Then(@"I SHOULD BE AUTHENTICATED AS THE USER ""(.*)""")]
+        public void Then_I_SHOULD_BE_AUTHENTICATED_AS_THE_USER_VALERIE_LUNA(string user)
+        {
+            Assert.IsTrue(_parallelTestExecution.CurrentPage.AsPage<Dashboard>().Navbar.UserNameIs(user));
         }
     }
 }
