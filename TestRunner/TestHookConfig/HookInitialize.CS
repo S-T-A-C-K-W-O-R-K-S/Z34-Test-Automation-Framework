@@ -23,7 +23,7 @@ namespace TestRunner.TestHookConfig
         private static ExtentTest _feature;
         private ExtentTest _currentScenario;
 
-        private static AventStack.ExtentReports.ExtentReports _extent;
+        private static ExtentReports _extent;
 
         private readonly ParallelTestExecution _parallelTestExecution;
         private readonly FeatureContext _featureContext;
@@ -46,7 +46,7 @@ namespace TestRunner.TestHookConfig
             reporter.Config.DocumentTitle = run;
             reporter.Config.Theme = Theme.Standard;
 
-            _extent = new AventStack.ExtentReports.ExtentReports();
+            _extent = new ExtentReports();
             _extent.AttachReporter(reporter);
         }
 

@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.SDK">
+<Project Sdk="Microsoft.NET.SDK">
 
   <PropertyGroup>
     <TargetFramework>NETCoreApp3.1</TargetFramework>
@@ -6,7 +6,7 @@
 
   <ItemGroup>
     <PackageReference Include="ExcelDataReader" Version="3.6.0" />
-    <PackageReference Include="ExtentReports.Core" Version="1.0.3" />
+    <PackageReference Include="ExtentReports" Version="4.1.0-beta1" />
     <PackageReference Include="Microsoft.NET.Test.SDK" Version="16.6.1" />
     <PackageReference Include="NUnit" Version="3.12.0" />
     <PackageReference Include="NUnit3TestAdapter" Version="3.16.1" />
