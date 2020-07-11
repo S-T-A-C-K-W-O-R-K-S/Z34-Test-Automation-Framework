@@ -53,6 +53,8 @@ namespace TestRunner.TestHookConfig
             const string config = "LOCAL-FIREFOX";
 
             InitializeConfig(config);
+            
+            _feature = _extent.CreateTest<Feature>(featureContext.FeatureInfo.Title);
 
             LogHelpers.WriteToLog($"[EVENT] :: [{featureContext.FeatureInfo.Title.ToUpper()}] :: Configuration Initialized :: {config}");
         }
@@ -63,8 +65,7 @@ namespace TestRunner.TestHookConfig
             OpenBrowser(Settings.BrowserType);
 
             Settings.DatabaseConnection = Settings.DatabaseConnection.DBConnect(Settings.ConnectionString);
-
-            _feature = _extent.CreateTest<Feature>(_featureContext.FeatureInfo.Title);
+            
             _currentScenario = _feature.CreateNode<Scenario>(_scenarioContext.ScenarioInfo.Title);
 
             LogHelpers.WriteToLog($"[START] :: [{_featureContext.FeatureInfo.Title.ToUpper()}] :: {_scenarioContext.ScenarioInfo.Title}");
