@@ -1,9 +1,5 @@
 using System;
 using AventStack.ExtentReports;
-
-// Currently Using The Unofficial ExtentReports.Core While ExtentReports Adds Support For .NET Core
-// TODO: Revert To The Official ExtentReports Once Support For .NET Core Has Been Added
-
 using AventStack.ExtentReports.Gherkin.Model;
 using AventStack.ExtentReports.Reporter;
 using AventStack.ExtentReports.Reporter.Configuration;
@@ -109,22 +105,24 @@ namespace TestRunner.TestHookConfig
             {
                 LogHelpers.WriteToLog($"[ERROR] :: Current Scenario Error: {_scenarioContext.TestError.Message}");
 
+                var mediaEntity = _parallelTestExecution.CaptureScreenshotAndReturnModel(_scenarioContext.ScenarioInfo.Title.Trim());
+
                 switch (stepType)
                 {
                     case "Given":
-                        _currentScenario.CreateNode<Given>(_scenarioContext.StepContext.StepInfo.Text).Fail(_scenarioContext.TestError.StackTrace);
+                        _currentScenario.CreateNode<Given>(_scenarioContext.StepContext.StepInfo.Text).Fail(_scenarioContext.TestError.StackTrace, mediaEntity);
                         break;
 
                     case "When":
-                        _currentScenario.CreateNode<When>(_scenarioContext.StepContext.StepInfo.Text).Fail(_scenarioContext.TestError.StackTrace);
+                        _currentScenario.CreateNode<When>(_scenarioContext.StepContext.StepInfo.Text).Fail(_scenarioContext.TestError.StackTrace, mediaEntity);
                         break;
 
                     case "Then":
-                        _currentScenario.CreateNode<Then>(_scenarioContext.StepContext.StepInfo.Text).Fail(_scenarioContext.TestError.StackTrace);
+                        _currentScenario.CreateNode<Then>(_scenarioContext.StepContext.StepInfo.Text).Fail(_scenarioContext.TestError.StackTrace, mediaEntity);
                         break;
 
                     case "And":
-                        _currentScenario.CreateNode<And>(_scenarioContext.StepContext.StepInfo.Text).Fail(_scenarioContext.TestError.StackTrace);
+                        _currentScenario.CreateNode<And>(_scenarioContext.StepContext.StepInfo.Text).Fail(_scenarioContext.TestError.StackTrace, mediaEntity);
                         break;
 
                     default:
