@@ -6,6 +6,7 @@ using AventStack.ExtentReports.Reporter.Configuration;
 using FrameworkCore.Base;
 using FrameworkCore.Config;
 using FrameworkCore.Helpers;
+using Microsoft.Data.Sqlite;
 using NUnit.Framework;
 using TechTalk.SpecFlow;
 
@@ -62,9 +63,12 @@ namespace TestRunner.TestHookConfig
         [BeforeScenario]
         public void BeforeScenario()
         {
+            // TODO: Don't Open A Browser During Non-Browser Scenarios
             OpenBrowser(Settings.BrowserType);
 
-            Settings.DatabaseConnection = Settings.DatabaseConnection.DBConnect(Settings.ConnectionString);
+            Settings.DatabaseConnection = new SqliteConnection(Settings.ConnectionString);
+            Settings.DatabaseConnection.Open();
+            Console.WriteLine(Settings.DatabaseConnection.State);
             
             _currentScenario = _feature.CreateNode<Scenario>(_scenarioContext.ScenarioInfo.Title);
 
@@ -162,7 +166,6 @@ namespace TestRunner.TestHookConfig
         [AfterScenario]
         public void AfterScenario()
         {
-            _parallelTestExecution.Driver.Close();
             _parallelTestExecution.Driver.Quit();
 
             LogHelpers.WriteToLog($"[CLOSE] :: [{_featureContext.FeatureInfo.Title.ToUpper()}] :: {_scenarioContext.ScenarioInfo.Title}");
@@ -172,6 +175,7 @@ namespace TestRunner.TestHookConfig
         public static void AfterTestRun()
         {
             _extent.Flush();
+            Settings.DatabaseConnection.Close();
 
             LogHelpers.WriteToLog("[FINAL] :: Test Run Results :: TODO: ADD LINK TO RESULTS FILE");
         }
