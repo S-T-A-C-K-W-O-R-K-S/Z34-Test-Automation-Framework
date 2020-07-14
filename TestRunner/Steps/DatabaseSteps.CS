@@ -10,7 +10,7 @@ namespace TestRunner.Steps
     {
         public DatabaseSteps(ParallelTestExecution parallelTestExecution) : base(parallelTestExecution) { }
 
-        public bool TableExists { get; set; }
+        private bool TableExists { get; set; }
 
         [Given(@"A ""(.*)"" TABLE ALREADY EXISTS IN THE DATABASE")]
         public void Given_A_TABLE_ALREADY_EXISTS_IN_THE_DATABASE(string usersTable)
@@ -44,7 +44,7 @@ namespace TestRunner.Steps
 
                 command.CommandText = $"SELECT * FROM {usersTable}";
 
-                Assert.AreEqual(command.ExecuteReader().HasRows ? -1 : 0, 0);
+                Assert.IsFalse(command.ExecuteReader().HasRows);
             }
         }
 
