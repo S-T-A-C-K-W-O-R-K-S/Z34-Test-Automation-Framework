@@ -37,7 +37,7 @@ namespace TestRunner.Steps
         {
             List<User> tableData = (List<User>)credentialsTable.CreateSet<User>();
 
-            var random = new Random();
+            Random random = new Random();
             User randomUser = tableData[random.Next(tableData.Count - 1)];
 
             _parallelTestExecution.CurrentPage.AsPage<LoginPage>().EnterCredentials(randomUser.Email, randomUser.Password);
@@ -56,7 +56,7 @@ namespace TestRunner.Steps
                 tableData.Add(new User { Email = row.Field<string>("EMAIL"), Password = row.Field<string>("PASSWORD") });
             }
 
-            var random = new Random();
+            Random random = new Random();
             User randomUser = tableData[random.Next(tableData.Count - 1)];
 
             _parallelTestExecution.CurrentPage.AsPage<LoginPage>().EnterCredentials(randomUser.Email, randomUser.Password);

@@ -110,7 +110,7 @@ namespace TestRunner.TestHookConfig
             {
                 LogHelpers.WriteToLog($"[ERROR] :: Current Scenario Error: {_scenarioContext.TestError.Message}");
 
-                var mediaEntity = _parallelTestExecution.CaptureScreenshotAndReturnModel(_scenarioContext.ScenarioInfo.Title.Trim());
+                MediaEntityModelProvider mediaEntity = _parallelTestExecution.CaptureScreenshotAndReturnModel(_scenarioContext.ScenarioInfo.Title.Trim());
 
                 switch (stepType)
                 {
