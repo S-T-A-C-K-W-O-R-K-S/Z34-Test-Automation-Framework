@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using AventStack.ExtentReports;
 using AventStack.ExtentReports.Gherkin.Model;
 using AventStack.ExtentReports.Reporter;
@@ -63,8 +64,8 @@ namespace TestRunner.TestHookConfig
         [BeforeScenario]
         public void BeforeScenario()
         {
-            // TODO: Don't Open A Browser During Non-Browser Scenarios
-            OpenBrowser(Settings.BrowserType);
+            if (_featureContext.FeatureInfo.Tags.Contains("ui"))
+                OpenBrowser(Settings.BrowserType);
 
             Settings.DatabaseConnection = new SqliteConnection(Settings.ConnectionString);
             Settings.DatabaseConnection.Open();
@@ -166,7 +167,8 @@ namespace TestRunner.TestHookConfig
         [AfterScenario]
         public void AfterScenario()
         {
-            _parallelTestExecution.Driver.Quit();
+            if (_parallelTestExecution.Driver is { })  /* equivalent to _parallelTestExecution.Driver != null, but using C# 8.0 property pattern matching syntax */
+                _parallelTestExecution.Driver.Quit();
 
             LogHelpers.WriteToLog($"[CLOSE] :: [{_featureContext.FeatureInfo.Title.ToUpper()}] :: {_scenarioContext.ScenarioInfo.Title}");
         }

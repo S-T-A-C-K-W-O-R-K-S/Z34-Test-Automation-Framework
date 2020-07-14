@@ -1,4 +1,5 @@
-﻿Feature: Database
+﻿@backend
+Feature: Database
 	AS A DATABASE ADMINISTRATOR
 	I SHOULD BE ABLE TO WRITE TO AND READ FROM THE DATABASE
 
