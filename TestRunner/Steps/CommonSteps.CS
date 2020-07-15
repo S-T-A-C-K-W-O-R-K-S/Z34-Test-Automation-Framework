@@ -24,5 +24,13 @@ namespace TestRunner.Steps
             StepExtensions.NavigateToPage("login.html");
             _parallelTestExecution.CurrentPage = new LoginPage(_parallelTestExecution);
         }
+
+        [Given]
+        // For The Purposes Of This Example Implementation, The Login Process Will Be Skipped
+        public void Given_I_AM_LOGGED_IN_AND_ON_THE_LANDING_PAGE()
+        {
+            StepExtensions.NavigateToPage("index.html");
+            _parallelTestExecution.CurrentPage = new Dashboard(_parallelTestExecution);
+        }
     }
 }

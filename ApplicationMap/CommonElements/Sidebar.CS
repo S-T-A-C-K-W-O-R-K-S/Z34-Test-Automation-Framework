@@ -14,6 +14,8 @@ namespace ApplicationMap.CommonElements
         }
 
         private IWebElement LinkPagesAddon => ParallelTestExecution.Driver.FindElementOrTimeOut(By.CssSelector("a.nav-link[data-target='#collapsePages']"));
+        public IWebElement LinkCharts => ParallelTestExecution.Driver.FindElementOrTimeOut(By.CssSelector("a.nav-link[href*='charts']"));
+        public IWebElement LinkTables => ParallelTestExecution.Driver.FindElementOrTimeOut(By.CssSelector("a.nav-link[href*='tables']"));
 
         public bool PagesAddonIsCollapsed()
         {
