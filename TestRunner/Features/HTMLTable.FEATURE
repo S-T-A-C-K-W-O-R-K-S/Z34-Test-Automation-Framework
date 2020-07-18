@@ -12,11 +12,11 @@ Feature: HTML Table
 	@database
 	Scenario Template: Confirm Staff Details From The HTML Data Table
 		Given   I NAVIGATE TO THE TABLES PAGE
-		And     CONFIRM THAT THE TABLE IS DISPLAYED ON THE PAGE
-		When    I NAVIGATE TO TABLE <TAB>
-		Then    STAFF MEMBER <NAME> SHOULD HAVE <POSITION>
+		And     I CONFIRM THAT THE TABLE IS DISPLAYED ON THE PAGE
+		When    I NAVIGATE TO THE TABLE <TAB>
+		Then    STAFF MEMBER "<NAME>" SHOULD HAVE "<POSITION>"
 
-	Examples:
+	Scenarios:
 		| TAB | NAME               | POSITION               |
 		| 1   | Brielle Williamson | Integration Specialist |
 		| 3   | Jenette Caldwell   | Development Lead       |
