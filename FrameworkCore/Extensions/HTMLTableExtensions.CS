@@ -34,7 +34,8 @@ namespace FrameworkCore.Extensions
             HTMLTable HTMLTable = new HTMLTable();
 
             var sections = from table in document.DocumentNode.SelectNodes(tableXPath).Cast<HtmlNode>()
-                           select table.SelectNodes("thead|tbody|tfoot").Cast<HtmlNode>();
+                           from section in table.SelectNodes("thead|tbody|tfoot").Cast<HtmlNode>()
+                           select section;
             /*
             for (var section in sections)
 
@@ -48,6 +49,32 @@ namespace FrameworkCore.Extensions
                 var bar = cell.CellText;
             }
                         */
+
+            foreach (var section in sections)
+            {
+                var rows = from row in section.SelectNodes("tr").Cast<HtmlNode>()
+                           select row;
+
+                foreach (var row in rows)
+                {
+                    var cells = from cell in row.SelectNodes("th|td").Cast<HtmlNode>()
+                                select cell;
+
+                    var sdf = cells;
+                }
+
+                switch (section.Name)
+                {
+                    case "thead":
+                        break;
+
+                    case "tbody":
+                        break;
+
+                    case "tfoot":
+                        break;
+                }
+            }
 
             return HTMLTable;
         }

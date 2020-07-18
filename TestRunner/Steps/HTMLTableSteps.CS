@@ -1,5 +1,6 @@
 ﻿using ApplicationMap.Pages;
 using FrameworkCore.Base;
+using NUnit.Framework;
 using TechTalk.SpecFlow;
 
 namespace TestRunner.Steps
@@ -23,7 +24,8 @@ namespace TestRunner.Steps
         {
             StepExtensions.NavigateToPage("tables.html");
             _parallelTestExecution.CurrentPage = new TablesPage(_parallelTestExecution);
-            _parallelTestExecution.CurrentPage.AsPage<TablesPage>().QWE();
+
+            _parallelTestExecution.CurrentPage.AsPage<TablesPage>().Table();
         }
 
         [Given]
