@@ -9,13 +9,14 @@ Feature: HTML Table
 		Then    I SHOULD BE AUTHENTICATED AS THE USER "VALERIE LUNA"
 
 
-	@database
+	@table
 	Scenario Template: Confirm Staff Details From The HTML Data Table
 		Given   I NAVIGATE TO THE TABLES PAGE
 		And     I CONFIRM THAT THE TABLE IS DISPLAYED ON THE PAGE
 		When    I NAVIGATE TO THE TABLE <TAB>
 		Then    STAFF MEMBER "<NAME>" SHOULD HAVE "<POSITION>"
 
+	@table
 	Scenarios:
 		| TAB | NAME               | POSITION               |
 		| 1   | Brielle Williamson | Integration Specialist |
