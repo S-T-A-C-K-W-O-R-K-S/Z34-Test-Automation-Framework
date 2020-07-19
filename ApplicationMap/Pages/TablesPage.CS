@@ -12,10 +12,5 @@ namespace ApplicationMap.Pages
 
         private HTMLTable TableStaffData => WebElementExtensions.ParseHTMLTableByXPath(this.PageSource, "//table");
         private ReadOnlyCollection<IWebElement> ListPagination => ParallelTestExecution.Driver.FindElementsOrTimeOut(By.CssSelector("ul.pagination a.page-link"));
-
-        public HTMLTable Table()
-        {
-            return TableStaffData;
-        }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using HtmlAgilityPack;
+using System.Collections.Generic;
 
 namespace FrameworkCore.Models
 {
@@ -6,19 +7,30 @@ namespace FrameworkCore.Models
     {
         public Row Header { get; set; }
         public List<Row> Body { get; set; }
-        public Row Footer { get; set; }
+
+        public HTMLTable()
+        {
+            Body = new List<Row>();
+        }
     }
 
     public class Row
     {
-        public enum Type { Header, Body, Footer }
+        public RowType Type { get; set; }
         public int Index { get; set; }
         public List<Cell> Cells { get; set; }
+
+        public Row()
+        {
+            Cells = new List<Cell>();
+        }
     }
 
     public class Cell
     {
         public (int Row, int Column) Index { get; set; }
-        public string Text { get; set; }
+        public HtmlNode Self { get; set; }
     }
+
+    public enum RowType { Header, Body }
 }
