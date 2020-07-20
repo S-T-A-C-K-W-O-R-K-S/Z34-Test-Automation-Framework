@@ -29,6 +29,7 @@ namespace FrameworkCore.Models
     public class Cell
     {
         public (int Row, int Column) Index { get; set; }
+        public int ColumnIndex { get; set; }
         public HtmlNode Self { get; set; }
     }
 

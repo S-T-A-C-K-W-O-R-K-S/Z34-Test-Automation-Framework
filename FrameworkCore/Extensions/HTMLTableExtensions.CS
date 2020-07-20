@@ -45,7 +45,7 @@ namespace FrameworkCore.Extensions
                         var currentCell = cells.ToList()[columnIndex];
 
                         // Cells Are 1-Indexed (The First Cell Will Have Index (1, 1), For Consistency With Dataset Dimensions)
-                        row.Cells.Add(new Cell() { Index = (rowIndex + 1, columnIndex + 1), Self = currentCell });
+                        row.Cells.Add(new Cell() { Index = (rowIndex + 1, columnIndex + 1), ColumnIndex = columnIndex + 1, Self = currentCell });
                     }
 
                     // Set The Row Type And Append The Row To The Correct Table Section
