@@ -17,6 +17,8 @@ namespace FrameworkCore.Helpers
 
             private DataSet GetData(string filePath, bool hasHeaders)
             {
+                System.Text.Encoding.RegisterProvider(System.Text.CodePagesEncodingProvider.Instance);
+
                 using FileStream stream = File.Open(filePath, FileMode.Open, FileAccess.Read);
                 using IExcelDataReader reader = ExcelReaderFactory.CreateReader(stream);
                 return reader.AsDataSet(new ExcelDataSetConfiguration()
