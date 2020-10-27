@@ -13,8 +13,6 @@ namespace TestEngine.FixtureConfiguration
                 .UseFirefox()
                 .WithFixOfCommandExecutionDelay()
                 .WithLocalDriverPath()
-                .UseBaseUrl("https://weboas.is/")
-                .UseAllNUnitFeatures()
                 .Build();
         }
 

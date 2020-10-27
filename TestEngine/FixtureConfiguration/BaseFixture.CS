@@ -14,6 +14,8 @@ namespace TestEngine.FixtureConfiguration
         public void GlobalSetUp()
         {
             AtataContext.GlobalConfiguration
+                .UseBaseUrl("https://weboas.is/")
+                .UseAllNUnitFeatures()
                 .AddLogConsumer(new ExtentLogConsumer())
                 .AddScreenshotConsumer(new ExtentScreenshotConsumer());
         }
