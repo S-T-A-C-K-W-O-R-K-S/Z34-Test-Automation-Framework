@@ -2,10 +2,13 @@
 using FrameworkCore.EventLogConfiguration;
 using NUnit.Framework;
 
+[assembly: LevelOfParallelism(5)]
+[assembly: Parallelizable(ParallelScope.Children)]
+
 namespace TestEngine.FixtureConfiguration
 {
     [SetUpFixture]
-    public class SetUpFixture
+    public class BaseFixture
     {
         [OneTimeSetUp]
         public void GlobalSetUp()

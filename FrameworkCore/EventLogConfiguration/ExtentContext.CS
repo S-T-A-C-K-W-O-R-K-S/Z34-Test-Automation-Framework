@@ -7,29 +7,29 @@ using Atata;
 using AventStack.ExtentReports;
 using AventStack.ExtentReports.Core;
 using AventStack.ExtentReports.Reporter;
-using ExtReports = AventStack.ExtentReports.ExtentReports;
+using Reports = AventStack.ExtentReports.ExtentReports;
 
 namespace FrameworkCore.EventLogConfiguration
 {
     public static class ExtentContext
     {
-        private static readonly Lazy<ExtReports> lazyReports =
-            new Lazy<ExtReports>(CreateAndInitReportsInstance);
+        private static readonly Lazy<Reports> LazyReports =
+            new Lazy<Reports>(CreateAndInitReportsInstance);
 
-        private static readonly ConcurrentDictionary<AtataContext, ExtentTestData> extentTestDataMap =
+        private static readonly ConcurrentDictionary<AtataContext, ExtentTestData> ExtentTestDataMap =
             new ConcurrentDictionary<AtataContext, ExtentTestData>();
 
         public static string WorkingFolder { get; set; } =
-            Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Report");
+            Path.Combine(AppDomain.CurrentDomain.BaseDirectory ?? string.Empty, "Report");
 
         public static string ReportTitle { get; set; } =
             "UI Tests Report";
 
-        public static ExtReports Reports =>
-            lazyReports.Value;
+        public static Reports Reports =>
+            LazyReports.Value;
 
         private static ExtentTestData CurrentTestData =>
-            extentTestDataMap.GetOrAdd(AtataContext.Current, StartExtentTest);
+            ExtentTestDataMap.GetOrAdd(AtataContext.Current, StartExtentTest);
 
         public static ExtentTest CurrentTest =>
             CurrentTestData.Test;
@@ -40,9 +40,9 @@ namespace FrameworkCore.EventLogConfiguration
             set => CurrentTestData.LastLogEvent = value;
         }
 
-        private static ExtReports CreateAndInitReportsInstance()
+        private static Reports CreateAndInitReportsInstance()
         {
-            var reports = new ExtReports();
+            var reports = new Reports();
 
             if (Directory.Exists(WorkingFolder))
                 Directory.Delete(WorkingFolder, true);

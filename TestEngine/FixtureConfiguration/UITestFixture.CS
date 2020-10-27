@@ -4,7 +4,7 @@ using NUnit.Framework;
 namespace TestEngine.FixtureConfiguration
 {
     [TestFixture]
-    public class UITestFixture
+    public class UITestFixture : BaseFixture
     {
         [SetUp]
         public void SetUp()
