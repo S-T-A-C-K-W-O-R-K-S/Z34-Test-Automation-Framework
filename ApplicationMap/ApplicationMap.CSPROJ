@@ -4,4 +4,8 @@
 		<TargetFramework>NetCoreApp3.1</TargetFramework>
 	</PropertyGroup>
 
+	<ItemGroup>
+		<PackageReference Include="Atata" Version="1.7.0" />
+	</ItemGroup>
+
 </Project>

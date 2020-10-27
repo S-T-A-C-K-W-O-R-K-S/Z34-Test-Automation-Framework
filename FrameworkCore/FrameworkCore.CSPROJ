@@ -1,7 +1,13 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
 		<TargetFramework>NetCoreApp3.1</TargetFramework>
 	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Atata" Version="1.7.0" />
+		<PackageReference Include="ExtentReports.Core" Version="1.0.3" />
+		<PackageReference Include="NUnit" Version="3.12.0" />
+	</ItemGroup>
 
 </Project>
