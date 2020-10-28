@@ -1,13 +1,13 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.SDK">
 
 	<PropertyGroup>
-		<TargetFramework>NetCoreApp3.1</TargetFramework>
+		<TargetFramework>NETCoreApp3.1</TargetFramework>
 	</PropertyGroup>
 
 	<ItemGroup>
 		<PackageReference Include="Atata" Version="1.7.0" />
 		<PackageReference Include="Atata.WebDriverExtras" Version="1.3.0" />
-		<PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.7.1" />
+		<PackageReference Include="Microsoft.NET.Test.SDK" Version="16.7.1" />
 		<PackageReference Include="NUnit" Version="3.12.0" />
 		<PackageReference Include="NUnit3TestAdapter" Version="3.17.0" />
 		<PackageReference Include="Selenium.WebDriver" Version="3.141.0" />
