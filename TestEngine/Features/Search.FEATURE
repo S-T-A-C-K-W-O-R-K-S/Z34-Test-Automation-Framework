@@ -5,14 +5,14 @@ Feature: Search
 
 
     @search
-    Scenario Template: Search For Term(s)
+    Scenario Template: Search For Terms
         Given   I NAVIGATE TO THE DASHBOARD
         And     I CONFIRM THAT THE PAGE TITLE CONTAINS "WebOasis"
         When    I ENTER THE TEXT "<TERM>" IN THE SEARCH BAR
         Then    THE TEXT IN THE SEARCH BAR SHOULD BE "<TERM>"
 
-        @values
+        @terms
         Scenarios:
-        | TERM |
-        | FOO |
-        | BAR |
+        | TERM  |
+        | FOO   |
+        | BAR   |
