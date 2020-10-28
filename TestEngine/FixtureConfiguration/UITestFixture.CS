@@ -1,13 +1,13 @@
 ﻿using Atata;
-using NUnit.Framework;
+using TechTalk.SpecFlow;
 
 namespace TestEngine.FixtureConfiguration
 {
-    [TestFixture]
-    public class UITestFixture : BaseFixture
+    [Binding]
+    public sealed class UITestFixture : BaseFixture
     {
-        [SetUp]
-        public void SetUp()
+        [BeforeScenario]
+        public static void SetUpScenario()
         {
             AtataContext.Configure()
                 .UseFirefox()
@@ -16,8 +16,8 @@ namespace TestEngine.FixtureConfiguration
                 .Build();
         }
 
-        [TearDown]
-        public void TearDown()
+        [AfterScenario]
+        public static void TearDownScenario()
         {
             AtataContext.Current?.CleanUp();
         }
