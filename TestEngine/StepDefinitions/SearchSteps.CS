@@ -4,10 +4,10 @@ using TechTalk.SpecFlow;
 
 namespace TestEngine.StepDefinitions
 {
-    public sealed class SearchSteps : BaseSteps
+    public sealed class SearchSteps : BaseStep
     {
-        [When(@"I SEARCH FOR THE TEXT ""(.*)""")]
-        public void When_I_SEARCH_FOR_THE_TEXT_TERM(string term)
+        [When(@"I ENTER THE TEXT ""(.*)"" IN THE SEARCH BAR")]
+        public void When_I_ENTER_THE_TEXT_TERM_IN_THE_SEARCH_BAR(string term)
         {
             On<SearchPage>().SearchBar.Set(term);
         }

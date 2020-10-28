@@ -4,7 +4,7 @@ using TechTalk.SpecFlow;
 namespace TestEngine.StepDefinitions
 {
     [Binding]
-    public abstract class BaseSteps : Steps
+    public abstract class BaseStep : Steps
     {
         protected TPageObject On<TPageObject>() where TPageObject : PageObject<TPageObject>
         {

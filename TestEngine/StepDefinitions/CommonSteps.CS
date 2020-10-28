@@ -4,7 +4,7 @@ using TechTalk.SpecFlow;
 
 namespace TestEngine.StepDefinitions
 {
-    public sealed class CommonSteps : BaseSteps
+    public sealed class CommonSteps : BaseStep
     {
         [Given]
         public void Given_I_NAVIGATE_TO_THE_DASHBOARD()

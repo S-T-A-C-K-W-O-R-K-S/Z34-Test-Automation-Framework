@@ -8,7 +8,7 @@ Feature: Search
     Scenario Template: Search For Term(s)
         Given   I NAVIGATE TO THE DASHBOARD
         And     I CONFIRM THAT THE PAGE TITLE CONTAINS "WebOasis"
-        When    I SEARCH FOR THE TEXT "<TERM>"
+        When    I ENTER THE TEXT "<TERM>" IN THE SEARCH BAR
         Then    THE TEXT IN THE SEARCH BAR SHOULD BE "<TERM>"
 
         @values
