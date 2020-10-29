@@ -45,9 +45,11 @@ namespace TestEngine.StepDefinitions
         [Then]
         public void THEN_I_TRIGGER_A_JAVASCRIPT_ALERT_WITH_A_MESSAGE()
         {
-            AtataContext.Current.Driver.ExecuteScript("alert('Hello human! I am an alert box!!')");
+            On<HomePage>()
+                .HomePageImage.Should.BeVisible()
+                .Report.Screenshot();
 
-            On<HomePage>().Report.Screenshot();
+            AtataContext.Current.Driver.ExecuteScript("alert('Hello human! I am an alert box!!')");
         }
     }
 }
