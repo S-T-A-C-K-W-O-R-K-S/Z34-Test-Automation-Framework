@@ -5,7 +5,7 @@ Feature: Login
     AND LAND ON THE HOME PAGE
 
 
-    @search
+    @login
     Scenario: Log Into Query Hub
         Given   I NAVIGATE TO THE LOGIN PAGE
         And     I CONFIRM THAT THE PAGE TITLE IS "Query Hub"
