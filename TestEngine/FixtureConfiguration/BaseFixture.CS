@@ -19,7 +19,6 @@ namespace TestEngine.FixtureConfiguration
         public static void SetUpTestRun()
         {
             AtataContext.GlobalConfiguration
-                .UseBaseUrl("https://weboas.is/")
                 .UseCulture("en-GB")
                 .UseAllNUnitFeatures()
                 .AddLogConsumer(new ExtentLogConsumer())
