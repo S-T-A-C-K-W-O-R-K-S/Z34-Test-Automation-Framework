@@ -1,19 +1,22 @@
-﻿using FrameworkCore.Configuration;
+﻿using System.Threading.Tasks;
+using FrameworkCore.Configuration;
 using PlaywrightSharp;
-using System.Threading.Tasks;
 
 namespace ApplicationMap.Pages.QueryHub
 {
     public sealed class LoginPage
     {
+        public readonly IPage Self;
         public string URL = Z34.Host.QueryHub + "qh/qh-app/#/auth/login";
 
-        public readonly IPage Self;
-        public LoginPage(IPage page) => Self = page;
+        public LoginPage(IPage page)
+        {
+            Self = page;
+        }
 
-		private string UsernameInput => "#username";
-		private string PasswordInput => "#password";
-		private string LoginButton => "input:text('Sign In')";
+        private string UsernameInput => "#username";
+        private string PasswordInput => "#password";
+        private string LoginButton => "input:text('Sign In')";
 
         public async Task LogIn(string user, string pass)
         {

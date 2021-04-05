@@ -10,13 +10,6 @@ namespace FrameworkCore.Helpers
     {
         public class PlaywrightHTMLTableProcessor
         {
-            private IPage PlaywrightPage { get; set; }
-            private string TableSelector { get; set; }
-            private string HeaderRowSelector { get; set; }
-            private string HeaderCellSelector { get; set; }
-            private string BodyRowSelector { get; set; }
-            private string BodyCellSelector { get; set; }
-
             public PlaywrightHTMLTableProcessor(PlaywrightHTMLTableProcessorOptions options)
             {
                 PlaywrightPage = options.PlaywrightPage;
@@ -27,19 +20,31 @@ namespace FrameworkCore.Helpers
                 BodyCellSelector = options.BodyCellSelector;
             }
 
+            private IPage PlaywrightPage { get; }
+            private string TableSelector { get; }
+            private string HeaderRowSelector { get; }
+            private string HeaderCellSelector { get; }
+            private string BodyRowSelector { get; }
+            private string BodyCellSelector { get; }
+
             public async Task<DataTable> ProcessHTMLTable()
-                => await ParseHTMLTable(await GetHTMLTable());
+            {
+                return await ParseHTMLTable(await GetHTMLTable());
+            }
 
 
             private async Task<IElementHandle> GetHTMLTable()
-                => await PlaywrightPage.QuerySelectorAsync(TableSelector);
+            {
+                return await PlaywrightPage.QuerySelectorAsync(TableSelector);
+            }
 
 
             private async Task<DataTable> ParseHTMLTable(IElementHandle table)
             {
-				var dataTable = new DataTable { Locale = new CultureInfo("en-GB") };
+                var dataTable = new DataTable {Locale = new CultureInfo("en-GB")};
 
-				foreach (var cell in await (await table.QuerySelectorAsync(HeaderRowSelector)).QuerySelectorAllAsync(HeaderCellSelector))
+                foreach (var cell in await (await table.QuerySelectorAsync(HeaderRowSelector)).QuerySelectorAllAsync(
+                    HeaderCellSelector))
                     dataTable.Columns.Add((await cell.GetInnerTextAsync()).Trim());
 
                 foreach (var row in await table.QuerySelectorAllAsync(BodyRowSelector))
@@ -52,15 +57,9 @@ namespace FrameworkCore.Helpers
 
         public class PlaywrightHTMLTableProcessorOptions
         {
-            public IPage PlaywrightPage { get; set; }
-            public string TableSelector { get; set; }
-            public string HeaderRowSelector { get; set; }
-            public string HeaderCellSelector { get; set; }
-            public string BodyRowSelector { get; set; }
-            public string BodyCellSelector { get; set; }
-
             public PlaywrightHTMLTableProcessorOptions
-                (IPage playwrightPage, string tableSelector, string headerRowSelector, string headerCellSelector, string bodyRowSelector, string bodyCellSelector)
+            (IPage playwrightPage, string tableSelector, string headerRowSelector, string headerCellSelector,
+                string bodyRowSelector, string bodyCellSelector)
             {
                 PlaywrightPage = playwrightPage;
                 TableSelector = tableSelector;
@@ -69,6 +68,13 @@ namespace FrameworkCore.Helpers
                 BodyRowSelector = bodyRowSelector;
                 BodyCellSelector = bodyCellSelector;
             }
+
+            public IPage PlaywrightPage { get; set; }
+            public string TableSelector { get; set; }
+            public string HeaderRowSelector { get; set; }
+            public string HeaderCellSelector { get; set; }
+            public string BodyRowSelector { get; set; }
+            public string BodyCellSelector { get; set; }
         }
     }
 }

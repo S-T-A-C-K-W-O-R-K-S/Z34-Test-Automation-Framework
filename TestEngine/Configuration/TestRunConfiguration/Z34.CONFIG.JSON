@@ -1,63 +1,63 @@
 {
-	"Z34 Default": {
-		"Host": "0.0.0.0",
-		"TestResultsDir": null,
-		"TestRunBrowser": "chromium",
-		"TestRunLaunchOptions": {
-			"Headless": false,
-			"Devtools": true,
-			"SlowMo": 0
-		},
-		"ConnectionString": "Data Source=Z34.SQLITE; Cache=Shared"
-	},
-	"Jenkins Pipeline": {
-		"Host": "x.x.x.1",
-		"TestResultsDir": null,
-		"TestRunBrowser": "chromium",
-		"TestRunLaunchOptions": {
-			"Headless": true
-		}
-	},
-	"191 Headless Proxy": {
-		"Host": "x.x.x.1",
-		"TestResultsDir": null,
-		"TestRunBrowser": "chromium",
-		"TestRunLaunchOptions": {
-			"Headless": true,
-			"Proxy": {
-				"Server": "x.x.x.0:0000",
-				"Bypass": "x.x.x.1:1111"
-			}
-		}
-	},
-	"192 Headless Proxy": {
-		"Host": "x.x.x.2",
-		"TestResultsDir": null,
-		"TestRunBrowser": "chromium",
-		"TestRunLaunchOptions": {
-			"Headless": true,
-			"Proxy": {
-				"Server": "x.x.x.0:0000",
-				"Bypass": "x.x.x.2:1111"
-			}
-		}
-	},
-	"191 Headful": {
-		"Host": "x.x.x.1",
-		"TestResultsDir": null,
-		"TestRunBrowser": "chromium",
-		"TestRunLaunchOptions": {
-			"Headless": false,
-			"Devtools": true
-		}
-	},
-	"192 Headful": {
-		"Host": "x.x.x.2",
-		"TestResultsDir": null,
-		"TestRunBrowser": "chromium",
-		"TestRunLaunchOptions": {
-			"Headless": false,
-			"Devtools": true
-		}
-	}
+  "Z34 Default": {
+    "Host": "0.0.0.0",
+    "TestResultsDir": null,
+    "TestRunBrowser": "chromium",
+    "TestRunLaunchOptions": {
+      "Headless": false,
+      "Devtools": true,
+      "SlowMo": 0
+    },
+    "ConnectionString": "Data Source=Z34.SQLITE; Cache=Shared"
+  },
+  "Jenkins Pipeline": {
+    "Host": "x.x.x.1",
+    "TestResultsDir": null,
+    "TestRunBrowser": "chromium",
+    "TestRunLaunchOptions": {
+      "Headless": true
+    }
+  },
+  "191 Headless Proxy": {
+    "Host": "x.x.x.1",
+    "TestResultsDir": null,
+    "TestRunBrowser": "chromium",
+    "TestRunLaunchOptions": {
+      "Headless": true,
+      "Proxy": {
+        "Server": "x.x.x.0:0000",
+        "Bypass": "x.x.x.1:1111"
+      }
+    }
+  },
+  "192 Headless Proxy": {
+    "Host": "x.x.x.2",
+    "TestResultsDir": null,
+    "TestRunBrowser": "chromium",
+    "TestRunLaunchOptions": {
+      "Headless": true,
+      "Proxy": {
+        "Server": "x.x.x.0:0000",
+        "Bypass": "x.x.x.2:1111"
+      }
+    }
+  },
+  "191 Headful": {
+    "Host": "x.x.x.1",
+    "TestResultsDir": null,
+    "TestRunBrowser": "chromium",
+    "TestRunLaunchOptions": {
+      "Headless": false,
+      "Devtools": true
+    }
+  },
+  "192 Headful": {
+    "Host": "x.x.x.2",
+    "TestResultsDir": null,
+    "TestRunBrowser": "chromium",
+    "TestRunLaunchOptions": {
+      "Headless": false,
+      "Devtools": true
+    }
+  }
 }

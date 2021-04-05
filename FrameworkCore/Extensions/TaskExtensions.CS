@@ -4,15 +4,20 @@ using System.Threading.Tasks;
 
 namespace FrameworkCore.Extensions
 {
-	public static class TaskExtensions
-	{
+    public static class TaskExtensions
+    {
         public static async Task<TResult> TimeoutAfter<TResult>(this Task<TResult> task, TimeSpan timeout)
         {
-			using var timeoutCancellationTokenSource = new CancellationTokenSource();
-			var completedTask = await Task.WhenAny(task, Task.Delay(timeout, timeoutCancellationTokenSource.Token));
+            using var timeoutCancellationTokenSource = new CancellationTokenSource();
+            var completedTask = await Task.WhenAny(task, Task.Delay(timeout, timeoutCancellationTokenSource.Token));
 
-			if (completedTask.Equals(task)) { timeoutCancellationTokenSource.Cancel(); return await task; }
-			else { throw new TimeoutException(); }
-		}
+            if (completedTask.Equals(task))
+            {
+                timeoutCancellationTokenSource.Cancel();
+                return await task;
+            }
+
+            throw new TimeoutException();
+        }
     }
 }

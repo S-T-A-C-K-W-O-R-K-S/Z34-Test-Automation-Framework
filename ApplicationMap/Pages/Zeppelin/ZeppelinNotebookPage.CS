@@ -1,51 +1,58 @@
-﻿using FrameworkCore.Extensions;
-using PlaywrightSharp;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
+using FrameworkCore.Extensions;
+using PlaywrightSharp;
 
 namespace ApplicationMap.Pages.Zeppelin
 {
-	public sealed class ZeppelinNotebookPage
-	{
-		// TODO: Add URL (Could Save The Notebook ID To The Context Dictionary And Require It For The Constructor)
+    public sealed class ZeppelinNotebookPage
+    {
+        // TODO: Add URL (Could Save The Notebook ID To The Context Dictionary And Require It For The Constructor)
 
-		public readonly IPage Self;
-		public ZeppelinNotebookPage(IPage Page) => Self = Page;
+        public readonly IPage Self;
 
-		private string RunAllParagraphsButton => "button[ng-click='runAllParagraphs(note.id)']";
-		private string RunAllParagraphsAcceptButton => "text='OK'";
+        public ZeppelinNotebookPage(IPage Page)
+        {
+            Self = Page;
+        }
 
-		public async Task RunAllParagraphs()
-		{
-			await Self.ClickAsync(RunAllParagraphsButton);
-			await Self.ClickAsync(RunAllParagraphsAcceptButton);
-		}
+        private string RunAllParagraphsButton => "button[ng-click='runAllParagraphs(note.id)']";
+        private string RunAllParagraphsAcceptButton => "text='OK'";
 
-		private async Task<IEnumerable<IElementHandle>> GetParagraphStatuses() => await Self.QuerySelectorAllAsync("div[ng-show='!asIframe'] > span.ng-binding");
+        public async Task RunAllParagraphs()
+        {
+            await Self.ClickAsync(RunAllParagraphsButton);
+            await Self.ClickAsync(RunAllParagraphsAcceptButton);
+        }
 
-		public async Task<bool> ParagraphsExecutedSuccessfully()
-		{
-			var allParagraphsHaveExecuted = false;
-			var noParagraphErrors = true;
+        private async Task<IEnumerable<IElementHandle>> GetParagraphStatuses()
+        {
+            return await Self.QuerySelectorAllAsync("div[ng-show='!asIframe'] > span.ng-binding");
+        }
 
-			while (allParagraphsHaveExecuted.Equals(false) && noParagraphErrors.Equals(true))
-			{
-				await Task.Delay(2500);
+        public async Task<bool> ParagraphsExecutedSuccessfully()
+        {
+            var allParagraphsHaveExecuted = false;
+            var noParagraphErrors = true;
 
-				var inProgress = 0;
-				var errors = 0;
+            while (allParagraphsHaveExecuted.Equals(false) && noParagraphErrors.Equals(true))
+            {
+                await Task.Delay(2500);
 
-				foreach (var status in await GetParagraphStatuses())
-				{
-					if (!(await status.GetInnerTextAsync()).Flatten().Equals("FINISHED")) inProgress++;
-					if ((await status.GetInnerTextAsync()).Flatten().Equals("ERROR")) errors++;
-				}
+                var inProgress = 0;
+                var errors = 0;
 
-				if (inProgress.Equals(0)) allParagraphsHaveExecuted = true;
-				if (!errors.Equals(0)) noParagraphErrors = false;
-			}
+                foreach (var status in await GetParagraphStatuses())
+                {
+                    if (!(await status.GetInnerTextAsync()).Flatten().Equals("FINISHED")) inProgress++;
+                    if ((await status.GetInnerTextAsync()).Flatten().Equals("ERROR")) errors++;
+                }
 
-			return allParagraphsHaveExecuted.Equals(true) && noParagraphErrors.Equals(true);
-		}
-	}
+                if (inProgress.Equals(0)) allParagraphsHaveExecuted = true;
+                if (!errors.Equals(0)) noParagraphErrors = false;
+            }
+
+            return allParagraphsHaveExecuted.Equals(true) && noParagraphErrors.Equals(true);
+        }
+    }
 }

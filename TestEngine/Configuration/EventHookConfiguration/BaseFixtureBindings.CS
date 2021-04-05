@@ -1,16 +1,16 @@
 using System;
-using TechTalk.SpecFlow;
-using FrameworkCore.Configuration;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
 using AventStack.ExtentReports;
+using AventStack.ExtentReports.Gherkin.Model;
 using AventStack.ExtentReports.Reporter;
 using AventStack.ExtentReports.Reporter.Configuration;
-using Reports = AventStack.ExtentReports.ExtentReports;
-using NUnit.Framework;
+using FrameworkCore.Configuration;
 using Microsoft.Extensions.Logging;
-using System.IO;
-using System.Collections.Generic;
-using AventStack.ExtentReports.Gherkin.Model;
-using System.Linq;
+using NUnit.Framework;
+using TechTalk.SpecFlow;
+using Reports = AventStack.ExtentReports.ExtentReports;
 
 [assembly: Parallelizable(ParallelScope.Fixtures)]
 [assembly: LevelOfParallelism(5)]
@@ -23,12 +23,12 @@ namespace TestEngine.Configuration.EventHookConfiguration
         private static ILoggerFactory _playwrightLogger;
 
         private static Reports _extent;
-        private ExtentTest _currentScenario;
+
+        private static List<ExtentTest> Features;
 
         private readonly FeatureContext _featureContext;
         private readonly ScenarioContext _scenarioContext;
-
-        private static List<ExtentTest> Features;
+        private ExtentTest _currentScenario;
 
         public SpecFlowEventBindings(FeatureContext featureContext, ScenarioContext scenarioContext)
         {
@@ -51,7 +51,7 @@ namespace TestEngine.Configuration.EventHookConfiguration
 
             ConfigurationReader.SetFrameworkSettings(Z34.TestRunProfile);
 
-            ExtentHtmlReporter reporter = new ExtentHtmlReporter(Z34.TestResultsDir + Path.DirectorySeparatorChar);
+            var reporter = new ExtentHtmlReporter(Z34.TestResultsDir + Path.DirectorySeparatorChar);
             reporter.Config.EnableTimeline = true;
             reporter.Config.ReportName = Z34.TestRunName;
             reporter.Config.DocumentTitle = Z34.TestRunName;
@@ -63,20 +63,25 @@ namespace TestEngine.Configuration.EventHookConfiguration
 
         [BeforeFeature]
         public static void BeforeFeature(FeatureContext featureContext)
-            => Features.Add(_extent.CreateTest<Feature>(featureContext.FeatureInfo.Title));
+        {
+            Features.Add(_extent.CreateTest<Feature>(featureContext.FeatureInfo.Title));
+        }
 
         [BeforeScenario]
         public void BeforeScenario()
-            => _currentScenario = Features.Where(feature => feature.Model.Name == _featureContext.FeatureInfo.Title).Single()
-            .CreateNode<Scenario>(_scenarioContext.ScenarioInfo.Title);
+        {
+            _currentScenario = Features.Where(feature => feature.Model.Name == _featureContext.FeatureInfo.Title)
+                .Single()
+                .CreateNode<Scenario>(_scenarioContext.ScenarioInfo.Title);
+        }
 
         [AfterStep]
         public void AfterStep()
         {
-            string stepType = _scenarioContext.StepContext.StepInfo.StepDefinitionType.ToString();
+            var stepType = _scenarioContext.StepContext.StepInfo.StepDefinitionType.ToString();
 
             if (_scenarioContext.ScenarioExecutionStatus.ToString().Equals("StepDefinitionPending"))
-                _ = (stepType) switch
+                _ = stepType switch
                 {
                     "Given" => _currentScenario
                         .CreateNode<Given>(_scenarioContext.StepContext.StepInfo.Text)
@@ -94,11 +99,12 @@ namespace TestEngine.Configuration.EventHookConfiguration
                         .CreateNode<And>(_scenarioContext.StepContext.StepInfo.Text)
                         .Skip("Step Definition Pending"),
 
-                    _ => throw new ArgumentOutOfRangeException(nameof(stepType), stepType, $"Invalid Step Type: {stepType}")
+                    _ => throw new ArgumentOutOfRangeException(nameof(stepType), stepType,
+                        $"Invalid Step Type: {stepType}")
                 };
 
             if (_scenarioContext.TestError is null)
-                _ = (stepType) switch
+                _ = stepType switch
                 {
                     "Given" => _currentScenario
                         .CreateNode<Given>(_scenarioContext.StepContext.StepInfo.Text),
@@ -112,12 +118,15 @@ namespace TestEngine.Configuration.EventHookConfiguration
                     "And" => _currentScenario
                         .CreateNode<And>(_scenarioContext.StepContext.StepInfo.Text),
 
-                    _ => throw new ArgumentOutOfRangeException(nameof(stepType), stepType, $"Invalid Step Type: {stepType}")
+                    _ => throw new ArgumentOutOfRangeException(nameof(stepType), stepType,
+                        $"Invalid Step Type: {stepType}")
                 };
         }
 
         [AfterTestRun]
         public static void AfterTestRun()
-            => _extent.Flush();
+        {
+            _extent.Flush();
+        }
     }
 }

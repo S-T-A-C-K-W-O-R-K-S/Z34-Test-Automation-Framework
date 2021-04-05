@@ -15,7 +15,7 @@ namespace FrameworkCore.Configuration
                 .Append(Path.DirectorySeparatorChar).Append("TestRunConfiguration")
                 .ToString();
 
-            ConfigurationBindings configBindings = new ConfigurationBuilder()
+            var configBindings = new ConfigurationBuilder()
                 .SetBasePath(configurationFilePath)
                 .AddJsonFile("Z34.CONFIG.JSON")
                 .Build()
