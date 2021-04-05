@@ -1,21 +1,17 @@
 {
 	"Z34 Default": {
-		"Host": "10.93.39.192",
+		"Host": "0.0.0.0",
 		"TestResultsDir": null,
 		"TestRunBrowser": "chromium",
 		"TestRunLaunchOptions": {
-			"Headless": true,
-			"Devtools": false,
-			"SlowMo": 0,
-			"Proxy": {
-				"Server": "10.93.39.14:3128",
-				"Bypass": "10.93.39.192:9090"
-			}
+			"Headless": false,
+			"Devtools": true,
+			"SlowMo": 0
 		},
 		"ConnectionString": "Data Source=Z34.SQLITE; Cache=Shared"
 	},
 	"Jenkins Pipeline": {
-		"Host": "10.93.39.191",
+		"Host": "x.x.x.1",
 		"TestResultsDir": null,
 		"TestRunBrowser": "chromium",
 		"TestRunLaunchOptions": {
@@ -23,31 +19,31 @@
 		}
 	},
 	"191 Headless Proxy": {
-		"Host": "10.93.39.191",
+		"Host": "x.x.x.1",
 		"TestResultsDir": null,
 		"TestRunBrowser": "chromium",
 		"TestRunLaunchOptions": {
 			"Headless": true,
 			"Proxy": {
-				"Server": "10.93.39.14:3128",
-				"Bypass": "10.93.39.191:9090"
+				"Server": "x.x.x.0:0000",
+				"Bypass": "x.x.x.1:1111"
 			}
 		}
 	},
 	"192 Headless Proxy": {
-		"Host": "10.93.39.192",
+		"Host": "x.x.x.2",
 		"TestResultsDir": null,
 		"TestRunBrowser": "chromium",
 		"TestRunLaunchOptions": {
 			"Headless": true,
 			"Proxy": {
-				"Server": "10.93.39.14:3128",
-				"Bypass": "10.93.39.192:9090"
+				"Server": "x.x.x.0:0000",
+				"Bypass": "x.x.x.2:1111"
 			}
 		}
 	},
 	"191 Headful": {
-		"Host": "10.93.39.191",
+		"Host": "x.x.x.1",
 		"TestResultsDir": null,
 		"TestRunBrowser": "chromium",
 		"TestRunLaunchOptions": {
@@ -56,7 +52,7 @@
 		}
 	},
 	"192 Headful": {
-		"Host": "10.93.39.192",
+		"Host": "x.x.x.2",
 		"TestResultsDir": null,
 		"TestRunBrowser": "chromium",
 		"TestRunLaunchOptions": {
