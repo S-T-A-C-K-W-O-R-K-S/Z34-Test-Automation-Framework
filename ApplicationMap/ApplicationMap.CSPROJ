@@ -1,11 +1,15 @@
-﻿<Project Sdk="Microsoft.NET.SDK">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetFramework>NETCoreApp3.1</TargetFramework>
+		<TargetFramework>NET5.0</TargetFramework>
 	</PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Atata" Version="1.7.0" />
+	  <PackageReference Include="PlaywrightSharp" Version="0.192.0" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <ProjectReference Include="..\FrameworkCore\FrameworkCore.CSPROJ" />
 	</ItemGroup>
 
 </Project>

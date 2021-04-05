@@ -12,6 +12,9 @@
 # Test Results                  #
 Z34 Test Results/
 #################################
+# Git Files                     #
+.git
+#################################
 
 # User-specific files
 *.rsuser

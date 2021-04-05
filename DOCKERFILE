@@ -1,0 +1,63 @@
+# add the Playwright base image, based on Ubuntu 20.04 LTS (Focal Fossa)
+FROM mcr.microsoft.com/playwright:focal AS dependency-resolver
+
+# add public key for Microsoft's package repository
+# https://docs.microsoft.com/en-us/windows-server/administration/linux-package-repository-for-microsoft-software
+RUN curl -sSL https://packages.microsoft.com/keys/microsoft.asc | apt-key add -
+
+# install "software-properties-common" to make the "apt-add-repository" command available
+RUN apt-get install -y software-properties-common
+
+# add Microsoft's package repository for Ubuntu 20.04 LTS
+RUN apt-add-repository https://packages.microsoft.com/ubuntu/20.04/prod
+
+# install .NET SDK 5.0
+# https://docs.microsoft.com/en-us/dotnet/core/install/linux-ubuntu
+RUN apt-get update; \
+	apt-get install -y apt-transport-https && \
+	apt-get update && \
+	apt-get install -y dotnet-sdk-5.0
+
+# install "mmv" (Mass Move/Copy/Rename)
+RUN apt-get install -y mmv
+
+
+
+# start second stage after all dependencies have been resolved
+FROM dependency-resolver AS file-name-handler
+
+# set the working directory
+WORKDIR /app
+
+# copy the solution files to the working directory
+COPY . .
+
+# rename the solution file to work around error MSB1003
+RUN mv Z34-Query-Hub.SLN Z34-Query-Hub.sln
+
+# rename feature files to avoid them not being discovered at build time
+# the semicolon character is a wildcard for the path (includes sub-directories)
+RUN mmv ";*.FEATURE" "#1#2.feature"
+
+# rename class files to avoid them not being discovered at build time
+RUN mmv ";*.CS" "#1#2.cs"
+
+
+
+# start third stage after files have been renamed to work around case-sensitive commands
+FROM file-name-handler
+
+# restore NuGet packages
+RUN dotnet restore
+
+# build solution
+RUN dotnet build
+
+# create persistent volume for accessing the test results
+VOLUME /out
+
+# set the test run profile
+ENV TestRunProfile "Jenkins Pipeline"
+
+# set container entry point and overridable parameters
+CMD ["bash", "Run-Z34.SH"]

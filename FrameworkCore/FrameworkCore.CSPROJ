@@ -1,12 +1,19 @@
-﻿<Project Sdk="Microsoft.NET.SDK">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetFramework>NETCoreApp3.1</TargetFramework>
+		<TargetFramework>NET5.0</TargetFramework>
 	</PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Atata" Version="1.7.0" />
-		<PackageReference Include="ExtentReports.Core" Version="1.0.3" />
+		<PackageReference Include="ExcelDataReader" Version="3.7.0-develop00310" />
+		<PackageReference Include="ExcelDataReader.DataSet" Version="3.7.0-develop00310" />
+		<PackageReference Include="ExtentReports" Version="4.1.0" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="6.0.0-preview.2.21154.2" />
+		<PackageReference Include="Microsoft.Extensions.Configuration" Version="6.0.0-preview.2.21154.6" />
+		<PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="6.0.0-preview.2.21154.6" />
+		<PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="6.0.0-preview.2.21154.6" />
+		<PackageReference Include="PlaywrightSharp" Version="0.192.0" />
+		<PackageReference Include="SpecFlow" Version="3.7.38" />
 	</ItemGroup>
 
 </Project>
