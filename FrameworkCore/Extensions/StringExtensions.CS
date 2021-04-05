@@ -15,7 +15,7 @@ namespace FrameworkCore.Extensions
         /// <param name="text"></param>
         public static string Flatten(this string text)
         {
-            return text is not null ? text.Trim().ToUpper() : null;
+            return text?.Trim().ToUpper();
         }
     }
 }

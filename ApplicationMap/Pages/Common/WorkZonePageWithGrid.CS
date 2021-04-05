@@ -8,7 +8,7 @@ namespace ApplicationMap.Pages.Common
     {
         public new readonly IPage Self;
 
-        public WorkZonePageWithGrid(IPage Page) : base(Page)
+        protected WorkZonePageWithGrid(IPage Page) : base(Page)
         {
             Self = Page;
         }

@@ -9,7 +9,7 @@ namespace FrameworkCore.Extensions
     {
         public static IEnumerable<TCellValue> GetColumnValues<TCellValue>(this DataColumn column)
         {
-            return column.Table.Select()
+            return column.Table?.Select()
                 .Select(row => (TCellValue) Convert.ChangeType(row[column], typeof(TCellValue)));
         }
     }

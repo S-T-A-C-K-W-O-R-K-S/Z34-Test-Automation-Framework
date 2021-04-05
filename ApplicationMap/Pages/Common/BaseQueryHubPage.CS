@@ -12,7 +12,7 @@ namespace ApplicationMap.Pages.Common
     {
         public readonly IPage Self;
 
-        public BaseQueryHubPage(IPage Page)
+        protected BaseQueryHubPage(IPage Page)
         {
             Self = Page;
         }
@@ -29,12 +29,9 @@ namespace ApplicationMap.Pages.Common
 
         public (int Success, int Warning, int Error) GetNotificationsCount(IEnumerable<IElementHandle> notifications)
         {
-            var success = notifications.Where(notification =>
-                notification.GetAttributeAsync("class").Result.Contains("notification__success")).Count();
-            var warning = notifications.Where(notification =>
-                notification.GetAttributeAsync("class").Result.Contains("notification__warning")).Count();
-            var error = notifications.Where(notification =>
-                notification.GetAttributeAsync("class").Result.Contains("notification__error")).Count();
+            var success = notifications.Count(notification => notification.GetAttributeAsync("class").Result.Contains("notification__success"));
+            var warning = notifications.Count(notification => notification.GetAttributeAsync("class").Result.Contains("notification__warning"));
+            var error = notifications.Count(notification => notification.GetAttributeAsync("class").Result.Contains("notification__error"));
 
             return (success, warning, error);
         }

@@ -70,8 +70,8 @@ namespace TestEngine.Configuration.EventHookConfiguration
         [BeforeScenario]
         public void BeforeScenario()
         {
-            _currentScenario = Features.Where(feature => feature.Model.Name == _featureContext.FeatureInfo.Title)
-                .Single()
+            _currentScenario = Features
+                .Single(feature => feature.Model.Name == _featureContext.FeatureInfo.Title)
                 .CreateNode<Scenario>(_scenarioContext.ScenarioInfo.Title);
         }
 

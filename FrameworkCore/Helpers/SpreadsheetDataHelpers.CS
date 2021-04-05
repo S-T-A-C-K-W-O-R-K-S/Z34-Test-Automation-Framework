@@ -1,5 +1,6 @@
 ﻿using System.Data;
 using System.IO;
+using System.Linq;
 using System.Text;
 using ExcelDataReader;
 
@@ -30,12 +31,7 @@ namespace FrameworkCore.Helpers
 
             public DataTable GetSheetByName(string tableName)
             {
-                foreach (DataTable table in DataSet.Tables)
-                    if (table.TableName.Equals(tableName))
-                        return table;
-                ;
-
-                return null;
+                return DataSet.Tables.Cast<DataTable>().FirstOrDefault(table => table.TableName.Equals(tableName));
             }
         }
     }

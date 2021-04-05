@@ -19,8 +19,7 @@ namespace FrameworkCore.Models
         {
             var playwright = await Playwright.CreateAsync(playwrightLogger, debug: "pw:api");
 
-            if (launchOptions is null)
-                launchOptions = new LaunchOptions {Headless = false, Devtools = true, SlowMo = 5};
+            launchOptions ??= new LaunchOptions {Headless = false, Devtools = true, SlowMo = 5};
 
             var browser = browserType.ToLower() switch
             {

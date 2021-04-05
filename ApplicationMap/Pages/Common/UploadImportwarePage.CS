@@ -12,7 +12,7 @@ namespace ApplicationMap.Pages.Common
     {
         public new readonly IPage Self;
 
-        public UploadImportwarePage(IPage Page) : base(Page)
+        protected UploadImportwarePage(IPage Page) : base(Page)
         {
             Self = Page;
         }

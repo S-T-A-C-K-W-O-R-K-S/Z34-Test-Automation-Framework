@@ -42,7 +42,7 @@ namespace ApplicationMap.Pages.QueryHub
                 await RefreshGridAndWaitForRows("CP_BATCH_LIST4USER");
                 var grid = await Self.ProcessAngularGrid();
                 var retrievedBatchType = grid.Columns["Type"].GetColumnValues<string>().FirstOrDefault();
-                visibleBatchType = retrievedBatchType is not null ? retrievedBatchType : string.Empty;
+                visibleBatchType = retrievedBatchType ?? string.Empty;
             }
 
             stopWatch.Stop();

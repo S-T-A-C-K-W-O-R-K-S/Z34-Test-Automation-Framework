@@ -1,3 +1,5 @@
+using System;
+using System.Linq;
 using System.Threading.Tasks;
 using ApplicationMap.Pages.Common;
 using FrameworkCore.Configuration;
@@ -67,25 +69,20 @@ namespace ApplicationMap.Pages.QueryHub
 
                 var grid = await Self.ProcessAngularGrid();
 
-                var objectsInAscendingOrderHaveBeenValidated = true;
-                var objectsInDecendingOrderHaveBeenValidated = true;
+                await OrderByStatus();
+
+                var objectsInAscendingOrderHaveBeenValidated = ((grid.Columns["Status"]?.GetColumnValues<string>()) ?? Array.Empty<string>())
+                    .Aggregate(true, (current, cell) => current && cell.Equals("Validated"));
 
                 await OrderByStatus();
 
-                foreach (var cell in grid.Columns["Status"]?.GetColumnValues<string>())
-                    objectsInAscendingOrderHaveBeenValidated =
-                        objectsInAscendingOrderHaveBeenValidated && cell.Equals("Validated");
-
-                await OrderByStatus();
-
-                foreach (var cell in grid.Columns["Status"]?.GetColumnValues<string>())
-                    objectsInDecendingOrderHaveBeenValidated =
-                        objectsInDecendingOrderHaveBeenValidated && cell.Equals("Validated");
+                var objectsInDescendingOrderHaveBeenValidated = ((grid.Columns["Status"]?.GetColumnValues<string>()) ?? Array.Empty<string>())
+                    .Aggregate(true, (current, cell) => current && cell.Equals("Validated"));
 
                 await OrderByStatus();
 
                 allObjectsHaveBeenValidated = objectsInAscendingOrderHaveBeenValidated &&
-                                              objectsInDecendingOrderHaveBeenValidated;
+                                              objectsInDescendingOrderHaveBeenValidated;
             }
 
             return allObjectsHaveBeenValidated;
