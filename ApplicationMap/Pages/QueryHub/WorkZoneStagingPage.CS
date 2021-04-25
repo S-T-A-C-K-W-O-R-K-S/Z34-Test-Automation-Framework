@@ -71,12 +71,14 @@ namespace ApplicationMap.Pages.QueryHub
 
                 await OrderByStatus();
 
-                var objectsInAscendingOrderHaveBeenValidated = ((grid.Columns["Status"]?.GetColumnValues<string>()) ?? Array.Empty<string>())
+                var objectsInAscendingOrderHaveBeenValidated =
+                    (grid.Columns["Status"]?.GetColumnValues<string>() ?? Array.Empty<string>())
                     .Aggregate(true, (current, cell) => current && cell.Equals("Validated"));
 
                 await OrderByStatus();
 
-                var objectsInDescendingOrderHaveBeenValidated = ((grid.Columns["Status"]?.GetColumnValues<string>()) ?? Array.Empty<string>())
+                var objectsInDescendingOrderHaveBeenValidated =
+                    (grid.Columns["Status"]?.GetColumnValues<string>() ?? Array.Empty<string>())
                     .Aggregate(true, (current, cell) => current && cell.Equals("Validated"));
 
                 await OrderByStatus();

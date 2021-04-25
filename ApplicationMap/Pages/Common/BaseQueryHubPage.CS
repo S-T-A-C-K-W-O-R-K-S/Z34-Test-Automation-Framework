@@ -29,9 +29,12 @@ namespace ApplicationMap.Pages.Common
 
         public (int Success, int Warning, int Error) GetNotificationsCount(IEnumerable<IElementHandle> notifications)
         {
-            var success = notifications.Count(notification => notification.GetAttributeAsync("class").Result.Contains("notification__success"));
-            var warning = notifications.Count(notification => notification.GetAttributeAsync("class").Result.Contains("notification__warning"));
-            var error = notifications.Count(notification => notification.GetAttributeAsync("class").Result.Contains("notification__error"));
+            var success = notifications.Count(notification =>
+                notification.GetAttributeAsync("class").Result.Contains("notification__success"));
+            var warning = notifications.Count(notification =>
+                notification.GetAttributeAsync("class").Result.Contains("notification__warning"));
+            var error = notifications.Count(notification =>
+                notification.GetAttributeAsync("class").Result.Contains("notification__error"));
 
             return (success, warning, error);
         }

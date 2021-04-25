@@ -10,14 +10,9 @@ namespace FrameworkCore.Extensions
         {
             using var timeoutCancellationTokenSource = new CancellationTokenSource();
             var completedTask = await Task.WhenAny(task, Task.Delay(timeout, timeoutCancellationTokenSource.Token));
-
-            if (completedTask.Equals(task))
-            {
-                timeoutCancellationTokenSource.Cancel();
-                return await task;
-            }
-
-            throw new TimeoutException();
+            if (!completedTask.Equals(task)) throw new TimeoutException();
+            timeoutCancellationTokenSource.Cancel();
+            return await task;
         }
     }
 }

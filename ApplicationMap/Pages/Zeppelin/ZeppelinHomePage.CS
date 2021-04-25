@@ -51,12 +51,8 @@ namespace ApplicationMap.Pages.Zeppelin
         public async Task<bool> NotebookExists(string notebookName)
         {
             var (Notebook, _) = await GetNotebookAndActions(notebookName);
-
-            if (Notebook is not null)
-                if (await Notebook.IsVisibleAsync())
-                    return true;
-
-            return false;
+            if (Notebook is null) return false;
+            return await Notebook.IsVisibleAsync();
         }
 
         public async Task OpenNotebook(string notebookName)
