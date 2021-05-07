@@ -1,9 +1,9 @@
 ﻿using System;
-using System.Threading.Tasks;
-using AventStack.ExtentReports.Gherkin.Model;
-using FrameworkCore.Configuration;
-using Microsoft.Data.Sqlite;
 using TechTalk.SpecFlow;
+using FrameworkCore.Configuration;
+using AventStack.ExtentReports.Gherkin.Model;
+using System.Threading.Tasks;
+using Microsoft.Data.Sqlite;
 
 namespace TestEngine.Configuration.EventHookConfiguration
 {
@@ -11,37 +11,36 @@ namespace TestEngine.Configuration.EventHookConfiguration
     {
         [BeforeFeature("Back-End")]
         public static void BeforeBackEndFeature()
-        {
-            Z34.DatabaseConnection = new SqliteConnection(Z34.ConnectionStringBuilder.ConnectionString);
-        }
+            => Z34.DatabaseConnection = new SqliteConnection(Z34.ConnectionStringBuilder.ConnectionString);
 
         [AfterStep("Back-End")]
         public void AfterBackEndStep()
         {
-            var stepType = _scenarioContext.StepContext.StepInfo.StepDefinitionType.ToString();
+            string stepType = _scenarioContext.StepContext.StepInfo.StepDefinitionType.ToString();
 
             if (_scenarioContext.TestError is not null)
-                _ = stepType switch
+            {
+                _ = (stepType) switch
                 {
                     "Given" => _currentScenario
-                        .CreateNode<Given>(_scenarioContext.StepContext.StepInfo.Text)
-                        .Fail(_scenarioContext.TestError.Message),
+                    .CreateNode<Given>(_scenarioContext.StepContext.StepInfo.Text)
+                    .Fail(_scenarioContext.TestError.Message),
 
                     "When" => _currentScenario
-                        .CreateNode<When>(_scenarioContext.StepContext.StepInfo.Text)
-                        .Fail(_scenarioContext.TestError.Message),
+                    .CreateNode<When>(_scenarioContext.StepContext.StepInfo.Text)
+                    .Fail(_scenarioContext.TestError.Message),
 
                     "Then" => _currentScenario
-                        .CreateNode<Then>(_scenarioContext.StepContext.StepInfo.Text)
-                        .Fail(_scenarioContext.TestError.Message),
+                    .CreateNode<Then>(_scenarioContext.StepContext.StepInfo.Text)
+                    .Fail(_scenarioContext.TestError.Message),
 
                     "And" => _currentScenario
-                        .CreateNode<And>(_scenarioContext.StepContext.StepInfo.Text)
-                        .Fail(_scenarioContext.TestError.Message),
+                    .CreateNode<And>(_scenarioContext.StepContext.StepInfo.Text)
+                    .Fail(_scenarioContext.TestError.Message),
 
-                    _ => throw new ArgumentOutOfRangeException(nameof(stepType), stepType,
-                        $"Invalid Step Type: {stepType}")
+                    _ => throw new ArgumentOutOfRangeException(nameof(stepType), stepType, $"Invalid Step Type: {stepType}")
                 };
+            }
         }
 
         [AfterScenario("Back-End")]

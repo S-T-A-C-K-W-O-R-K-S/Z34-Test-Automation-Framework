@@ -8,21 +8,13 @@ namespace TestEngine.StepDefinitions.Common
         private readonly FeatureContext _featureContext;
         private readonly ScenarioContext _scenarioContext;
 
-        protected BaseStep()
-        {
-        }
+        public BaseStep() { }
 
-        protected BaseStep(FeatureContext featureContext)
-        {
-            _featureContext = featureContext;
-        }
+        public BaseStep(FeatureContext featureContext) => _featureContext = featureContext;
 
-        protected BaseStep(ScenarioContext scenarioContext)
-        {
-            _scenarioContext = scenarioContext;
-        }
+        public BaseStep(ScenarioContext scenarioContext) => _scenarioContext = scenarioContext;
 
-        protected BaseStep(FeatureContext featureContext, ScenarioContext scenarioContext)
+        public BaseStep(FeatureContext featureContext, ScenarioContext scenarioContext)
         {
             _featureContext = featureContext;
             _scenarioContext = scenarioContext;
